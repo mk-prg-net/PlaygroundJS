@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "WebWorker";
+}
+
+<article class="col-xs-12 col-md-12 col-lg-12">
+
+    <h1>WebWorker Demo</h1>
+    <form>
+        <div class="form-group">
+            <label for="von">von</label>
+
+            <input id="von" type="number" class="form-control" value="1" />
+        </div>
+        <div class="form-group">
+            <label for="bis">bis</label>
+            <input id="bis" type="number" class="form-control" value="1000000"/>
+        </div>
+
+        <button type="button" id="StartScan" class="btn btn-success">Start Primzahlsuche im Webworker</button>
+        <button type="button" id="StoppScan" class="btn btn-danger">Stoppe Primzahlsuche</button>
+
+        <button type="button" id="StartCount" class="btn btn-success">Start Counter</button>
+        <button type="button" id="StoppCount" class="btn btn-danger">Stoppe Counter</button>
+
+        <input type="number" id="progress"/>
+        <div id="Ausgabe" class="well-lg">
+
+        </div>
+        
+    </form>
+
+</article>
+
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+
+    @Scripts.Render("~/bundles/JavaScriptLernen/Algo")
+    @Scripts.Render("~/bundles/WebWorker")
+}
+
+
+
+
+
+
+
+

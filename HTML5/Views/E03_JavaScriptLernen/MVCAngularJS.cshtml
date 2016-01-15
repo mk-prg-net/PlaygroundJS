@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "MVC mit AngularJS";
+}
+<div data-ng-app="kombiniertesModul">
+    <h2>MVCAngular</h2>
+    <dl class="dl-horizontal">
+        <dt><a href="https://angularjs.org">angularjs.org</a></dt>
+        <dd>Offizielle Webseite zum Produkt</dd>
+        <dt><a href="https://docs.angularjs.org/guide">docs.angularjs.org/guide</a></dt>
+        <dd>Entwicklerhandbuch, führt in die Konzepte von AngularJS ein.</dd>
+        <dt><a href="https://docs.angularjs.org/api">docs.angularjs.org/api</a></dt>
+        <dd>API- Referenz</dd>
+        <dt><a href="http://www.w3schools.com/angular/default.asp">w3schools.com</a></dt>
+        <dd>Sehr gutes Tutorial</dd>
+        <dt><a href="http://www.heise.de/developer/artikel/Single-Page-Applications-mit-AngularJS-Teil-1-Erste-Schritte-2181167.html">SPA mit angularjs, teil 1</a></dt>
+        <dd>Artikelreihe auf heise.de von Mafred Steyer</dd>
+    </dl>
+    <p>
+        AngularJS ist eine von Google bereitgestellt freie Bibliothek, welche für die Entwicklung von CRUD- Anwednungen (Create - Read - Update - Delete)
+        optimiert wurde. Sie folgt dem MVC- Muster, wobei die View durch direkt als HTML- Formular mit speziellen Datenbindungsausdrücken implementiert wird.
+    </p>
+    <div class="row">
+        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-8">
+            <div class="panel-heading">
+                MVC: Model View Controller
+            </div>
+            <div class="panel-body">
+                <figure>
+                    <img src="~/Content/pics/MVCAngularJS/BasicMVCStruct.svg" class="img-responsive" />
+
+                    <figcaption>
+                        Blockschaltbild <i>Angular JS Model View Controler</i>. Details siehe unter
+                        <a href="https://docs.angularjs.org/guide/databinding" target="_blank">Databinding</a>,
+                        <a href="https://docs.angularjs.org/guide/scope" target="_blank">Scope/Model</a>,
+                        <a href="https://docs.angularjs.org/guide/expression" target="_blank">Expressions</a>,
+                        <a href="https://docs.angularjs.org/guide/directive" target="_blank">Directives</a>,
+                        <a href="https://docs.angularjs.org/guide/controller" target="_blank">Controler</a>
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </div>
+
+        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-4" data-ng-controller="MyCalcCtrl" data-ng-init="A=99; B=-99;">
+            <div class="panel-heading">
+                Taschenrechner gemäß MVC Pattern mittels AngularJS
+            </div>
+            <div class="panel-body ">
+                <form novalidate>
+                    <p class="well">
+                        @* Angular- Expression. Wird beim Laden kompiliert in eine two way binding *@
+                        {{Res.toFixed(0+Accuracy) | currency }}
+                    </p>
+                    <p>
+                        <div>
+
+                        </div>
+                        Genauigkeit:
+                        <label class="radio-inline"><input type="radio" name="Accur" value="2" data-ng-model="Accuracy" />2</label>
+                        <label class="radio-inline"><input type="radio" name="Accur" value="4" ng-model="Accuracy" />4</label>
+
+                    </p>
+                    <dl class="dl-horizontal">
+                        <dt>A=</dt>
+                        <dd><input type="text" data-ng-model="A" /> </dd>
+                        <dt>B=</dt>
+                        <dd><input type="text" data-ng-model="B" /></dd>
+                        <dt>OP's</dt>
+                        <dd>
+                            <button data-ng-click="Add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                            <button data-ng-click="Sub()" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
+                            <button data-ng-click="Mul()" class="btn btn-primary"><span class="glyphicon glyphicon-asterisk"></span></button>
+                            <button data-ng-click="Div()" class="btn btn-primary"><span class="glyphicon glyphicon-th"></span></button>
+                            <button data-ng-click="Clear()" class="btn btn-primary"><span class="glyphicon glyphicon-euro"></span></button>
+                            <button data-ng-click="GetHistory()" class="btn btn-primary">GetHistory</button>
+                        </dd>
+                    </dl>
+                </form>
+            </div>
+            <table class="table table-striped">
+                <tr data-ng-repeat="rop in Protokoll">
+                    <td>
+                        {{rop.Res}}
+                    </td>
+                    <td>
+                        =
+                    </td>
+                    <td>
+                        {{rop.A}}
+                    </td>
+                    <td>
+                        {{rop.OP}}
+                    </td>
+                    <td>
+                        {{rop.B}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-8">
+            <div class="panel-heading">
+                Validierung
+            </div>
+            <div class="panel-body">
+
+            </div>
+        </div>
+
+        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-4">
+            <div class="panel-heading">
+                Taschenrechner mit Validierung
+            </div>
+            <div class="panel-body " data-ng-controller="MyCalcCtrl2">
+                @* Über das Name- Attribut wird ein Form- Controller für die Validierung definiert *@
+                <form novalidate name="form">
+                    <p class="well">
+                        {{Res.toFixed(Accuracy2 ? 2 : 4)}}
+                    </p>
+                    <dl class="dl-horizontal">
+                        <dt>A=</dt>
+                        <dd>
+                            <div>
+                                @* Zusätzlich zur Datenbindung muss bei der Validierung für den Form- Controller eine name- Attribut gesetzt werden*@
+                                <input type="number" data-ng-model="A" name="A"/>
+                            </div>
+                            @* über ng-show="true | false" kann angularJS die Sichtbarkeit eines Elements beeinflussen  *@
+                            <div data-ng-show="form.A.$dirty && form.A.$invalid">
+                                @* mittels des Filters json wird das Ergebnis der Expression als json ausgegeben *@
+                                {{form.A.$error | json}}
+                            </div>
+                        </dd>
+                        <dt>B=</dt>
+                        <dd><input type="number" data-ng-model="B" /></dd>
+                        <dt>OP's</dt>
+                        <dd>
+                            <button data-ng-click="Add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                            <button data-ng-click="Sub()" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
+                            <button data-ng-click="Mul()" class="btn btn-primary"><span class="glyphicon glyphicon-asterisk"></span></button>
+                            <button data-ng-click="Div()" class="btn btn-primary"><span class="glyphicon glyphicon-th"></span></button>
+                        </dd>
+                    </dl>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/AngularJS")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/MVC/MVCAngularJsCalculator.js")
+
+
+}
+
+

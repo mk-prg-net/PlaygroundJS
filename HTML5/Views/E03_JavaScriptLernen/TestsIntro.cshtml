@@ -1,0 +1,86 @@
+﻿@{
+
+    ViewBag.Title = "TestsIntro";
+}
+
+<article>
+    <h1>Unit- Tests für JavaScript- Einführung</h1>
+    <div class="row">
+        <section class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Definitionen</h2>
+            <dl>
+                <dt>Unit</dt>
+                <dd>
+                    Im Zusammenhang mit Tests eine einzelne JavaScript- Funktion wie
+                    <code>function add(a, b) {return a + b;}</code>.
+                </dd>
+                <dt>Unit- Test</dt>
+                <dd>
+                    Parameter einer Unit werden an Testeingabewerte gebunden. Der zurückgegebene Wert wird mit dem erwarteten Wert verglichen.
+                    Das Ergebnis wird dokumentiert.
+                </dd>
+                <dt>Testframework</dt>
+                <dd>
+                    Bibliothek, mit der Unit- Tests implementiert werden können. Gliedert sich in Funktionen, mit denen tatsächiche Rückgabewerte
+                    mit den erwarteten Rückgabewerten verglichen werden können (<b>Assert</b>), und Funktionen, die Listen von Asserts als Testaufträge
+                    definieren. Beispiel <a href="http://qunitjs.com/intro/" target="_blank">QUnit</a> und <a href="http://jasmine.github.io/" target="_blank">Jasmin</a>.
+                </dd>
+                <dt>Testrunner</dt>
+                <dd>
+                    Tool, das eine Liste von JavaScript- Dateien auf Änderungen überwacht, und unmittelbar nach detektieren von Änderungen
+                    Unit- Tests für die Dateien startet. Beispiel: <a href="http://karma-runner.github.io/0.12/index.html" target="_blank">Karma</a>
+                </dd>
+            </dl>
+            <h2>Installation und Konfiguration des <b>Karma</b>- Testrunners</h2>
+            Voraussetzung: <b>nodeJS</b> zusammen mit seinem Paketmanager <b>npm</b> muss installiert sein.
+            <ol>
+                <li><a href="http://karma-runner.github.io/0.12/index.html" target="_blank">Karma</a> installieren mittels <code>npm install -g karma</code></li>
+                <li>
+                    Für <b>Karma</b> konfigurieren
+                    <ul>
+                        <li>Browser (JavaScript- Engines), in denen die Tests auszuführen sind</li>
+                        <li>einzusetzendes Testframework (z.B. QUnit)</li>
+                        <li>Liste der Quelltexte, in denen die zu testenden Funktionen sowie die Tests definiert sind</li>
+                    </ul>
+                    <p>
+                        Die Konfiguration kann mit einem in <b>Karma</b> integrierten Assistenten erfolgen. Er wird gestartet durch
+                        <code>karma init</code>. Der Start sollte in dem Projektverzeichnis mit den zu testenden
+                        JavaScript- Dateien erfolgen.
+                    </p><p>
+                        Der Assistent schreibt die Einstellungen in eine
+                        Datei namens <i>karma.conf.js</i>. Diese kann nachträglich geändert/angepasst werden.
+                    </p>
+                </li>
+                <li>
+                    <p>Tests starten mit <code>karma start</code></p>
+                    <p>
+                        <b>karma</b> überwacht nun die zuvor definierten Quelltextdateien auf Änderungen. Wird eine Änderung erkannt, dann werden die
+                        Tests ausgeführt. Im Kommandozeilenfenster kann anhand der Rückmeldungen von Karma erkannt werden, ob die Tests erfolgreich waren.
+                    </p>
+                </li>
+            </ol>
+        </section>
+        <section class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Tests</h2>
+            <ol>
+                <li>
+                    @Html.ActionLink("Tests mko.algo", "QUnitIntro")
+                </li>
+                <li>
+                    @Html.ActionLink("Tests mko.lisp", "LispTests")
+                </li>
+                <li>
+                    @Html.ActionLink("Tests mko.newton", "NewtonTests")
+                </li>
+                <li>
+                    @Html.ActionLink("Tests BVB.graph", "ShapeTest")
+                </li>
+
+
+            </ol>
+        </section>
+    </div>
+
+
+</article>
+

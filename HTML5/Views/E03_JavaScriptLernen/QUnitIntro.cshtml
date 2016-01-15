@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "QUnitIntro";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <article class="col-xs-12 col-md-12 col-lg-12">
+            <h2>Testen mit QUnit</h2>
+            <ul>
+                <li><a href="http://qunitjs.com/intro/" target="_blank">QUnit- Einführung</a> </li>
+                <li><a href="http://blogs.msdn.com/b/pranab/archive/2013/06/20/unit-testing-javascript-jquery-in-asp-net-mvc-project-using-qunit.aspx" target="_blank"> Spezielles zum nuget package qunit for asp.net mvc</a></li>
+                <li><a href="http://www.sitepoint.com/test-asynchronous-code-qunit/" target="_blank">Details zu asynchronen Tests</a> </li>
+            </ul>
+
+
+            <div>
+                <h1 id="qunit-header">QUnit example</h1>
+                <ol id="qunit-tests"></ol>
+            </div>
+
+        </article>
+    </div>
+}
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/qunit")
+    @Scripts.Render("~/bundles/JavaScriptLernen/QUnit")
+    @Scripts.Render("~/bundles/JavaScriptLernen/Algo")
+}
+@* Style wird für Gestaltung der QUnit- Testausgabe benötigt *@
+@section Styles {
+    <link rel="stylesheet" href="~/Content/qunit.css" />
+}
+
+
+
+

@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "U02CSSSelektoren";
+}
+
+<style>
+
+    /*
+        Die Ausgewählten Einträge farblich markieren. 
+        ::selection ist ein Pseudoselektor
+    */
+    select::selection {
+        background-color: aliceblue;
+    }
+
+    input[type=number]:focus {
+        background-color: orange;
+    }
+
+    /*
+        input- Elemente zu Blockelementen machen
+    */
+
+    input {
+        display:block;
+    }
+
+    .Optionbox {
+        display:inline;        
+        border-style: solid;
+        border-radius: 10px;
+    }
+
+</style>
+
+<h2>U02CSSSelektoren</h2>
+<p>Einsatz von CSS3- Selektoren</p>
+<section class="row">
+    <article class="col-xs-12 col-md-6 col-lg-4">
+        <form id="Calc">
+
+            <label for="A">A</label>
+            <input id="A" type="number" style="text-align: right"/>
+
+            <label for="B">B</label>
+            <input id="B" type="number" style="text-align: right" />
+
+
+            <button id="exe" type="button">EXE</button>
+
+            <div class="Optionbox">
+                <select id="SelOp">
+                    <option value="add" selected>+</option>
+                    <option value="sub" selected>-</option>
+                    <option value="mul" selected>*</option>
+                    <option value="div" selected>/</option>
+                </select>
+            </div>
+            
+            <input type="text" id="result" />
+        </form>
+    </article>
+</section>
+
+

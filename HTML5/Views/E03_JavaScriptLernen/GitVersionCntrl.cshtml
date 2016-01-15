@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "GitVersionCntrl";
+}
+
+<article class="row">
+
+    <section class="col-sm-12">
+        <h2>Versionsverwaltung von JavaScript Projkte mittels Git</h2>
+
+        <p>
+            <a href="https://git-scm.com/">GIT</a> ist eine von <a href="https://de.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> entwicklete Versionsverwaltung. Details zur Geschichte
+            findet man <a href="https://de.wikipedia.org/wiki/Git">hier</a>.
+        </p>
+        <p>
+
+        </p>
+        <h3>Workflow</h3>
+        <figure class="img-responsive" style="width: 100%">
+            <img src="~/Content/pics/JavaScript/git-overview.svg" />
+        </figure>
+
+        <h4>Repository clonen</h4>
+        <p>
+            Jederzeit kann von einem Repository unter dem URL <i>SRC</i> mittels dem Kommando <code>git clone &lt;SRC&gt; &lt;DEST&gt; </code> eine Kopie in <i>DEST</i> angefertigt werden.
+            Dabei wird der letzte <i>Commit</i> in DEST ausgecheckt.
+        </p>
+        <p>
+            Das Clonen ist eine fundamentale Operation im verteilten Versionsverwaltungssystem. Die Quelle befindet sich im einfachsten Fall auf der
+            lokalen Festplatte. Arbeiten an einem Projekt mehrere Personen, dann verwalten diese ihren Code in <b>GIT</b> in eigenen
+            Repositories. Baut ein Entwickler seinen Code auf den Werken der anderen auf, dann clont er die Repositories der anderen in sein eigenes Projekt:
+            mehrere clone- Opeartionen können dasselbe Ziel adressieren !
+        </p>
+        <p>
+            Die Quell- Repositorys eines Repository werden mit dem Befehl <code>git remote -v</code> aufgelistet.
+        </p>
+
+        <h4>Versionsverlauf anzeigen</h4>
+        <p>
+            Die Liste aller <i>Commits</i> und <i>Branches</i> wird angezeit durch
+            <code>git log</code>
+        </p>
+
+        <h3>Git und Visual Studio</h3>
+        <p>
+            Ab Visual Studio, Update 1 ist im <b>Team Explorer</b> eine GIT- GUI integriert (<a href="https://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Visual-Studio">Doku hier</a>).
+            Diese basiert auf den <a href="https://visualstudiogallery.msdn.microsoft.com/abafc7d6-dcaa-40f4-8a5e-d6724bdb980c" target="_blank">Visual Stuldio Tools for GIT</a>.
+        </p>
+    </section>
+</article>

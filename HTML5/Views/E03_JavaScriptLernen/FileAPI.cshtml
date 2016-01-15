@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "FileAPI";
+}
+
+<h2>FileAPI</h2>
+
+<figure>
+    <img src="~/Content/pics/JavaScript/FileAPI.svg" class="img-responsive"/>
+    <figcaption>
+        Aufbau der FileAPI
+    </figcaption>
+</figure>
+<h2>Demo: Bilder auswählen und als Thumbnail einbinden</h2>
+<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+@section Styles {
+    <style>
+        .thumb {
+            height: 75px;
+            border: 1px solid #000;
+            margin: 10px 5px 0 0;
+        }
+    </style>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/JavaScriptLernen/FileAPI/DocumentReady.js")
+
+}
+
+
+
+

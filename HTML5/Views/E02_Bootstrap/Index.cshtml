@@ -1,0 +1,317 @@
+﻿@{
+    ViewBag.Title = "View";
+}
+
+<section id="mainSection">
+    <header>
+        <h1>Bootstrap: fertige, responsiver Stylebaukasten</h1>
+        <!-- Semantisches Markup: Navigationsbereich -->
+        <nav>
+            <div class="btn-group">
+                <a href="#Merkur" class="btn btn-primary">Merkur</a>
+                <a href="#Venus" class="btn btn-alert">Venus</a>
+                <a href="#Erde" class="btn btn-danger">Erde</a>
+                <a href="#Mars" class="btn btn-success">Mars</a>
+                <a href="#Jupiter" class="btn btn-primary">Jupiter</a>
+                <a href="#Saturn" class="btn btn-primary">Saturn</a>
+                <a href="#Uranus" class="btn btn-primary">Uranus</a>
+                <a href="#Neptun" class="btn btn-primary">Neptun</a>
+            </div>
+            <div class="btn-group">
+                @Html.ActionLink("Home", "Index", new { controller = "Home" }, new { @class = "btn btn-primary" })
+            </div>
+        </nav>
+    </header>
+    <div class="row">
+        <article class="col-xs-12 col-md-6 col-lg-4">
+            <h1><a name="Merkur"></a> Merkur, die Steinwüste</h1>
+            <aside>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Abstand zur Sonne
+                    </dt>
+                    <dd>
+                        <meter value="0.38709893 " min="0.307" max="0.467">0,387 AE</meter>
+                    </dd>
+                    <dt>
+                        Durchmesser
+                    </dt>
+                    <dd>
+                        <meter value="4879.4">4879,4 km</meter>
+                    </dd>
+
+                </dl>
+            </aside>
+            <figure>
+                <figcaption>
+                    Aufgenomen von <a href="http://de.wikipedia.org/wiki/MESSENGER" target="_blank">Messenger</a> am <time datetime="2008-01-14">14. Jan. 2008</time>
+                </figcaption>
+                <img src="~/Content/pics/Merkur-med.jpg" class="img-circle img-responsive" />
+            </figure>
+
+            <div class="multiCol">
+                <p>
+                    Merkur ist der Sonne sehr nah, und ein Merkurtag dauert 175 Erdtage. Da wird es zur Mittagszeit schon ordentlich warm: 427&deg;C !
+                </p>
+                <p>
+                    Aus physikalischer Sicht hat Merkur eine interessante Umlaufbahn: Sie ist elliptisch, und die Ellipse selber rotiert mit ihren Scheitelpunkten
+                    aufgrund von Bahnstörungen der restlichen Planeten mit einer Umlaufperiode von 225000 Jahren (Periheldrehung). Wegen der Nähe zur Sonne
+                    mit ihrer riesigen Masse gelten aber hier nicht mehr die Gesetze der klassischen Mechanik. Erst Einstein konnte mit seiner
+                    allgemeinen Relativitätstheorie die Pheriheldrehtung des MErkur exakt erklären.
+                </p>
+            </div>
+        </article>
+        <article class="col-xs-12 col-md-6 col-lg-4">
+            <h1><a name="Venus"></a>Venus, der Glutofen</h1>
+            <aside>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Abstand zur Sonne
+                    </dt>
+                    <dd>
+                        <meter value="0.723" min="0.718" max="0.728">0,723 AE</meter>
+                    </dd>
+                    <dt>
+                        Durchmesser
+                    </dt>
+                    <dd>
+                        <meter value="12103.6">12103,6 km</meter>
+                    </dd>
+                </dl>
+            </aside>
+            <figure>
+                <figcaption>
+                    Aufgenomen von <a href="http://de.wikipedia.org/wiki/Mariner#Mariner_10" target="_blank">Mariner 10</a> am <time datetime="1974-02-05">5. Feb. 1972</time>
+                </figcaption>
+                <img src="~/Content/pics/Venus-med.jpg" class="img-circle img-responsive" />
+            </figure>
+            <div class="multiCol">
+
+                <p>
+                    Die Venus ist der Schwesterplanet der Erde. Morgens und abends leuchtet sie majestätisch als Morgen- bzw. Abendstern
+                    am Himmel.
+                </p>
+                <p>
+                    Die Oberfläche der Venus jedoch ist ein lebensfeindlicher Ort: Aus der dichten, giftigen Schwefeldioxid- Atmosphäre
+                    regnet es Salzsäure. Und es ist sogar heißer als auf dem Merkur: bis zu 497&deg;C ! Ursache für die hohen Temperaturen ist
+                    der Treibhauseffekt. Haben vielleicht vor langer Zeit Venusianer zusehr auf Energie aus Kohlenstoff gesetzt :).
+                </p>
+            </div>
+        </article>
+
+
+    </div>
+    <div class="row">
+
+        <article class="col-xs-12 col-md-6 col-lg-4">
+            <h1><a name="Erde"></a>Erde: Luft, Sonne, Wasser, Leben</h1>
+            <aside>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Abstand zur Sonne
+                    </dt>
+                    <dd>
+                        <meter value="1.0" min="0.983" max="1.017">1.0 AE</meter>
+                    </dd>
+                    <dt>
+                        Durchmesser
+                    </dt>
+                    <dd>
+                        <meter value="12756.32">12756,32 km</meter>
+                    </dd>
+                </dl>
+            </aside>
+            <figure>
+                <figcaption>
+                    Aufgenomen von <a href="http://de.wikipedia.org/wiki/Apollo_17" target="_blank">Apollo 17</a> am <time datetime="1972-12-07">5. Feb. 1972</time>
+                </figcaption>
+                <img src="~/Content/pics/Erde-med.jpg" class="img-responsive img-rounded" />
+            </figure>
+            <div class="multiCol">
+                <p>
+                    Die Erde ist der blaue Planet. Ihre Oberfläche ist von Ozeanen und Kontinenten bedeckt. Sie ist der bis Dato einzig bekannte Planet,
+                    auf dem sich organisches Leben entwickelt hat.
+                </p>
+            </div>
+        </article>
+
+
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h1><a name="Mars"></a>Mars, die rote Sandwüste</h1>
+            <aside>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Abstand zur Sonne
+                    </dt>
+                    <dd>
+                        <meter value="1.524" min="1.381" max="1.666">1,524 AE</meter>
+                    </dd>
+                    <dt>
+                        Durchmesser
+                    </dt>
+                    <dd>
+                        <meter value="6792.4">6792,4 km</meter>
+                    </dd>
+                </dl>
+            </aside>
+            <figure>
+                <figcaption>
+                    Aufgenomen von <a href="http://de.wikipedia.org/wiki/Mars_Global_Surveyor" target="_blank">Mars Global Surveyor </a> am <time datetime="1999-04-01">1. Apr. 1999</time>
+                </figcaption>
+                <img src="~/Content/pics/Mars-med.jpg" class="img-responsive img-rounded" />
+            </figure>
+
+            <div class="multiCol">
+                <p>
+                    Der Mars war bei den Römern Gott des Krieges. Die kargen, roten Sandwüsten, welche weite Teiler der Oberfläche des Mars bedecken,
+                    errinnern schon ein wenig an das Danach apokalyptischer Schlachten...
+                </p>
+            </div>
+
+        </article>
+    </div>
+    <div class="row">
+        <article class="panel panel-primary col-xs-12 col-md-6 col-lg-6">
+            <div class="panel-heading">
+                <h1><a name="Jupiter"></a>Jupiter, im Auge des Sturms</h1>
+            </div>
+            <div class="panel-body">
+                <aside>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Abstand zur Sonne
+                        </dt>
+                        <dd>
+                            <meter value="5.203" min="4.95" max="5.46">5,203 AE</meter>
+                        </dd>
+                        <dt>
+                            Durchmesser
+                        </dt>
+                        <dd>
+                            <meter value="142984.0">142984,0 km</meter>
+                        </dd>
+                    </dl>
+                </aside>
+                <figure>
+                    <figcaption>
+                        Aufgenomen von <a href="http://en.wikipedia.org/wiki/Cassini%E2%80%93Huygens" target="_blank">Cassini–Huygens </a> am <time datetime="2000-12-07">7. Dec. 2000</time>
+                    </figcaption>
+                    <img src="~/Content/pics/Jupiter-med.jpg" class="img-circle" />
+                </figure>
+                <div class="multiCol">
+
+                    <p>
+                        Jupiter ist der stürmische Gasriese. Dabei dreht er sich in 10h einmal um seine eigene Achse - bezüglich der Oberflächengeschwindigkeit ist
+                        das Rekord im Sonnensystem ! Auch in Punkto Masse ist er unter den Planeten Rekordhalter: er vereinigt etwa die 2,5 fache Masse aller restlichen
+                        Planten. Er ist 318 mal so schwer wie die Erde.
+                    </p>
+                </div>
+            </div>
+        </article>
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h1><a name="Saturn"></a>Saturn, Herr der Ringe</h1>
+            <aside>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Abstand zur Sonne
+                    </dt>
+                    <dd>
+                        <meter value="9.5826" min="9.0412" max="10.1238">9,5826 AE</meter>
+                    </dd>
+                    <dt>
+                        Durchmesser
+                    </dt>
+                    <dd>
+                        <meter value="120536.0">120536,0 km</meter>
+                    </dd>
+                </dl>
+            </aside>
+            <figure>
+                <figcaption>
+                    Aufgenomen von <a href="http://en.wikipedia.org/wiki/Cassini%E2%80%93Huygens" target="_blank">Cassini–Huygens </a> am <time datetime="2004-10-06">7. Dec. 2000</time>
+                </figcaption>
+                <img src="~/Content/pics/Saturn-med.jpg" class="img-circle" />
+            </figure>
+            <div class="multiCol">
+                <p>
+                    Die Ringwelt des Saturns ist einzigartig. Kein Planet wirkt so exotisch wie er. Neben den Ringen umrunden Saturn 62 Monde. Titan ist dabei fast so
+                    groß wie der Mars. Aber auch der kleine Enceladus mit 500 km Durchmesser ist beeindruckend, hat seine schneeweise Oberfläche doch die größte
+                    Albedo im Sonnensystem (=Reflexionsvermögen).
+                </p>
+            </div>
+        </article>
+    </div>
+    <div class="row">
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h1><a name="Uranus"></a>Uranus, von der Rolle</h1>
+            <aside>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Abstand zur Sonne
+                    </dt>
+                    <dd>
+                        <meter value="19.201" min="18.324" max="20.078">19,201 AE</meter>
+                    </dd>
+                    <dt>
+                        Durchmesser
+                    </dt>
+                    <dd>
+                        <meter value="51118.0">51118,0 km</meter>
+                    </dd>
+                </dl>
+            </aside>
+            <figure>
+                <figcaption>
+                    Aufgenomen von <a href="http://de.wikipedia.org/wiki/Hubble-Weltraumteleskop" target="_blank">Cassini–Huygens </a> am <time datetime="2005-01-01">7. Dec. 2000</time>
+                </figcaption>
+                <img src="~/Content/pics/Uranus-med.jpg" style="width: auto; height:250px" class="img-circle" />
+            </figure>
+            <div class="multiCol">
+                <p>
+                    Uranus Rotationsachse ist außergewöhnlich. Normalerweise steht die Rotationsachse eines Planten auf der Bahnebene oder ist leicht gegen diese
+                    gekippt. Bei Uranus liegt die Rotationsachse jedoch gänzlich in der Bahnebene, er rollt sozusagen in ihr. Wegen der Erhaltung des Drehimpulses
+                    liegt bei einem Umlauf um die Sonne (Uranusjahr) einmal der Norden, und einmal der Süden voll im Sonnenschein.
+                </p>
+            </div>
+
+        </article>
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h1><a name="Neptun"></a>Neptun, der kälteste</h1>
+            <aside>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Abstand zur Sonne
+                    </dt>
+                    <dd>
+                        <meter value="30.047" min="29.709" max="30.385">30.047 AE</meter>
+                    </dd>
+                    <dt>
+                        Durchmesser
+                    </dt>
+                    <dd>
+                        <meter value="51118.0">49528 km</meter>
+                    </dd>
+                </dl>
+            </aside>
+            <figure>
+                <figcaption>
+                    Aufgenomen von <a href="http://de.wikipedia.org/wiki/Voyager_2" target="_blank">Cassini–Huygens </a> am <time datetime="1989-08-02">2. Aug. 1989</time>
+                </figcaption>
+                <img src="~/Content/pics/Neptune-med.jpg" class="img-circle" />
+            </figure>
+            <div class="multiCol">
+                <p>
+                    Neptun ist ein Eisriese an der Außengrenze unseres Planetensystems. Auf ihm wurden die kältesten Temperaturen gemessen.
+                </p>
+                <p>
+                    14 Monde umkreisen den Neptun. Der größte ist dabei Triton mit einem Durchmesser von 2700 km. Die Voyager- Sonden konnten auf diesem
+                    aktiven Vulkanismus beobachten. Auch am Rande unseres Sonnensystems tobt der Kampf der Elemente...
+                </p>
+            </div>
+        </article>
+    </div>
+    <footer>
+        <a href="http://www.mk-prg-net.de" target="_blank">&copy; Martin Korneffel, Stuttgart 2015</a>
+    </footer>
+</section>
+

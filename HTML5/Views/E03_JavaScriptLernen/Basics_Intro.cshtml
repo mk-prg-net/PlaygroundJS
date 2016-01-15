@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Basics_Intro";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+
+        <div class="panel  col-xs-12 col-md-6 col-lg-6">
+
+            <h2>JavaScript Grundlagen</h2>
+
+            <h3>Quellen</h3>
+            <ol>
+                <li>
+                    Sehr gute Tutorials und Referenzen liefert die <a href="http://www.w3schools.com/" target="_blank">W3schools.com</a>
+                </li>
+                <li>
+                    Beispielscripte sowie Tutorials und Referenzen<a href="http://www.javascriptkit.com/" target="_blank">javascriptkit.com</a>
+                </li>
+                <li>
+                    SelfHtml- der Klassiker der Webtechnik- Doku <a href="http://wiki.selfhtml.org/" target="_blank">wiki.selfhtml.org</a>
+                </li>
+                <li>
+                    Entwickler Ressourcen f&uuml;r den Mozilla Browser <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">developer.mozilla.org</a>
+                </li>
+            </ol>
+            <h4 class="western">
+                Was ist JavaScript ?
+            </h4>
+            <p>
+                <i>JavaScript</i> ist eine objektorientierte Skriptsprache. Sie
+                wurde in der Firma Netscape von <i>Brendan Eich</i> nach eignen
+                Aussagen innerhalb von nur 10 Tagen unter dem Codename <i>
+                    LiveScript
+                </i>entwickelt. Mit ihr sollten in Webbrowsern komplexe,
+                clientseitige Gesch&auml;ftslogik implementierbar sein wie
+                Validierung von Benutzereingaben und dynamisches (animiertes) HTML.
+            </p>
+            <p>
+                Mit der Programmiersprache <i>Java</i> hat <i>JavaScript</i> au&szlig;er
+                einer C-&auml;hnlichen Syntax und dem &auml;hnlichen Namen wenig
+                gemein. Die Bezeichnung <i>JavaScript</i> wurde wohl gew&auml;hlt,
+                weil zum Zeitpunkt des Erscheinens der ersten JavaScript 1.0 -
+                Version ein Java- Hype herrschte.
+            </p>
+            <p>
+                Dank dem Internet, das mit seinen Tools in alle Lebensbereiche
+                eindrang, ist JavaScript heute zu einer der am weitesten verbreiteten
+                Script- Sprachen auf dem Planeten geworden. Insbesondere durch den
+                HTML5 Standard und den WebApps f&uuml;r <i>Smartphones</i> und
+                <i>Tablets</i> erfuhr JavaScript in j&uuml;ngster Zeit eine gewaltige
+                Aufwertung.
+            </p>
+            <h4 class="western">Versionen</h4>
+            <p>
+                Browser-kriege im Wechsel mit Standardisierungsbem&uuml;hungen
+                pr&auml;gten die Entwicklung von JavaScript. Einen guten &Uuml;berblick
+                gibt Wikipedia:
+            </p>
+            <p><a href="http://de.wikipedia.org/wiki/JavaScript#Versionsgeschichte_von_JavaScript" target="_blank">http://de.wikipedia.org/wiki/JavaScript#Versionsgeschichte_von_JavaScript</a></p>
+
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Übungen</h2>
+            <ol>
+                <li>
+                    @Html.ActionLink("Debug mit Entwicklertools und Console", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B01_Debug_Log" })
+                </li>
+                <li>
+                    @Html.ActionLink("Literale, Blöcke, Gültigkeitsbereiche", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B02_Blocks" })
+                </li>
+                <li>
+                    @Html.ActionLink("Datentypen und Operatoren", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B03_Datatypes" })
+                </li>
+                <li>
+                    @Html.ActionLink("Kontrollstrukturen", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B04_Control" })
+                </li>
+                <li>
+                    @Html.ActionLink("Funktionen", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B05_Func" })
+                </li>
+                <li>
+                    @Html.ActionLink("Objekte", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B06_OO" })
+                </li>
+                <li>
+                    @Html.ActionLink("Asynchron", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B07_Async" })
+                </li>
+                <li>
+                    @Html.ActionLink("Globalisierung", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "B08_Globalization" })
+                </li>
+            </ol>
+        </div>
+    </div>
+}
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics")
+
+}

@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "SemanticMarkup";
+}
+<div class="row">
+    <article>
+        <h1>Semantisches Markup</h1>
+        <p>
+            <b>HTML5</b> vertieft das Prinzip der Trennung zwischen Dokumentstruktur und Layout. Dazu werden neue semantische Tags eingeführt, und bereits bekannte Tags
+            erhalten eine neue Bedeutung im Sinne des semantischen Taggings.
+        </p>
+        <section class="col-xs-12 col-md-12 col-lg-12">
+            <h1>Alte Tags mit neuer Bedeutung</h1>
+            <h2>&lt;b&gt; und &lt;i&gt; heben hervor, ohne die Betonung/Bedeutung zu steigern</h2>
+            <p>
+                In <b>HTML 4.01</b> markierten &lt;b&gt; fett gesetzten, und  &lt;i&gt; kursiven Text, und verstießen damit gegen den Vorsatz,
+                Markup ausschließlich zu Strukturierung einzusetzen.
+            </p>
+            <p>
+                In <b>HTML5</b> werden mittels &lt;b&gt; z.B. Produkt- oder Typnamen hervorgehoben. Auch Artikel- Previews bez. <i lang="en">Teaser</i> können mittels
+                &lt;b&gt; vom restlichen Text abgesetzt werden.
+            </p>
+            <p>
+                &lt;i&gt; dient in <b>HTML5</b> zur Hervorhebung von Fachbegriffen/Fremdwörtern. Mittels des Attributs <b>lang</b> kann bei Fremdwörtern
+                auf die Sprache verwiesen werden, aus der sie stammen.
+            </p>
+            <p>
+                Ein Beispiel ist der Begriff &lt;i lang="en"&gt;<i lang="en">Parser</i>&lt;i&gt;, der als aus der englischen Sprache stammender Fachbegriff markiert wurde.
+            </p>
+            <p>
+                In seiner Grundeinstellung stellt der Browser nach wie vor &lt;b&gt; und &lt;i&gt; als fett und kursiv dar. Der Webentwickler kann aber mittels
+                <i>CSS3 Layoutregeln</i> die Darstellung im Sinne der neuen Bedeutungen optimieren.
+            </p>
+            <h2>&lt;code&gt; und &lt;var&gt; zum Hervorheben von Quelltext (Programmiersprache) in Fachartikeln</h2>
+            <p>
+                Variablen in Computerprogrammen oder Platzhalter in Kommandos können mittels &lt;var&gt; markiert werden:
+                <br />
+                dir <var>Verzeichnispfad</var>.
+                <br />
+                <small>Hier wurde Verzeichnispfad als Platzhalter im DOS- Kommando dir markiert</small>
+            </p>
+
+            <p>
+                Quelltextschnipsel werden mittels &lt;code&gt; markiert:
+                <br />
+                <code class="dos-cmd">dir <var>Verzeichnispfad</var></code>
+                <br />
+                <small>Hier wurde das komplette DOS- Kommando mittels code markiert.</small>
+            </p>
+
+
+            <h2>&lt;s&gt; zur Markierung irrelevant gewordener Textstellen</h2>
+            <p>
+                &lt;s&gt; diente in <b>HTML 4.01</b> zur Darstellung von <s>durchgestrichenem Text</s>, und hatte damit eine reine Layoutfunktion.
+            </p>
+            <p>
+                <b>HTML5</b> macht nun die mit durchgestrichenem Text naheliegende
+                Assoziation von bedeutungslos/irrelevant gewordnenem Text zum primären Inhalt von &lt;s&gt;. Mittels <b>CSS3</b> kann der Webentwickler diese
+                Bedeutungslosigkeit nun nach seinem belieben visualisieren.
+            </p>
+
+            <h2>&lt;hr&gt; markiert inhaltliche Brüche in einem Artikel</h2>
+            In <b>HTML 4.01</b> wurde mit &lt;hr&gt; eine horizontale Linie gezogen, und hatte damit eine reine Layoutfunktion. Die mit der optischen Trennung verbundene
+            Assoziation starker inhaltlicher Trennung zwischen vorausgegangenem und nachfolgendem Text wird in <b>HTML5</b> jetzt die semantische Funktion von &lt;hr&gt;.
+            <hr />
+            In seiner Grundeinstellung stellt der Browser &lt;hr&gt; nach wie vor als graue, horizontale Linie dar.
+            <h2>&lt;small&gt; zur Markierung von Kleingedrucktem</h2>
+            <p>
+                Auch &lt;small&gt; hatte in <b>HTML 4.01</b> eine reine Layoutfunktion: der gesamte Text innerhalb von &lt;small&gt; wurde im Vergleich zum Standardschriftgrad
+                etwas kleiner dargestellt.
+            </p>
+            <p>
+                <b>HTML5</b> definiert für &lt;small&gt; die Bedeutung, Zusatz/Detailinformationen vom restlichen Text abzugrenzen.
+                <small>
+                    Während eine Layoutfunktion die Darstellung von Informationen festlegt, wird durch eine Semantikfunktion eine inhaltliche Abgrenzung
+                    und Klassifizierung von Informationen realisiert
+                </small>
+            </p>
+        </section>
+        <section id="SemElems" class="col-xs-12 col-md-12 col-lg-12">
+            <time pubdate datetime="2015-06-07"></time>
+            <h1>Neue semantische Elemente zur Textauszeichnung</h1>
+            <h2>Zeitangaben mit &lt;time&gt; markieren</h2>
+            Heute ist der <time id="timeDemoNow"></time>.
+            <figure>
+                <figurecaption>
+                    Zeitangaben können mittels &lt;time&gt; als solche markiert, und bei Bedarf zusätzlich maschinelesbaren gemacht werden.
+                </figurecaption>
+                <img src="~/Content/pics/HTML5/html5-time.svg" class="img-responsive" style="width:100%" />
+            </figure>
+            <h3>Publikationsdatum eines Artikels mit &lt;time pubdate datetime=...&gt; dokumentieren</h3>
+
+            <h2>figure: Grafiken und alternative Darstellungen von Artikelinhalten</h2>
+            <p>
+                Bilder Tabellen und Grafiken, die mit einem Textinhalt in zusammenhang stehen, werden in <b>HTML5</b> in &lt;figure&gt; Elementen gekapselt.
+            </p>
+            <figure>
+                <figurecaption>
+                    Einsatz des figure- Elements und des <b>alt</b> Attributs bei Bildinhalten
+                </figurecaption>
+                <img src="~/Content/pics/HTML5/html5-figure.svg" class="img-responsive" style="width: 100%" />
+            </figure>
+
+            <h2>Ergebnisse von Benutzerinteraktionen markieren</h2>
+            <p>
+                Werden auf einer Webseite z.B. Begriffe durch einen Benutzer gesucht, dann können die Suchergebnisse mittels dem neuen &lt;mark&gt; Element
+                markiert werden.
+            </p>
+            <form id="search" class="form-group">
+                <h5>Suchmaschine</h5>
+                <p>Alle selektierten Elemente werden mittels &lt;mark&gt; hervorgehoben.</p>
+                <label for="SearchPattern">Muster</label>
+                <select id="SearchPattern" class="form-control">
+                    <option value="none">none</option>
+                    <option value="h1">&lt;h1&gt;</option>
+                    <option value="h2">&lt;h2&gt;</option>
+                    <option value="h3">&lt;h3&gt;</option>
+                    <option value="h4">&lt;h4&gt;</option>
+                    <option value="h5">&lt;h5&gt;</option>
+                    <option value="h6">&lt;h6&gt;</option>
+                    <option value="b">&lt;b&gt;</option>
+                    <option value="i">&lt;i&gt;</option>
+                    <option value="s">&lt;s&gt;</option>
+                </select>
+                <br />
+                <label for="searchCountMatches">#Treffer</label>
+                <div class="well" id="searchCountMatches">
+                </div>
+            </form>
+        </section>
+        <section class="col-xs-12 col-md-6 col-lg-6">
+            <h1>Neue semantische Elemente für die Gliederung</h1>
+            <p>
+                In <b>HTML 4.01</b> erfolgte die <i>semantische Gliederung</i> ausschließlich durch eine feste Hierarchie von Überschriften &lt;h1&gt; bis &lt;h6&gt;. Ein
+                semantischer Abschnitt spannt sich dabei zwichen einer Überschrift der Ebene i und einer nachfolgenden der Ebene i oder j &lt; i auf.
+                <hr />
+                <a href="@Url.Action("OutlineClassic")">Beispiel</a>
+            </p>
+            <p>
+                In <b>HTML5</b> neue <i>Abschnittselemente</i> ein, welche die Möglichkeiten der semantischen Gliederung erweitern und verfeinern.
+                <hr />
+                <a href="@Url.Action("OutlineHTML5")">Beispiel</a>
+            </p>
+            <figure>
+                <figcaption>
+                    Für die Gliederung eines Dokumentes stellt <b>HTML5</b> die semantischen Tags <i>&lt;article&gt;</i>
+                    <i>&lt;section&gt;</i> und <i>&lt;aside&gt;</i> bereit.
+                </figcaption>
+                <img src="~/Content/pics/HTML5/html5-article-section.svg" class="img-responsive" style="width: 100%" />
+            </figure>
+            <p>
+                Detailierte Informationen zum <b>HTML5</b> Outline- Algorithmus gibt es <a href="http://www.smashingmagazine.com/2011/08/html5-and-the-document-outlining-algorithm/">hier</a>
+            </p>
+        </section>
+    </article>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/HTML5/SemanticMarkup")
+}
+
+

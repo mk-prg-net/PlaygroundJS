@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "DomIntro";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h1>DOM</h1>
+            <ul>
+                <li>Einführung in das DOM auf <a href="http://www.w3schools.com/js/js_htmldom.asp" target="_blank">w3schools.com</a> </li>
+                <li>Abstraktionsschicht <a href="http://jquery.com/" target="_blank">jQuery</a></li>
+            </ul>
+
+            <figure>
+                <figcaption>
+                    DOM Übersicht
+                </figcaption>
+                <img src="~/Content/pics/JavaScript/ajax-JavaScript-DOM.svg" class="img-responsive" />
+            </figure>
+
+        </article>
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h1>jQuery als defakto- Standard DOM Layer</h1>
+            <figure>
+                <figcaption>Übersicht</figcaption>
+                <img src="~/Content/pics/JavaScript/jQueryOverview.svg" class="img-responsive" style="width: 100%" />
+            </figure>
+
+            <ol>
+                <li>@Html.ActionLink("DOM Classic", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "DomClassic" })</li>
+                <li>@Html.ActionLink("JQuery- Selektoren", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "JQuerySelektoren" })</li>
+                <li>@Html.ActionLink("DOM Manipulationen in LsipUI", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "LispUI" })</li>
+                <li>@Html.ActionLink("Interaktive Russlandkarte", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "Russland" })</li>
+            </ol>
+        </article>
+    </div>
+}
+
+

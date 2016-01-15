@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>HTML5/JavaScript</h1>
+    <p class="lead">HTML5/JavaScript, ein freies, weltweit kostenlos verfügbares Web Framework zum Aufbau von Webanwendungen.</p>
+    <p><a href="http://www.w3.org/" class="btn btn-primary btn-lg" target="_blank">W3.org &raquo;</a></p>
+</div>
+
+<div class="row">
+    <article class="col-md-4">
+        <h2>HTML5</h2>
+        <p>
+            Einführung in Sematische Struktur und visuelles Gestalten mittels CSS3 in HTML5.
+        </p>
+        <ol>
+            <li>@Html.ActionLink("HTML5 Intro", "Index", "E01_StructureAndStyle")</li>
+            <li>@Html.ActionLink("Sematisches Markup", "SemanticMarkup", "E01_StructureAndStyle")
+                <ol type="i">
+                    <li>@Html.ActionLink("U01 article & Co", "U01SemTags_article_co", "E01_StructureAndStyle")</li>
+                </ol>
+            </li>            
+            <li>@Html.ActionLink("CSS", "CSSIntro", "E01_StructureAndStyle")
+                <ol type="i">
+                    <li>@Html.ActionLink("U02 CSS Selektoren", "U02CSSSelektoren", "E01_StructureAndStyle")</li>
+                    <li>@Html.ActionLink("U03 Box Modell", "U03BoxModell", "E01_StructureAndStyle")</li>
+
+                </ol></li>
+            <li>@Html.ActionLink("Struktur und Stil", "SetNone", "E01_StructureAndStyle")</li>
+            <li>@Html.ActionLink("Bootstrap", "Index", "E02_Bootstrap")</li>
+        </ol>
+    </article>
+    <article class="col-md-4">
+        <h2>JavaScript</h2>
+        <p>Sprachgrundlagen, Zugriff auf das DOM, MVC</p>
+        <ol>
+            <li>@Html.ActionLink("Versionsverwaltung mit GIT", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "GitVersionCntrl" })</li>
+            <li>@Html.ActionLink("Basics", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "Basics_Intro" })</li>
+            <li>@Html.ActionLink("Unit- Tests", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "TestsIntro" })</li>
+            <li>@Html.ActionLink("Dom", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "DomIntro" })</li>
+            <li>@Html.ActionLink("Formulare und Validierung", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "FormsIO" })</li>
+            <li>@Html.ActionLink("Ajax", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "AjaxIntro" })</li>
+            <li>@Html.ActionLink("Canvas Painter", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "CanvasPainter" })</li>
+            <li>@Html.ActionLink("FileAPI", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "FileAPI" })</li>
+            <li>@Html.ActionLink("Web Worker", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "WebWorker" })</li>
+            <li>@Html.ActionLink("Asynchrones Module Loading mit RequireJS", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "RequireJS" })</li>
+            <li>@Html.ActionLink("MVC mit AngularJS", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "MVCAngularJS" })</li>
+            <li>@Html.ActionLink("Übung Klassenbibliothke Astro", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "Astro" })</li>
+            <li>@Html.ActionLink("Astro Bibliothek mit QUnit testen", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "AstroQUnit" })</li>
+
+        </ol>
+    </article>
+    <article class="col-md-4">
+        <h2>JQuery</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </article>
+</div>

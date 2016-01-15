@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "ShapeTest";
+}
+
+<h2>ShapeTest</h2>
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <article class="col-xs-12 col-md-12 col-lg-12">
+            
+            <div>
+                <h1 id="qunit-header">QUnit example</h1>
+                <ol id="qunit-tests"></ol>
+            </div>
+
+        </article>
+    </div>
+}
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/qunit")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Namespace/GetNamespace.js")    
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Shape/Shape.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Shape/Point.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Shape/Circ.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Shape/Shape.Test.js")
+    
+}
+@* Style wird für Gestaltung der QUnit- Testausgabe benötigt *@
+@section Styles {
+    <link rel="stylesheet" href="~/Content/qunit.css" />
+}
+
+

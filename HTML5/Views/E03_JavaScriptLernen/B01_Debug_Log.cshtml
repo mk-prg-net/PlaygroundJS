@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "JavaScript Basics";
+}
+
+@using (Html.BeginForm())
+{
+    
+    <div class="row">
+        <article class="col-xs-12 col-md-12 col-lg-12">
+            <h2>Browser Entwicklertools, Aufzeichnen von Laufzeitinformationen, Fehlersuche</h2>
+
+            <p>
+                In den Browsern der Gegenwart sind vielfältige Entwicklertools eingebaut wie JavaScript- Debugger, DOM- Explorer und die Koonsole.
+            </p>
+            <h3>IE</h3>
+            <p>
+                <figure>
+                    <figcaption>
+                        Entwicklertools im MS Internet Explorer öffnen
+                    </figcaption>
+                    <img src="~/Content/pics/JavaScript/ie-open-devtools.png" class="img-responsive" />
+
+                </figure>
+            </p>
+
+            <h3>Google Chrome</h3>
+            <p>
+                <figure>
+                    <figcaption>
+                        Entwicklertools in Google Chrome öffnen
+                    </figcaption>
+                    <img src="~/Content/pics/JavaScript/chrome-open-devtools.png" class="img-responsive" />
+
+                </figure>
+            </p>
+
+            <h3>Die Entwicklerkonsole</h3>
+            <p>
+                Die Entwicklerkonsole ist eine Anzeige in den Entwicklertools, die über ein vordefiniertes JavaScript Objekt <i>console</i>
+                angesteuert werden kann. 
+            </p>
+            <figure>
+                <figcaption>Eigenschaften und Methoden der Console</figcaption>
+                <img src="~/Content/pics/JavaScript/console.svg" class="img-responsive" />
+            </figure>
+            <p>
+                Bitte vor dem Start der Übung die Entwicklertools öffnen.<br/>
+                <button id="b01_loging" type="button" class="btn btn-primary">Übung 01 Logging</button>
+            </p>
+            
+
+        </article>
+
+    </div>
+    <div class="row">
+        <div class="panel col-xs-12 col-md-6 col-lg-6">
+            <div class="panel-heading">
+                <h3>Übungen</h3>
+            </div>
+
+
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button id="b05_ControlBlocks" type="button" class="btn btn-default" style="width: 90%">05 Kontrollstrukturen</button>
+                            </td>
+                            <td>
+                                Verzweigungen, Schleifen etc.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table id="Buchungsliste" class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Jahr</th>
+                        <th>Guthaben</th>
+                        <th>Zinsertrag</th>
+                        <th>Neues Guthaben</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <button id="StartBasics" type="button" class="btn btn-primary">
+                    Starte Grundlagenskripte
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-heading">
+            <h2>OO: RomToArab</h2>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt><label for="romzahl">r&ouml;mische Zahl</label></dt>
+                <dd><input type="text" id="romzahl" size="25" /></dd>
+                <dt><label for="arabzahl">arabische Zahl</label></dt>
+                <dd><output id="arabzahl">0</output></dd>
+            </dl>
+
+        </div>
+        <div class="panel-footer">
+            <button id="StartRomToArab" type="button" class="btn btn-primary">
+                römisch in arabisch
+            </button>
+        </div>
+    </div>
+}
+
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/JavaScriptLernen/Basics_01")
+    
+
+}
+
+
+
+
+
+
+
+

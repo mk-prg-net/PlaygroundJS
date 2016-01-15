@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "AstroQUnit";
+}
+
+<h2>AstroQUnit</h2>
+
+<div>
+    <h1 id="qunit-header">Astro Test</h1>
+    <ol id="qunit-tests"></ol>
+</div>
+
+<script src="~/Scripts/JavaScriptLernen/Astro/require.js"
+        data-main="/Scripts/JavaScriptLernen/Astro/Test.js"></script>
+
+
+@* Style wird für Gestaltung der QUnit- Testausgabe benötigt *@
+@section Styles {
+    <link rel="stylesheet" href="~/Content/qunit.css" />
+}

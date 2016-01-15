@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Kepler.EF60", "DB.Kepler.EF60\DB.Kepler.EF60.csproj", "{5435103B-0DFA-4767-AF62-F37D580B1F6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Kepler.EF60.Test", "DB.Kepler.EF60.Test\DB.Kepler.EF60.Test.csproj", "{C3079BE6-AA60-4A0C-B1CD-88F5FE35028A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTML5", "HTML5\HTML5.csproj", "{9A6DA7A6-30A6-462A-8F46-62A2BCE42B98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kepler", "Kepler\Kepler.csproj", "{312D3165-25DB-428C-97B8-3E7C20B9DC5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5435103B-0DFA-4767-AF62-F37D580B1F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5435103B-0DFA-4767-AF62-F37D580B1F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5435103B-0DFA-4767-AF62-F37D580B1F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5435103B-0DFA-4767-AF62-F37D580B1F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3079BE6-AA60-4A0C-B1CD-88F5FE35028A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3079BE6-AA60-4A0C-B1CD-88F5FE35028A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3079BE6-AA60-4A0C-B1CD-88F5FE35028A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3079BE6-AA60-4A0C-B1CD-88F5FE35028A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A6DA7A6-30A6-462A-8F46-62A2BCE42B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A6DA7A6-30A6-462A-8F46-62A2BCE42B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A6DA7A6-30A6-462A-8F46-62A2BCE42B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A6DA7A6-30A6-462A-8F46-62A2BCE42B98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{312D3165-25DB-428C-97B8-3E7C20B9DC5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312D3165-25DB-428C-97B8-3E7C20B9DC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312D3165-25DB-428C-97B8-3E7C20B9DC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312D3165-25DB-428C-97B8-3E7C20B9DC5C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

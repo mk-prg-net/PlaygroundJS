@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "RequireJS";
+    
+}
+
+<article class="col-md-12 col-lg-12">
+    <h1>RequireJS</h1>
+
+    <a href="http://http://requirejs.org/" target="_blank">RequireJS.org</a>
+
+    <p>
+        Ein <i>Modul</i> ist stellt Funktionen und Objekte unter einem Namespace bereit. Die Implementierungsdetails bleiben
+        dabei verborgen und verunreinigen nicht den globalen Scope (z.B. window- Objekt).
+    </p>
+    <p>
+        <b>RequireJS</b> ist ein Framework, mit dem Bibliotheken als Module implementiert werden können. Dabei ist es möglich,
+        die <i>Abhängigkeiten</i> zwischen den Modulen zu definieren. Wird ein Modul in einer Anwendung eingesetzt, dann 
+        löst RequireJS die Abhängigkeiten automatisch auf (<a href="http://requirejs.org/docs/api.html#usage" target="_blank">RequireJS Grundlagen</a>).
+    </p>
+
+    <figure>
+        <img  src="~/Content/pics/JavaScript/RequireJS.svg" class="img-responsive"/>
+        <figcaption>
+            Definition des Moduls <b>Meter</b> und seine Abhängigkeiten mittels <b>RequireJS</b>.
+        </figcaption>
+    </figure>
+
+    <p>
+        In <b>RequireJS</b> ist jedes Modul genau einer JavaScript- Datei (.js) zugeordnet. Ist ein Modul von anderen
+        abhängig, dann sind die abhängigen Module in der <i>define</i>- Deklaration mittels einer <i>Abhängigkeitsliste (dependency array)</i>
+        anzuzeigen. Die Abhängigkeitsliste verweist auf die Module mittels <i>Modul- IDs</i>. Das sind Relative Pfade zu den JavaScript- Dateien
+        mit den Modulen, die sich auf das aktuelle Verzeichnis oder einem an <code class="language-javascript"> requirejs.config({ baseUrl: ...})</code>
+        übergebenen Pfad beziehen. Die .js- Endungen werden dabei weggelassen.
+
+    </p>
+
+    <em>Siehe Demo im Script, dass die Seite lädt.</em>
+
+</article>
+
+
+<script data-main="/Scripts/JavaScriptLernen/RequireJS/app.js" src="/Scripts/JavaScriptLernen/RequireJS/require.js"></script>
+
+
+

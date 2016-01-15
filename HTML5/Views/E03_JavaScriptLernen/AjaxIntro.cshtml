@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "Ajax Intro";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Ajax</h2>
+
+            <figure>
+                <figcaption>
+                    Prinzip asynchroner Requests
+                </figcaption>
+                <img src="~/Content/pics/JavaScript/ajax-Konzept.svg" class="img-responsive" />
+            </figure>
+        </article>
+
+        <article class="col-xs-12 col-md-5 col-lg-5">
+            <h1>Beispiele</h1>
+            <div class="panel panel-primary ">
+                <div class="panel-heading">Partielle View mit Serverzeit einblenden</div>
+                <div class="panel-body">
+                    <div id="Ziffernblatt" data-websrv-url="@Url.Action("AjaxPartialView", "E03_JavaScriptLernen")">
+
+                    </div>
+                    <button id="ZiffernblattUpdate" type="button" class="btn">Aktualisieren</button>
+                </div>                
+            </div>
+
+
+            <div class="panel panel-primary ">
+                <div class="panel-heading">Abrufen der Serverzeit via JSON</div>
+                <div class="panel-body">
+                    <div id="ZiffernblattJson" data-websrv-url="@Url.Action("AjaxGetJsonTime", "E03_JavaScriptLernen")">
+
+                    </div>
+                    <button id="ZiffernblattJsonUpdate" type="button" class="btn">Aktualisieren</button>
+                </div>
+            </div>
+
+            @* Taschenrechner, Demo Datenaustausch mit Server bidirektional*@
+            <div class="panel panel-primary ">
+                <div class="panel-heading">Taschenrechner</div>
+                <div id="Calculator" class="panel-body" data-websrv-url="@Url.Action("AjaxBidirektional", "E03_JavaScriptLernen")">
+                    <form class="form-group">
+                        <label for="A">A</label>
+                        <input id="A" type="number" class="form-control">
+
+                        <label for="B">B</label>
+                        <input id="B" type="number" class="form-control">
+
+                        <button id="calcAdd" type="button" class="btn form-control">Add</button>
+                        <button id="calcSub" type="button" class="btn form-control">Sub</button>
+
+                        <div class="well" id="calcResult">
+
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+        </article>
+    </div>
+    <div class="row">
+
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h1>
+                Konsumieren von Webdiensten unter SOP, JSONP und CORS
+            </h1>
+
+            Quellen:
+            <ul>
+                <li><a href="http://jsonp.eu/sop-umgehen.html" target="_blank">Details zu SOP, JSONP und CORS</a></li>
+                <li><a href="http://enable-cors.org/index.html" target="_blank">CORS: Übersicht Browsersupport, Servereinstellungen</a></li>
+                <li><a href="http://www.codeproject.com/Articles/831856/Cross-domain-RESTful-API-calls">Möglichkeiten, die Same Origin Policy zu überwinden</a></li>
+            </ul>
+
+            <h2>SOP</h2>
+            <b>SOP</b> steht für die <i>Same Origin Policy</i>. Diese Richtlinie gilt in allen Browsern, und schränkt den Zugriff über Ajax
+            auf den Server ein, von dem die Webseite geladen wurde. Dabei wird berücksichtigt:
+            <ol type="a">
+                <li>Protokoll (z.B. http:// oder https://)</li>
+                <li>der Host (z.B. www.mk-prg-net.de)</li>
+                <li>die Portnummer (z.B. 80)</li>
+            </ol>
+
+            <h3>Ausnahmen für die SOP</h3>
+            <p>
+                Von der <b>SOP</b> ausgenommen sind GET- Abrufe für Bilder und Scripte ! Diese können von jeder Quelle geladen werden. Insbesondere
+            </p>
+            <p>
+                Scripte werden mit dem &lt;script&gt; Tag eingebunden. wird dabei auf eine Server im src- Attribut verwiesen, welcher
+                nicht der <b>SOP</b> genügt, dann gelingt der Scipt- Abruf trotzdem. Dies ist die Basis für <b>JSONP</b>
+            </p>
+
+            <h2>JSONP</h2>
+            <p>
+                <b>JSONP</b> steht für JSON mit Padding. Es ermöglicht den Zugriff auf Webdiensten an der <b>SOP</b> vorbei mittels präparierter Script-
+                Tags, die bei Bedarf ins DOM injiziert werden.
+            </p>
+            <h3>Vorteile</h3>
+            Funktioniert mit fast allen Browsern.
+            <h3>Nachteile</h3>
+            Daten zum Server könnne nur als Querystring an einem GET- Befehl angehangen werden. Maximale Länge = 2048 Bytes.
+
+            <h2>CORS</h2>
+            <p>
+                <b>CORS</b> steht für <i>Cross Origin Resource Sharing</i>. Es definiert neue Regeln für den Zugriff auf Webdienste, der gewöhnlich durch die <b>SOP</b>
+                verwehrt ist. Diese ermöglichen auch den Einsatz von HTTP Post beim Cross Server Zugriff, und damit einen technisch bedeutend einfacheren Upload großer
+                Datenmengen als bei <b>JSONP</b>.
+            </p>
+            <p>
+                Bei <b>CORS</b> über mittelt der Server, von dem die Webseite stammt, an den Browser, der <b>CORS</b> unterstützt, zusätzliche Header, in denen die Server
+                verzeichnet sind, auf die der Client abseits der <b>SOP</b> zugreifen darf.
+            </p>
+
+        </article>
+
+        <article class="col-xs-12 col-md-5 col-lg-5">
+            <h1>Beispiele</h1>
+            <div class="panel panel-primary ">
+                <div class="panel-heading">Geldwechsel</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <p>
+                            Zugriff auf <a href="https://developer.yahoo.com/yql/console/?q=show%20tables&env=store://datatables.org/alltableswithkeys#h=select+*+from+yahoo.finance.xchange+where+pair+in+(%22EURUSD%22)" target="_blank">yahoo finance exchange</a>
+                        </p>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon" style="width: 100px">Betrag</div>
+                                <input id="fromCur" type="number" class="form-control" style="text-align: right;" />
+                                <select id="selFromCur" class="form-control">
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <div class="input-group-addon" style="width: 100px">
+                                    &rarr;
+                                </div>
+                                <input id="ToCur" class="form-control" />
+                                <select id="selToCur" class="form-control">
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                </select>
+
+                            </div>
+                            <button id="ExecFromToCur" type="button" class="btn btn-primary">EXE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+}
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/JavaScriptLernen/AjaxIntro")
+}
+
+

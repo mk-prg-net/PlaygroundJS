@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Basics_02";
+}
+
+<h2>Basics_02</h2>
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <article class="col-xs-12 col-md-12 col-lg-12">
+            <h2>
+                Namensräume und Blockstruktur
+            </h2>
+            <figure>
+                <figcaption>
+                    Literale und Namespaces
+                </figcaption>
+                <img src="~/Content/pics/JavaScript/NamenBloecke.png" />
+            </figure>
+            <p>
+                Bitte vor dem Start der Übung die Entwicklertools öffnen.<br />
+                <button id="b02_Names_Literals_and_Blocks" type="button" class="btn btn-primary" >Literale, Blöcke</button>
+                <button id="b02_global_vs_local" type="button" class="btn btn-primary" >Gültigkeitsbereiche Global vs. Local</button>
+            </p>
+        </article>
+    </div>
+}
+
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/JavaScriptLernen/Basics_02")
+
+}
+

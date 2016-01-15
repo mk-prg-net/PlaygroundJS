@@ -1,0 +1,72 @@
+﻿@{
+
+
+    ViewBag.Title = "Basics_08";
+}
+
+
+<form novalidate>
+
+    <div class="row">
+        <article class="col-xs-12 col-md-12 col-lg-12">
+            <h2>Globalisierung</h2>
+            <p>
+                Zahl wird aus aus der Darstellung in der ursprünglichen Kultur in die einer anderen Kultur
+                überführt.
+            </p>
+            <p>
+                Grundlage ist die ofenfrische Bibliothek <a href="https://github.com/jquery/globalize" target="_blank"><b>jquery/globalize</b></a>. Sie wird mit den Kulturdaten
+                von <b>Unicode</b> befüllt. Das macht die Sache etwas kompliziert. Bibliothek und Unicode
+                können  mit dem <b>npm</b> - Packagemanager von <b>NodeJs</b> installiert werden:
+                <samp>npm install globalize cldr-data</samp>
+            </p>
+        </article>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-12 col-md-5 col-lg-5">
+            <label for="SrcNumber">ursprünglichen Kultur</label>
+            <select id="SrcCult" class="form-control">
+                <option value="de" selected="selected">DE</option>
+                <option value="en-US-POSIX">US</option>
+                <option value="de-CH">CH</option>
+            </select>
+            <label for="SrcNumber">Zahl</label>
+            <input id="SrcNumber" type="number" class="form-control" value="3,142E3" />
+
+            <label for="SrcDate">Datum</label>
+            <input id="SrcDate" type="text" class="form-control" value="31.12.2015" />
+
+        </div>
+
+        <div class="col-xs-12 col-md-1 col-lg-1">
+            <button type="button" id="btnTranslate" class="btn">
+                <span class="glyphicon glyphicon-arrow-right"></span>
+            </button>
+        </div>
+
+        <div class="form-group col-xs-12 col-md-5 col-lg-5">
+            <label for="DestNumber">neue Kultur</label>
+            <select id="DestCult" class="form-control">
+                <option value="de" selected="selected">DE</option>
+                <option value="en-US-POSIX">US</option>
+                <option value="de-CH">CH</option>
+            </select>
+            <label for="DestNumber">Zahl</label>
+            <input id="DestNumber" type="number" class="form-control" />
+
+            <label for="DestDate">Datum</label>
+            <input id="DestDate" type="text" class="form-control" />
+
+        </div>
+    </div>
+
+</form>
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/JavaScriptLernen/Basics_08")
+}
+
+
+
+

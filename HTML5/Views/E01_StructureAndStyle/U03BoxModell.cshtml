@@ -1,0 +1,383 @@
+﻿@{
+    ViewBag.Title = "U03BoxModell";
+}
+
+<style>
+    .artBox {
+        border: 5px solid red;
+        float: left;
+    }
+
+    .artBox2 {
+        border: 5px solid red;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+
+    .Testcontainer {
+        width: 540px;
+        float: left;
+    }
+</style>
+
+<article>
+    <h1>Box- Modell</h1>
+    <div class="row">
+
+        <div class="Testcontainer">
+            <article id="Main" class="artBox" style="height: 500px; width: 250px; background-color: black;"></article>
+
+            <article id="sub1" class="artBox" style="height: 250px; width: 250px; background-color: blue;"></article>
+
+            <article id="sub2" class="artBox" style="height: 250px; width: 250px; background-color: green;"></article>
+        </div>
+
+        <div class="Testcontainer">
+            <article id="Main" class="artBox2" style="height: 500px; width: 250px; background-color: black;"></article>
+
+            <article id="sub1" class="artBox2" style="height: 245px; width: 250px; background-color: blue;"></article>
+
+            <article id="sub2" class="artBox2" style="height: 245px; width: 250px; background-color: green;"></article>
+
+        </div>
+
+
+        <div class="Testcontainer">
+            <article id="Main" class="artBox2" style="height: 500px; width: 250px; background-color: black;"></article>
+
+            <article id="sub1" class="artBox2" style="height: 245px; width: 250px; background-color: blue;"></article>
+
+            <article id="sub2" class="artBox2" style="height: 245px; width: 250px; background-color: green;"></article>
+
+        </div>
+
+    </div>
+</article>
+
+<style>
+    div.Flexcontainer {
+        display: -ms-flexbox;
+        display:  -moz-box;
+        display: -webkit-box;
+        -ms-flex-direction: row-reverse;
+        -moz-box-direction:reverse;
+        -webkit-box-direction:reverse;
+
+        /*-ms-flex-wrap:wrap;*/
+
+        -ms-flex-item-align:baseline;
+        
+    }
+
+    article.flexitem {
+        height: 245px; 
+        width: 250px;
+        border-color: red;
+        border-style: solid;
+        border-width: 3px;
+
+        /*border: green dotted 1em;*/
+        background-color: blue;
+    }
+
+</style>
+
+<article>
+    <h1>Flexbox</h1>
+
+    <div class="Flexcontainer">
+        <article id="Main" style="height: 500px; width: 250px; background-color: black;"></article>
+
+        <article id="sub1" class="flexitem"></article>
+
+        <article id="sub2" class="flexitem"></article>
+
+        <article id="sub3" class="flexitem"></article>
+
+        <article id="sub4" class="flexitem"></article>
+
+        <article id="sub5" class="flexitem"></article>
+
+        <article id="sub6" class="flexitem"></article>
+
+    </div>
+
+</article>
+
+
+<style>
+    /*
+        Tabellenlayout: http://wiki.selfhtml.org/wiki/CSS/Eigenschaften/Anzeige/display/Tabelle
+    */
+
+    div.table {
+        display: table;
+        width: calc(100% - 10px);
+        border: 2px solid gray;
+        padding: 5px;
+    }
+
+    div.tr {
+        display: table-row;
+        border: thin solid gray;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    div.th {
+        display: table-cell;
+        text-align: center;
+        border: thin solid gray;
+        padding: 5px;
+        font-weight: bold;
+    }
+
+    div.td {
+        display:  table-cell;
+        border: thin solid gray;
+        padding: 5px;
+    }
+
+    div.numBox {
+        text-align: right;
+    }
+</style>
+
+<article>
+    <h1>Table- Layout mittels div</h1>
+
+    <div class="table">
+        <div class="tr">
+            <div class="th">
+                Planet
+            </div>
+            <div class="th">
+                Sonnenabstand in AE
+            </div>
+            <div class="th">
+                &Oslash;[km]
+            </div>
+        </div>
+        <div class="tr">
+            <div class="td">
+                Erde
+            </div>
+            <div class="td numBox">
+                1,000
+            </div>
+            <div class="td numBox">
+                12756,32
+            </div>
+        </div>
+        <div class="tr">
+            <div class="td">
+                Mars
+            </div>
+            <div class="td numBox">
+                1,524
+            </div>
+            <div class="td numBox">
+                6792,40
+            </div>
+        </div>
+        <div class="tr">
+            <div class="td">
+                Jupiter
+            </div>
+            <div class="td numBox">
+                5,203
+            </div>
+            <div class="td numBox">
+                142984,00
+            </div>
+        </div>
+    </div>
+</article>
+
+<style>
+    /*
+        Tabellenlayout: http://wiki.selfhtml.org/wiki/CSS/Eigenschaften/Anzeige/display/Tabelle
+    */
+
+    div.tableOpt {
+        display: table;
+        width: calc(100% - 10px);
+        border: 2px solid gray;
+        padding: 5px;
+    }
+
+        div.tableOpt > div {
+            display: table-row;
+            border: thin solid gray;
+            padding: 0px;
+            margin: 0px;
+        }
+
+            div.tableOpt > div > div {
+                display: table-cell;
+                border: thin solid gray;
+                padding: 5px;
+            }
+
+            div.tableOpt > div:nth-of-type(1) > div {
+                display: table-cell;
+                text-align: center;
+                border: thin solid gray;
+                padding: 5px;
+                font-weight: bold;
+            }
+</style>
+
+<article>
+    <h1>Table- Layout mittels div und optimierten Stylesheets</h1>
+
+
+    <div class="tableOpt">
+        <div>
+            <div>
+                Planet
+            </div>
+            <div>
+                Sonnenabstand in AE
+            </div>
+            <div>
+                &Oslash;[km]
+            </div>
+        </div>
+        <div>
+            <div>
+                Erde
+            </div>
+            <div class="numBox">
+                1,000
+            </div>
+            <div class="numBox">
+                12756,32
+            </div>
+        </div>
+        <div>
+            <div>
+                Mars
+            </div>
+            <div class="numBox">
+                1,524
+            </div>
+            <div class="numBox">
+                6792,40
+            </div>
+        </div>
+        <div>
+            <div>
+                Jupiter
+            </div>
+            <div class="numBox">
+                5,203
+            </div>
+            <div class="numBox">
+                142984,00
+            </div>
+        </div>
+    </div>
+</article>
+
+<style>
+    #mygrid {
+        display: -ms-grid;
+        -ms-grid-columns: 200px 200px 200px;
+        -ms-grid-rows: 200px 200px;
+        margin: auto;
+        width: 100%;
+    }
+
+        #mygrid > div:nth-of-type(1) {
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            border: 1px solid black;
+        }
+
+        #mygrid > div:nth-of-type(2) {
+            -ms-grid-column: 2;
+            -ms-grid-row: 2;
+            border: 1px solid black;
+        }
+
+        #mygrid > div:nth-of-type(3) {
+            -ms-grid-column: 3;
+            -ms-grid-row: 2;
+            border: 1px solid black;
+        }
+
+        #mygrid > div:nth-of-type(4) {
+            -ms-grid-column: 1;
+            -ms-grid-row: 2;
+            border: 1px solid black;
+        }
+
+        #mygrid > div:nth-of-type(5) {
+            -ms-grid-column: 3;
+            -ms-grid-row: 1;
+            border: 1px solid black;
+        }
+
+        #mygrid > div:nth-of-type(6) {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            background-color: black;
+            border: 1px solid black;
+        }
+</style>
+<article>
+    <h1>Grid- Layout</h1>
+
+    <div id="mygrid">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+        <div>E</div>
+        <div>F</div>
+    </div>
+
+    <div id="mygrid">
+        <div>
+            <svg>
+                <circle cx="100px" cy="100px" r="50px" fill="red" />
+            </svg>
+        </div>
+
+        <div>
+            <svg>
+                <circle cx="100px" cy="100px" r="80px" fill="green" />
+            </svg>
+        </div>
+
+        <div>
+            <svg>
+                <circle cx="100px" cy="100px" r="30px" fill="blue" />
+            </svg>
+        </div>
+        <div>
+            <svg>
+                <rect x="10px" y="10px" width="180px" height="180px" fill="orange" />
+            </svg>
+        </div>
+        <div>
+            <svg>
+                <rect x="10px" y="10px" width="180px" height="180px" fill="purple" />
+            </svg>
+        </div>
+        <div>
+            <svg>
+                @*<rect x="10px" y="10px" width="180px" height="180px" fill="gold" />*@
+                <polygon points="10,10 50,20 10,100" fill="gold" />
+            </svg>
+        </div>
+    </div>
+
+</article>
+
+
+
+

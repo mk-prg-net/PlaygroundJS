@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "MVCHohlspiegel";
+}
+<form novalidate name="form" data-ng-app="OptoModule" data-ng-controller="HohlspiegelCtrl">
+
+    <div class="panel">
+        <div class="panel-heading">
+            <h2>Hohlspiegel</h2>
+        </div>
+        <div class="panel-body">
+
+            <dl class="dl-horizontal">
+                <dt>Brennweite f</dt>
+                <dd><input type="number" data-ng-model="f" name="f" />  </dd>
+                <dt>Winkelincrement</dt>
+                <dd><input type="number" data-ng-model="alpha" /></dd>
+                <dt>Ops</dt>
+                <dd>
+                    <button data-ng-click="CalcHohlspiegelsegmente()" class="btn-primary">
+                        Berechne neue Segmente
+                    </button>
+                </dd>
+            </dl>
+
+        </div>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Winkel</th>
+                    <th>R-Segment</th>
+                </tr>
+                <tr data-ng-repeat="r in segmente">
+                    <td>{{r.Alpha.toFixed(1)}}</td>
+                    <td>{{r.Ri.toFixed(2)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+@section Scripts {
+    @Scripts.Render("~/bundles/AngularJS")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/MVC/hohlspiegel.js")
+
+
+}
+
+
+
+
+
+

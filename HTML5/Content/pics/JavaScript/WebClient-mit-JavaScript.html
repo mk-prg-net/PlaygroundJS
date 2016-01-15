@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.0  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Martin Korneffel">
+	<META NAME="CREATED" CONTENT="20140220;11381876">
+	<META NAME="CHANGEDBY" CONTENT="Martin Korneffel">
+	<META NAME="CHANGED" CONTENT="20150507;1193870">
+	<META NAME="CHANGEDBY" CONTENT="Martin Korneffel">
+	<META NAME="CHANGEDBY" CONTENT="Martin Korneffel">
+	<META NAME="CHANGEDBY" CONTENT="Martin Korneffel">
+	<META NAME="CHANGEDBY" CONTENT="Martin Korneffel">
+	<META NAME="CHANGEDBY" CONTENT="Martin Korneffel">
+	<STYLE TYPE="text/css">
+	<!--
+		H2.cjk { font-family: "SimSun" }
+		H2.ctl { font-family: "Mangal" }
+		H4.cjk { font-family: "SimSun" }
+		H4.ctl { font-family: "Mangal" }
+		H5.cjk { font-family: "SimSun" }
+		H5.ctl { font-family: "Mangal" }
+		PRE.cjk { font-family: "NSimSun", monospace }
+		H3.cjk { font-family: "SimSun" }
+		H3.ctl { font-family: "Mangal" }
+		SAMP.cjk { font-family: "NSimSun", monospace }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="de-DE" DIR="LTR">
+<H1>Programmierung von Webclients mit HTML/JavaScript 
+</H1>
+<H2 CLASS="western">JavaScript Grundlagen</H2>
+<H3 CLASS="western">Quellen 
+</H3>
+<OL>
+	<LI><P>Ein gute Referenz zu JavaScript und Dom <A HREF="http://www.javascriptkit.com/" TARGET="_blank">hier</A>
+		</P>
+	<LI><P>SelfHtml- der Klassiker der Webtechnik- Doku <A HREF="http://de.selfhtml.org/" TARGET="_blank">hier</A></P>
+	<LI><P>Entwickler Ressourcen f&uuml;r den Mozilla Browser <A HREF="http://developer.mozilla.org/" TARGET="_blank">hier</A>
+		</P>
+</OL>
+<H4 CLASS="western">Was ist JavaScript ? 
+</H4>
+<P><I>JavaScript</I> ist eine objektorientierte Skriptsprache. Sie
+wurde in der Firma Netscape von <I>Brendan Eich</I> nach eignen
+Aussagen innerhalb von nur 10 Tagen unter dem Codename <I>LiveScript
+</I>entwickelt. Mit ihr sollten in Webbrowsern komplexe,
+clientseitige Gesch&auml;ftslogik implementierbar sein wie
+Validierung von Benutzereingaben und dynamisches (animiertes) HTML.</P>
+<P>Mit der Programmiersprache <I>Java</I> hat <I>JavaScript</I> au&szlig;er
+einer C-&auml;hnlichen Syntax und dem &auml;hnlichen Namen wenig
+gemein. Die Bezeichnung <I>JavaScript</I> wurde wohl gew&auml;hlt,
+weil zum Zeitpunkt des Erscheinens der ersten JavaScript 1.0 -
+Version ein Java- Hype herrschte.</P>
+<P>Dank dem Internet, das mit seinen Tools in alle Lebensbereiche
+eindrang, ist JavaScript heute zu einer der am weitesten verbreiteten
+Script- Sprachen auf dem Planeten geworden. Insbesondere durch den
+HTML5 Standard und den WebApps f&uuml;r <I>Smartphones</I> und
+<I>Tablets</I> erfuhr JavaScript in j&uuml;ngster Zeit eine gewaltige
+Aufwertung. 
+</P>
+<H4 CLASS="western">Versionen</H4>
+<P>Browser-kriege im Wechsel mit Standardisierungsbem&uuml;hungen
+pr&auml;gten die Entwicklung von JavaScript. Einen guten &Uuml;berblick
+gibt Wikipedia:</P>
+<P><A HREF="http://de.wikipedia.org/wiki/JavaScript#Versionsgeschichte_von_JavaScript">http://de.wikipedia.org/wiki/JavaScript#Versionsgeschichte_von_JavaScript</A></P>
+<H4 CLASS="western">Skriptsprachen 
+</H4>
+<P>Eine Skriptsprache ist eine spezielle Programmiersprache, die in
+einem bestehenden System (Programm) eingebettet ist. Mittels der
+Skriptsprache k&ouml;nnen Komponenten des Systems von einem Programm
+aus angesteuert werden, so dass Arbeitsabl&auml;ufe automatisierbar
+sind. Ein gute Skriptsprache sollte leicht erlernbar sein, damit auch
+nicht- Programmierer sie zur Automatisierung einsetzen k&ouml;nnen.</P>
+<H4 CLASS="western">JavaScript und das WWW 
+</H4>
+<P>Urspr&uuml;nglich diente JavaScript zur Steuerung von HTML-
+Browsern und Web- Servern. In den Browsern k&ouml;nnen durch
+JavaScript Webseiten animiert, Eingaben in Formulare gepr&uuml;ft und
+intelligente Navigationselemente implementiert werden. Auf Servern
+k&ouml;nnen mittels Scripte Datenbanken eingebunden, und komplexe
+Berechnungen ausgef&uuml;hrt werden.</P>
+<P>Heute ist JavaScript nicht auf Browser und Webserver beschr&auml;nkt:
+Im Web stehen Implementierungen von JavaScript- Interpretern frei zur
+Verf&uuml;gung, die in eigene Produkte eingebunden werden k&ouml;nnen.</P>
+<P>Die Syntax ist der Sprache C/C++ und Java entlehnt. In der
+Systemprogrammierung ist C++ sehr popul&auml;r. Den vielen C und C++
+Programmierern wird der Einstieg in JavaScript so erleichtert.</P>
+<H4 CLASS="western">Objektfunktional programmieren mit JavaScript 
+</H4>
+<P>In JavaScript kann prozedural, funktional und objektorientierte
+programmiert werden.  
+</P>
+<P>Namen von Programmobjekten wie Variablen und Datenstrukturen k&ouml;nne
+in JavaScript willk&uuml;rlich eingef&uuml;hrt werden. Die
+Deklaration erfolgt implizit beim Zuweisen eines Wertes an den neuen
+Namen. Explizite Deklarationen wie in C++ oder Pascal sind hier zwar
+m&ouml;glich, jedoch nicht erforderlich. Dies soll Nicht-
+Programmierern den Umgang mit der Sprache erleichtern, beschr&auml;nkt
+den Einsatz jedoch auf kleine Projekte.</P>
+<H5 CLASS="western">Beispiel 
+</H5>
+<PRE CLASS="western">// Unterprogramme werden in function- Bl&ouml;cke eingeschlossen. Jeder Block beginnt
+// mit einer &ouml;ffnenden, und endet mit einer schlie&szlig;enden geschweiften Klammer. 
+function UP1() {  
+  // Die Variabel namens a wird implizit durch Zuweisen eines Integers
+  // deklariert
+  a = 41; 
+
+  // Erzeugen einer Datenstruktur mit dem Namen &quot;mitarbeiter&quot;
+  mitarbeiter = new Object();   
+  // Erzeugen von Datenelementen in der Datenstruktur mitarbeiter durch 
+  // Zuweisen von Werten an die Namen der Datenelemente
+  mitarbeiter.name = &quot;Willy&quot;;
+  mitarbeiter.vorname = &quot;Marsmensch&quot;;
+  mitarbeiter.alter = 312;
+}
+                </PRE><H4 CLASS="western">
+Console: Hilfsmittel zum Debuggen zur Laufzeit</H4>
+<P>Mittels des Javascript- Objekts <I>console</I> <SPAN STYLE="font-style: normal">k&ouml;nnen
+Testausgaben im Browser durchgef&uuml;hrt werden. </SPAN>
+</P>
+<PRE CLASS="western">console.log(&quot;Werte der Variablen&quot;);
+console.log(&quot;globale_Variable: &quot; + globale_Variable.toString());
+console.log(&quot;bin_auch_global : &quot; + bin_auch_global.toString());
+console.log(&quot;bin_lokal       : &quot; + bin_lokal.toString());</PRE><P>
+Die Ausgaben werden im IE 11 unter Entwicklertools (F12) im Konsole-
+Fenster protokolliert:</P>
+<P><IMG SRC="WebClient-mit-JavaScript_html_m3c376391.png" NAME="Grafik3" ALIGN=LEFT WIDTH=757 HEIGHT=843 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H4 CLASS="western">Deklaration von Variablen, G&uuml;ltigkeitsbereiche</H4>
+<P>Wird eine Variable au&szlig;erhalb eines <I>function- </I><SPAN STYLE="font-style: normal">Blocks
+deklariert, dann ist sie global. In einem Browser geh&ouml;rt sie
+dann zu dem </SPAN><I>Window</I><SPAN STYLE="font-style: normal">-
+Objekt des Browsers:</SPAN></P>
+<PRE CLASS="western">jQuery.noConflict();
+
+jQuery(document).ready(function () {
+
+    // 
+    jQuery(&quot;#start&quot;).click(function (e) {
+
+        LokalVsGlobal();
+        console.assert(&quot;number&quot; == typeof bin_auch_global);
+
+        bin_auch_global += 100;
+
+        LokalVsGlobal();
+
+        alert(&quot;Bin fertig&quot;);
+    });
+
+});
+
+// Globale Variablen einrichten
+globale_Variable = 99;
+First = true;
+
+function LokalVsGlobal() {
+    
+    console.assert(&quot;number&quot; == typeof globale_Variable);
+    globale_Variable += 100;
+    
+
+    // ohne var deklarierte Variablen innerhalb einer function sind 
+    // auch global !
+    if (First) {
+        First = false;
+        console.assert(&quot;undefined&quot; == typeof bin_auch_global);
+        bin_auch_global = 77;
+    } else {
+        console.assert(&quot;number&quot; == typeof bin_auch_global);
+    }
+    
+
+    // echte lokale Variablen werden mit var deklariert ! 
+    console.assert(&quot;undefined&quot; == typeof bin_lokal);
+    var bin_lokal = 100;
+
+    console.log(&quot;Werte der Variablen&quot;);
+    console.log(&quot;globale_Variable: &quot; + globale_Variable.toString());
+    console.log(&quot;bin_auch_global : &quot; + bin_auch_global.toString());
+    console.log(&quot;bin_lokal       : &quot; + bin_lokal.toString());
+}</PRE><H4 CLASS="western">
+Datentypen</H4>
+<P>JavaScript verf&uuml;gt &uuml;ber einen Satz elementarer
+eingebauter Datentypen f&uuml;r Zahlenwerte im Festkomma und
+Gleitkommaformat, Zeichenketten und Wahrheitswerte:</P>
+<P><SAMP CLASS="western">Number, String, Boolean, null, undefined</SAMP></P>
+<P>Zudem geh&ouml;ren zum Sprachkern folgende Klassen komplexer
+Typen:</P>
+<P><SAMP CLASS="western">Array, Function, Object</SAMP> 
+</P>
+<P>Diese besitzen Konstruktoren zum Generieren der ben&ouml;tigten
+Instanzen. Die Konstruktoren werden durch den un&auml;ren <EM>new</EM>
+Operator aufgerufen. 
+</P>
+<H5 CLASS="western">Beispiel Primitive Typen</H5>
+<PRE CLASS="western">// Eine Variable vom Typ Zahl mit dem Startwert 12 erzeugen
+var eine_zahl = 12;
+
+// Eine Variabel vom Typ String mit dem Startwert &quot;Hallo Welt&quot; erzeugen
+var eine_textzeichenkette = &quot;Hallo Welt&quot;;
+var ein_text_mit_zitat = 'Er sprach: &quot;Es werde Licht!&quot;';</PRE><H4 CLASS="western">
+Zahlen 
+</H4>
+<P>In JavaScript kann ein endlicher Unterbereich der rationalen
+Zahlen durch Objekte vom Typ Number dargestellt werden.
+Nachkommastellen m&uuml;ssen von den Vorkommastellen dabei durch
+einen Dezimalpunkt (z.B. 3.14) getrennt werden. Besitzt die Zahl
+keine Nachkommastellen, dann kann auf den Dezimalpunkt verzichtet
+werden.</P>
+<P>Variablen vom Typ Number werden angelegt, indem dem Namen ein
+Zahlenwert zugewiesen, oder der sog. Number(..) Konstruktor
+aufgerufen wird. In den runden Klammern des Konstruktors ist dabei
+der Anfangswert in der Variabel zu &uuml;bergeben.</P>
+<H5 CLASS="western">Beispiel 
+</H5>
+<PRE CLASS="western">var pi = 3.14;
+
+// Erzeugen durch expliziten Aufruf des Konstruktors
+var e  = new Number(2.72);
+
+// Parsen aus String mittels - Operator
+var wert = &quot;42&quot; - 0;
+
+// Parsen mittels eingebauter Funktionen
+var iWert = parseInt(&quot;42&quot;);
+var fWert = parseFloat(&quot;12.3&quot;);
+
+var a = 3*pi;               // a ist ein Produkt aus pi und 3</PRE><H4 CLASS="western">
+Zeichenketten 
+</H4>
+<P>Zeichenketten werden in JavaScript durch String- Objekte
+verwaltet. Eine Zeichenkettenwert wird dabei stets in
+Anf&uuml;hrungszeichen eingeschlossen (z.B. &quot;Hallo Welt!&quot;).</P>
+<P>Variablen vom Typ String werden angelegt analog den Variablen f&uuml;r
+Zahlen, indem einem Namen entweder ein Zeichenkettenwert zugewiesen,
+oder explizit der sog. String(..) - Konstruktor aufgerufen wird. In
+den runden Klammern des Konstruktors wird wieder wie obnen der
+Startwert der Variabel &uuml;bergeben:</P>
+<H5 CLASS="western">Beispiel 
+</H5>
+<PRE CLASS="western">var meldungstext = &quot;Hallo Welt!&quot;
+var infotext = new String(&quot;Eine allgemeine Schutzverletzung ist aufgetreten...&quot;);
+
+// Stringverkettung mittels +
+var gruss = &quot;Hallo&quot; + &quot; &quot; + &quot;Welt&quot;;
+gruss += &quot; !&quot;;
+
+// Konvertierung in String mit + Operator:
+// Ein Zahlenwert wurde durch Anh&auml;ngen einer leeren Zeichenkette in eine Zeichenkette umgewandelt.
+var txt_zahlenwert = 3.14 + &quot;&quot;;              </PRE><H4 CLASS="western">
+Wahrheitswerte 
+</H4>
+<P>Aussagen k&ouml;nnen entweder wahr oder Falsch sein. Z.B. sind die
+Aussagen &quot;Die Erde ist eine Scheibe&quot; falsch, und &quot;Die
+Erde dreht sich um die Sonne&quot; wahr. Wahrheitswerte k&ouml;nnen
+mit sog. logischen Operatoren UND, ODER und NICHT zu einem neuen
+Wahrheitswert kombiniert werden &auml;hnlich wie Zahlenwerte durch
+die arithmetischen Operatoren +, - *, /.</P>
+<P>In JavaScript werden die Wahrheitswerte durch Boolean- Objekte
+realisiert. Diese Objekte k&ouml;nnen entweder den Wahrheitswert true
+oder false aufnehmen.</P>
+<P>Varaibeln f&uuml;r Wahrheitswerte k&ouml;nnen wiederum analog den
+Zahlen- und Stringvariabeln, durch Zuweisen eines Wahrheitswertes an
+einen neuen Namen oder mittels des Konstruktors Boolean(..) erzeugt
+werden.</P>
+<PRE CLASS="western">var Die_Erde_ist_eine_Scheibe = false;
+var Die_Erde_dreht_sich_um_die_Sonne = new Boolean(&quot;true&quot;);
+
+// Dieser Satz ist wohl falsch !
+var satz = Die_Erde_ist_eine_Scheibe &amp;&amp; Die_Erde_dreht_sich_um_die_Sonne;                </PRE><H4 CLASS="western">
+Datumswerte 
+</H4>
+<P>Neben den elementaren Datentypen f&uuml;r Zahlen, Zeichenketten
+und Wahrheitswerten verf&uuml;gt JavaScript auch &uuml;ber einen
+eingebauten Datentyp f&uuml;r Kalenderdaten. Dadurch wird
+insbesondere das Rechnen mit Kalenderdaten vereinfacht.</P>
+<P>Datumswerte k&ouml;nnen ausschlie&szlig;lich mit dem Konstruktor
+Date(..) angelegt werden. Wahlweise kann dabei der Startwert f&uuml;r
+das Datum als Zeichenkette, oder als Liste der Form Jahr, Monat, Tag,
+Stunden, ... angegeben werden.</P>
+<P>Aus jedem Datumswert kann &uuml;ber einen Satz von Methoden Teile
+wie Jahr oder Uhrzeit selektiv herausgelesen werden. Auch umgekehrt
+k&ouml;nnen &uuml;ber einen Satz von Methoden die Datumsanteile wie
+Jahr und Uhrzeit einzeln neu gesetzt werden.</P>
+<H5 CLASS="western">Beispiel 
+</H5>
+<PRE CLASS="western">// Der aktuelle Zeitpunkt wird in der Variabel jetzt erfasst.
+var jetzt = Date(); 
+
+// Datumswert f&uuml;r Weihnachten 2002 erzeugt
+var weihnachten = Date(2002, 12, 24); 
+
+// Das Jahr wird aus dem Datumswert von Weihnachten ausgelesen.
+var jahr = weihnachten.getYear();                 </PRE><H4 CLASS="western">
+Arrays 
+</H4>
+<P>Sammlungen tabellarischer Daten wie Gehalts- oder Mitgliederlisten
+k&ouml;nnen durch Arrays in JavaScript dargestellt werden.</P>
+<P>Ein Array wird wiederum durch einen Konstruktor, hier Array(..)
+angelegt. Der Zugriff auf die Eintr&auml;ge erfolgt &uuml;ber einen
+Index mittels des Zugriffsoperators [ index]. Der Index kann dabei
+eine ganze Zahl, als auch eine Zeichenkette (=Stichwort) sein.</P>
+<P>Dem Array werden neue Eintr&auml;ge durch Zuweisen an eine neue
+Indexposition hinzugef&uuml;gt.</P>
+<H5 CLASS="western">Beispiel 
+</H5>
+<PRE CLASS="western">// Anlegen einer Gehaltstabelle
+var gehalt = new Array();
+
+// Zuordnen der Geh&auml;lter zu den Mitarbeitern
+gehalt[&quot;Willy&quot;] =  3000;
+gehalt[&quot;Spock&quot;] =  7000;
+gehalt[&quot;Chef&quot;]  = 14000;
+
+// Zugriff auf den Datensatz von Dr. Spock
+var gehalt_spock = gehalt[&quot;Spock&quot;];</PRE><H4 CLASS="western">
+Anonyme Methoden/Lambda Ausdr&uuml;cke</H4>
+<P>Die Befehlsdatenstr&ouml;me werden in Anweisungslisten
+organisiert, die allgemein in Prozeduren, Funktionen und Methoden
+klassifiziert werden. Doch letztlich sind Anweisungslisten simple
+Daten.</P>
+<P>Wie Daten k&ouml;nnen Anweisungslisten in einem JavaScript-
+Programm verwaltet werden. Besonders deutlich wird dies beim Datentyp
+<EM>Function</EM>. Neue Anweisungslisten k&ouml;nnen mit dem
+Konstruktor Function(...) erzeugt werden. Dieser Konstruktor erwartet
+als Parameter eine Liste von Programmeingaben, dargestellt jeweils
+durch einen Zeichenkette mit einer Beschreibung der Eingabe. Der
+Letzte Parameter des Function(...)- Konstruktors mu&szlig; eine
+Zeichenkette sein, die ein syntaktisch korrektes JavaScript- Programm
+darstellt. 
+</P>
+<P>Eine in einer Function Variable wird gestartet durch den
+Funktionsaufruf- Operator (..):</P>
+<PRE CLASS="western" STYLE="margin-bottom: 0.5cm">funcVar(&lt;Parameterliste&gt;)                </PRE><H5 CLASS="western">
+Beispiel 
+</H5>
+<PRE CLASS="western">                        
+// Eine neue Anweisungsliste wird angelegt, die aus zwei Seitenl&auml;ngen eines Rechteckes den Fl&auml;cheninhalt berechnet.
+var flaecheninhalt = new Function(&quot;a&quot;, &quot;b&quot;, &quot;return a*b;&quot;);
+
+// Fl&auml;cheninhalt f&uuml;r ein Quadrat mit Kantenl&auml;nge 100 wird berechnet
+var inhalt1 = flaecheninhalt(100, 100);
+
+// Fl&auml;cheninhalt f&uuml;r ein Rechteck wird berechnet
+var inhalt2 = flaecheninhalt(20, 3245);
+                </PRE><H4 CLASS="western">
+Datenstrukturen mittels Object 
+</H4>
+<P>Logische Zusammenh&auml;nge zwischen Daten und Funktionen k&ouml;nnen
+in JavaScript analog moderner Programmiersprachen wie Java und C++
+durch zusammenfassen in Objekten ausgedr&uuml;ckt werden.
+Beispielsweise k&ouml;nnen die Datenwerte &quot;Williy&quot;,
+&quot;Marsmensch&quot; und &quot;4711&quot; Teile des Datensatzes
+eines Mitarbeiters der Firma &quot;Space Invaders&quot; sein. In
+JavaScript k&ouml;nnen sie durch ein Objekt namens Mitarbeiter wie
+folgt verbunden werden:</P>
+<PRE CLASS="western">// Ein neues, leeres Objekt wurde Erzeugt
+mitarbeiter = new Object();
+
+mitarbeiter.vorname = &quot;Willy&quot;;    // Datenelement vorname durch Zuweisen erzeugen
+mitarbeiter.name = &quot;Marsmensch&quot;;  //    --#--     name            --#--
+mitarbeiter.personalnr = 4711;    //    --#--     personalnr      --#--</PRE><P>
+Neben reinen Datenwerten wie vorname oder personalnr k&ouml;nnen
+Objekte auch Funktionen enthalten, die auf die Datenelemente im
+Objekt zugreifen. Ein Kandidat f&uuml;r eine solche Elementfunktion
+in einem Mitarbeiterobjekt w&auml;re eine Funktion zur Ausgabe der
+Daten in einem HTML- Dokument. Nennen wir sie einfach <I>print</I>(
+)<I>. </I>Sie k&ouml;nnte wie folgt implementiert werden:</P>
+<PRE CLASS="western">mitarbeiter.print = new Function(p_frame, &bdquo;return p_frame.document.write('this.name');&ldquo;);
+
+// Ausgabe der Mitarbeiterdaten im Fenster <I>FRAME_DATEN</I>:
+mitarbeiter.print(&bdquo;FRAME_DATEN&ldquo;);</PRE><H2 CLASS="western">
+JavaScript im Browser</H2>
+<P>Im Browser entfaltet JavaScript seine St&auml;rke durch das
+<I>Document Object Modell </I><SPAN STYLE="font-style: normal">(DOM),
+&uuml;ber welches auf alle Details in einer HTML &ndash; Steite
+zugegriffen werden k&ouml;nnen.</SPAN></P>
+<H3 CLASS="western">Inhalt einer HTML- Seite dynamisch erzeugen</H3>
+<P>Das folgende Script erzeugt in einem HTML- Dokument dynamisch alle
+Typen von &Uuml;berschriften als Beispiel:</P>
+<PRE CLASS="western">&lt;script language=&quot;JavaScript&quot;&gt;
+for(i = 1; i &lt;= 6; i++)   {
+
+  self.document.writeln('&lt;h' + i + '&gt;&amp;Uuml;berschrift ' + i + '&lt;h' + i + '/&gt;');
+
+}
+&lt;/script&gt;</PRE><H3 CLASS="western">
+Zugriff auf die Steuerelemente eines Formulares</H3>
+<P>Die Aufz&auml;hlung <I>document.forms</I>&nbsp;<SPAN STYLE="font-style: normal">enth&auml;lt
+Referenzen auf alle Formularobjekte in einem HTML- Dokument. Jedes
+Formularobjekt wiederum enth&auml;lt eine Aufz&auml;hlung
+</SPAN><I>document.forms[i].elements</I><SPAN STYLE="font-style: normal">,
+welche Referenzen auf die Steuerelementobjekte eines Formulares
+enth&auml;lt.</SPAN></P>
+<H4 CLASS="western">Text- und Passwortfeld</H4>
+<PRE CLASS="western" STYLE="margin-bottom: 0.5cm">self.document.forms[form_name].elements[tesxfeld_name].value = &quot;Neuer Text&quot;; // Schreiben</PRE><H4 CLASS="western">
+Radionbuttons und Checkboxen</H4>
+<PRE CLASS="western">// Filtern aller options- Eintr&auml;ge, die selektiert wurden
+
+var element = self.document.forms[form_name].elements[name_radionbutton];
+
+for (var k = 0; k &lt; element.options.length; k++ ) {
+
+  // Nur die selektierten Elemente werden ausgegeben
+  if (element.options[k].selected == true) {
+
+    var e_text  = element.options[k].text;
+    var e_value = element.options[k].value;
+    text += element.type + &quot;:&quot; + element.name + &quot;= text: &quot; + e_text + &quot;, value: &quot; + e_value + &quot;\n&quot;;
+  }
+}</PRE><H4 CLASS="western">
+Listboxen mit Einfach- und Mehrfachauswahl</H4>
+<PRE CLASS="western">// Filtern aller Listboxeintr&auml;ge, die selektiert wurden
+
+var element = self.document.forms[form_name].elements[name_listbox];
+
+for (var k = 0; k &lt; element.options.length; k++ ) {
+   // Nur die selektierten Elemente werden ausgegeben
+   if (element.options[k].selected == true) {
+
+       var e_text  = element.options[k].text;
+       var e_value = element.options[k].value;
+       text += element.type + &quot;:&quot; + element.name + &quot;= text: &quot; + e_text + &quot;, value: &quot; + e_value + &quot;\n&quot;;
+   }
+}</PRE><H3 CLASS="western">
+Befehlsschaltfl&auml;chen mit JavaScript</H3>
+<PRE CLASS="western">&lt;input type=&quot;button&quot;
+       value=&quot;Aufbaukurs&quot;
+       onclick=&quot;javascript: parent.content.location='html-aufbau/index.html'&quot;
+&gt;</PRE><H3 CLASS="western">
+Validatoren f&uuml;r Eingaben in Textfelder</H3>
+<H4 CLASS="western">Pr&uuml;fen auf Leer</H4>
+<PRE CLASS="western">function test_leer() {
+  // Pr&uuml;ft, ob in das das Textfeld in form1 etwas eingetragen wurde
+
+  if (self.document.form1.textfeld.value ==&quot;&quot;) 
+     alert(&quot;Das Textfeld ist leer&quot;);
+  else 
+     alert(&quot;Das Textfeld ist nicht leer&quot;);  
+}</PRE><H4 CLASS="western">
+Pr&uuml;fen auf Zahl</H4>
+<PRE CLASS="western">function test_ist_ganze_zahl() {
+  // Pr&uuml;ft, ob in das Textfeld in form1 eine Zahl eingegeben wurde
+
+  var reg_ausdruck = /^\s*[-|+]{0,1}\s*\d+\s*$/;
+  var eingabe = self.document.form1.textfeld.value;
+
+  if (reg_ausdruck.test(eingabe))
+     alert(&quot;In Textfeld wurde eine ganze Zahl eingegeben&quot;);
+  else
+     alert(&quot;In Textfeld wurde !!keine!! Zahl eingegeben&quot;);
+}</PRE><H4 CLASS="western">
+Pr&uuml;fen auf Geldbetrag</H4>
+<PRE CLASS="western">function test_ist_waehrung() {
+  // Pr&uuml;ft, ob in das Textfeld in form1 eine Zahl eingegeben wurde
+
+  var reg_ausdruck = /^\s*[-|+]{0,1}\s*\d+[,|\.]{0,1}\d\d\s*(EUR)\s*$/;
+  var eingabe = self.document.form1.textfeld.value;
+
+  if (reg_ausdruck.test(eingabe))
+     alert(&quot;In Textfeld wurde ein Geldbetrag eingegeben&quot;);
+  else
+     alert(&quot;In Textfeld wurde !!kein!! Geldbetrag eingegeben&quot;);
+
+}</PRE><H4 CLASS="western">
+Pr&uuml;fen auf Email</H4>
+<PRE CLASS="western">function test_ist_email() {
+  // Pr&uuml;ft, ob in das Textfeld in form1 eine Zahl eingegeben wurde
+
+  var reg_ausdruck = /^\s*[a-z|A-Z|0-9|\-]+@[a-z|A-Z|0-9|\-]+(\.[a-z|A-Z|0-9|\-]+)+\s*$/;
+  var eingabe = self.document.form1.textfeld.value;
+
+  if (reg_ausdruck.test(eingabe))
+     alert(&quot;In Textfeld wurde eine Email- Adresse eingegeben&quot;);
+  else
+     alert(&quot;In Textfeld wurde !!keine!! Email-Adresse eingegeben&quot;);
+}</PRE><H2 CLASS="western">
+Sicherheitsaspekte</H2>
+<H3 CLASS="western">Beschr&auml;nkungen f&uuml;r JavaScript -
+Programme in Browsern</H3>
+<UL>
+	<LI><P>Keine Sprachmittel f&uuml;r den Zugriff auf lokale Dateien
+	und Verzeichnisse vorhanden</P>
+	<LI><P>Keine elementaren Netzwerkfunktionen. JavaScript- Programme
+	k&ouml;nnen nur mit dem Server komunizieren, von dem sie geladen
+	wurden. Der Verbindungsaufbau und die Kommunikation mit anderen
+	Rechnern ist nicht m&ouml;glich</P>
+	<LI><P>Zugriff auf die Array- Elemente des History- Objektes ist
+	nicht m&ouml;glich. Diese enthalten die URL's der bereits besuchten
+	Internetseiten. 
+	</P>
+	<LI><P>Eigenschaft <I>value</I> des Passwort- Objekts liefert nicht
+	die Eingaben des Benutzers zur&uuml;ck. Die Benutzereingaben werden
+	mit dem Formular verschickt, bleiben dem Script aber verborgen.</P>
+	<LI><P>Eigenschaft <I>value </I>des FileUpload- Objekts kann von
+	JavaScript nur gelesen, jedoch nicht gesetzt und ver&auml;ndert
+	werden.</P>
+	<LI><P>Auf Fenster, Frames und Objekte kann von JavaScript aus nicht
+	zugegriffen werden, wenn sie zu Dokumenten geh&ouml;ren, die von
+	einem anderen Server geladen wurden als das JavaScript- Programm.</P>
+	<LI><P></P>
+</UL>
+<H3 CLASS="western">Angiffsstrategien mit JavaScript</H3>
+<OL>
+	<LI><P>St&auml;ndiges generieren von Pop- Up- Fenstern (denial of
+	Access)</P>
+	<LI><P>Aussp&auml;hen von e-mails mittels submit() und mailto: URL</P>
+	<LI><P>Aussp&auml;hen durch Anh&auml;ngen von Daten an eine URL
+	(nach ? oder #)</P>
+	<LI><P>Mitprotokollieren von Eingaben in Formularfelder durch
+	Scripte, die in versteckten Frames laufen</P>
+	<LI><P>Simulation von Browser- Bedienelementen bzw. Login-
+	Formularen f&uuml;r das Online- Banking, um den Benutzer in
+	vertrauter Umgebung zur Preisgabe vertrauter Daten zu animieren.</P>
+</OL>
+<H4 CLASS="western">Mitprotokollieren von Eingaben mit Scripts in
+versteckten Frames</H4>
+<P>Durch die Regel, dass ein Script nur auf Seiten zugreifen k&ouml;nnen,
+die vom gleichen Server geladen wurden, ist folgendes
+Angriffsszenario nicht erfolgreich:</P>
+<P><IMG SRC="WebClient-mit-JavaScript_html_629e1274.png" NAME="Grafik1" ALIGN=LEFT WIDTH=491 HEIGHT=378 BORDER=0><BR CLEAR=LEFT>Betrachtet
+man die Regel aber genauer, dann ist ein erfolgreicher Angriff
+m&ouml;glich, indem das b&ouml;sartige Script vom selben Server wie
+die angegriffene Seite geladen wird: 
+</P>
+<H3 CLASS="western"><IMG SRC="WebClient-mit-JavaScript_html_m61f7e7e5.png" NAME="Grafik2" ALIGN=LEFT WIDTH=491 HEIGHT=378 BORDER=0><BR CLEAR=LEFT>Infos
+zum Thema im Web</H3>
+<UL>
+	<LI><P><A HREF="http://www.uni-mainz.de/~pommeren/DSVorlesung/Grundprobleme/JavaScript.html" TARGET="_blank">Die
+	Sicherheit von JavaScript (Uni- Mainz, Vorlesung zur
+	Datensicherheit)</A></P>
+	<LI><P><A HREF="http://www.nolte-buerotechnik.de/keinjavascript.html" TARGET="_blank">JavaScript
+	gef&auml;hrdet Ihre Sicherheit (Nolte- B&uuml;rotechnik)</A></P>
+	<LI><P><A HREF="http://www.heise.de/ct/browsercheck/e5demo11.shtml" TARGET="_blank">c't
+	- Browsercheck</A></P>
+</UL>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

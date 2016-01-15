@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "CSSIntro";
+}
+
+<section class="row">
+    <article class="col-xs-12 col-md-12 col-lg-12">
+        <h2>CSS Intro</h2>
+        <p>
+            <b>CSS</b> steht für <i lang="en">Cascading Style Sheets</i>, und ist ein Formalismus zur Definition von Formatierungs/Rendering- Regeln
+            für HTML Dokumentstrukturen.
+        </p>
+        <p>
+            Der erste Sprachstandard wurde 1996 vom W3C veröffnetlicht, und basierte auf den Entwicklungen von Håkon Wium Lie (Mitarbeiter von Tim Berners Lee) und Bert Bos.
+        </p>
+        <p>
+            Tutorials und Referenzen zu CSS findest man z.B. unter <a href="http://www.w3schools.com/css/default.asp" target="_blank">w3schools.com</a>.
+        </p>
+        <figure>
+            <figcaption>
+                Grundlegende Struktur und Funktionsweise von CSS
+            </figcaption>
+            <img src="~/Content/pics/HTML5/html5-css.svg" class="img-responsive" style="width: 100%" />
+        </figure>
+    </article>
+</section>
+<section class="row">
+    <form id="CssSandbox" class="form-group col-xs-12 col-md-6 col-lg-6">
+
+        <label for="Selector">Selektor</label>
+        <input type="text" class="form-control" id="Selector" />
+        <label for="PropSett">CSS- Eigenschaften setzen</label>
+        <textarea class="form-control" id="PropSett" rows="8" spellcheck="false"></textarea>
+        <button type="button" class="btn btn-primary" id="SetStyle">Stilregeln anwenden</button>
+    </form>
+    <article class="form-group col-xs-12 col-md-6 col-lg-6">
+        <h2>Beispiele</h2>
+        <ol type="">
+            <li>
+                Rote Schriftfarbe in allen Artikeln :
+                <samp>
+                    article {color: red;}
+                </samp>
+            </li>
+            <li>
+                Grüne Schriftfarbe für Mondnamen
+                <samp>
+                    .moons figcaption { color: green;}
+                </samp>
+            </li>
+            <li>
+                Monde nebeneinander (<a href="http://www.w3schools.com/css/css_float.asp" target="_blank">Floating</a>)
+                <samp>
+                    .moons figure {float: left;}
+                </samp>
+            </li>
+            <li>
+                Text zum Planeten in zwei Spalten (<a href="http://www.w3schools.com/css/css3_multiple_columns.asp" target="_blank">Multiple Columns</a> )
+                <samp>
+                    .multiCol {column-count: 2; column-gap: 2em; column-rule-style: solid; column-rule-width: 1px;}
+                </samp>
+            </li>
+            <li>
+                Artikel mit abgerudeten Ecken und grauem Hintergrund (<a href="http://www.w3schools.com/css/css3_borders.asp" target="_blank">Rounded Corners</a> )
+                <samp>
+                    article {border-radius: 10px; background-color: gray; color: gold;}
+                </samp>
+            </li>
+            <li>
+                Artikel mit Gradient im Hintergrund (<a href="http://www.w3schools.com/css/css3_gradients.asp" target="_blank">Gradient</a> )
+                <samp>
+                    article {background: linear-gradient(to bottom, white , black);}
+                </samp>
+            </li>
+            <li>
+                Artikel um 10 Grad scheeren (<a href="http://www.w3schools.com/css/css3_2dtransforms.asp" target="_blank">Transformationen</a> )
+                <samp>
+                    article {background-color: gray; color: gold; transform: skewX(10deg);}
+                </samp>
+            </li>
+            <li> Untersuche das BOX- Modell: <a href="http://www.w3schools.com/css/css_boxmodel.asp" target="_blank">Box Modell</a></li>
+
+        </ol>
+        
+
+    </article>
+</section>
+<section id="sandbox" class="row">
+
+    <article class="col-xs-12 col-md-6 col-lg-6">
+        <h1><a name="Jupiter"></a>Jupiter, im Auge des Sturms</h1>
+        <aside>
+            <dl class="dl-horizontal">
+                <dt>
+                    Abstand zur Sonne
+                </dt>
+                <dd>
+                    <meter value="5.203" min="4.95" max="5.46">5,203 AE</meter>
+                </dd>
+                <dt>
+                    Durchmesser
+                </dt>
+                <dd>
+                    <meter value="142984.0">142984,0 km</meter>
+                </dd>
+            </dl>
+        </aside>
+        <figure>
+            <figcaption>
+                Aufgenomen von <a href="http://en.wikipedia.org/wiki/Cassini%E2%80%93Huygens" target="_blank">Cassini–Huygens </a> am <time datetime="2000-12-07">7. Dec. 2000</time>
+            </figcaption>
+            <img src="~/Content/pics/Jupiter-med.jpg" class="img-circle" />
+        </figure>
+        <section class="multiCol">
+            <p>
+                Jupiter ist der stürmische Gasriese. Dabei dreht er sich in 10h einmal um seine eigene Achse - bezüglich der Oberflächengeschwindigkeit ist
+                das Rekord im Sonnensystem ! Auch in Punkto Masse ist er unter den Planeten Rekordhalter: er vereinigt etwa die 2,5 fache Masse aller restlichen
+                Planten, und ist damit 318 mal so schwer wie die Erde !
+            </p>
+        </section>
+        <section class="moons">
+            <h1>Monde</h1>
+            <figure>
+                <figcaption>Callisto</figcaption>
+                <img src="~/Content/pics/Callisto-small.jpg" class="img-thumbnail" />
+            </figure>
+            <figure>
+                <figcaption>Ganymed</figcaption>
+                <img src="~/Content/pics/Ganymede-small.jpg" class="img-thumbnail" />
+            </figure>
+            <figure>
+                <figcaption>Europa</figcaption>
+                <img src="~/Content/pics/Europa-small.jpg" class="img-thumbnail" />
+            </figure>
+            <figure>
+                <figcaption>Io</figcaption>
+                <img src="~/Content/pics/Io-small.jpg" class="img-thumbnail" />
+            </figure>
+
+            </ol>
+        </section>
+    </article>
+    <article class="col-xs-12 col-md-6 col-lg-6">
+        <h1><a name="Saturn"></a>Saturn, Herr der Ringe</h1>
+        <aside>
+            <dl class="dl-horizontal">
+                <dt>
+                    Abstand zur Sonne
+                </dt>
+                <dd>
+                    <meter value="9.5826" min="9.0412" max="10.1238">9,5826 AE</meter>
+                </dd>
+                <dt>
+                    Durchmesser
+                </dt>
+                <dd>
+                    <meter value="120536.0">120536,0 km</meter>
+                </dd>
+            </dl>
+        </aside>
+        <figure>
+            <figcaption>
+                Aufgenomen von <a href="http://en.wikipedia.org/wiki/Cassini%E2%80%93Huygens" target="_blank">Cassini–Huygens </a> am <time datetime="2004-10-06">7. Dec. 2000</time>
+            </figcaption>
+            <img src="~/Content/pics/Saturn-med.jpg" class="img-circle" />
+        </figure>
+        <section class="multiCol">
+            <p>
+                Die Ringwelt des Saturns ist einzigartig. Kein Planet wirkt so exotisch wie er. Neben den Ringen umrunden Saturn 62 Monde. Titan ist dabei fast so
+                groß wie der Mars. Aber auch der kleine Enceladus mit 500 km Durchmesser ist beeindruckend, hat seine schneeweise Oberfläche doch die größte
+                Albedo im Sonnensystem (=Reflexionsvermögen).
+            </p>
+        </section>
+        <section class="moons">
+            <h2>Monde</h2>
+
+            <figure>
+                <figcaption>Enceladus</figcaption>
+                <img src="~/Content/pics/Enceladus-small.jpg" class="img-thumbnail" />
+            </figure>
+
+            <figure>
+                <figcaption>Titan</figcaption>
+                <img src="~/Content/pics/Titan-small.png" class="img-thumbnail" />
+            </figure>
+
+
+        </section>
+    </article>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/HTML5/CSSIntro")
+}
+
+
+
+
+
+
+

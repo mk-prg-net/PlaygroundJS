@@ -1,0 +1,10 @@
+﻿@model System.DateTime
+
+@{
+    Layout = null;
+}
+
+<div class="well-sm">
+    <span class="glyphicon glyphicon-time"></span>&nbsp;
+    <time datetime="@Model.ToString("s")">@Model.Hour.ToString("D2"):@Model.Minute.ToString("D2"):@Model.Second.ToString("D2")</time>
+</div>

@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "FormsIO";
+}
+<h2>Formulare und Validierung</h2>
+
+<div class="row">
+    <article class="col-xs-12 col-md-6 col-lg-6">
+        <h1>Eingebaute HTML5 Validierung</h1>
+
+        <figure>
+            <figurecaption>
+                Erweiterte Eigenschaften, Methoden und Typen für <b>HTML5</b> Formularfelder
+            </figurecaption>
+            <img src="~/Content/pics/HTML5/html5-validierung.svg" class="img-responsive" style="width: 100%" />
+        </figure>
+    </article>
+
+    <article class="panel panel-primary col-xs-12 col-md-6 col-lg-6">
+        <h3 class="panel-heading">Adresse erfassen (HTML5 Validierung)</h3>
+        <form id="EditAddress" class="panel-body">
+            <div class="form-group">
+                <label for="FirstName" class="sr-only">Vorname</label>
+                <input type="text" id="FirstName" class="form-control" placeholder="Vorname" required />
+
+                <label for="LastName" class="sr-only">Name</label>
+                <input type="text" id="LastName" class="form-control" placeholder="Nachname" />
+
+                <label for="Birthday" class="sr-only">Geburtstag</label>
+                <input type="date" id="Birthday" class="form-control" placeholder="Geburtstag" />
+
+                <label for="ContChilds" class="sr-only">Geburtstag</label>
+                <input type="number" min="0" max="3" id="ContChilds" class="form-control" placeholder="Kinderzahl" required />
+
+                <label for="PLZ" class="sr-only">Geburtstag</label>
+                <input type="tel"
+                       required
+                       pattern="^[0-9][0-9][0-9][0-9][0-9]$"
+                       id="PLZ"
+                       class="form-control" placeholder="PLZ" />
+
+                <input type="submit" value="Absenden" />
+
+                <button type="button" id="SubmitForm">Validiere mit JavaScript</button>
+
+
+                <div id="ErrMsg2" hidden="hidden">
+                    <h4>Fehler:</h4>
+
+                </div>
+
+
+            </div>
+        </form>
+    </article>
+</div>
+<div class="row">
+
+    <article class="col-xs-12 col-md-6 col-lg-6">
+        <h1>Validieren mittels JQueryValidation</h1>
+
+    </article>
+    <article class="panel panel-primary col-xs-12 col-md-6 col-lg-6">
+        <h3 class="panel-heading">Adresse erfassen (JQValid Validierung)</h3>
+        <form id="EditAddressJQ" class="panel-body" novalidate>
+            <div class="form-group">
+                <label for="FirstName" class="sr-only">Vorname</label>
+                <input type="text" id="FirstName" class="form-control" placeholder="Vorname" required />
+
+                <label for="LastName" class="sr-only">Name</label>
+                <input type="text" id="LastName" class="form-control" placeholder="Nachname" />
+
+                <label for="Birthday" class="sr-only">Geburtstag</label>
+                <input type="date" id="Birthday" class="form-control" placeholder="Geburtstag" />
+
+                <label for="ContChilds" class="sr-only">Geburtstag</label>
+                <input type="number" min="0" max="3" id="ContChilds" class="form-control" placeholder="Kinderzahl" />
+
+                <label for="PLZ" class="sr-only">Geburtstag</label>
+                <input type="tel"
+                       required
+                       pattern="^[0-9][0-9][0-9][0-9][0-9]$"
+                       id="PLZ"
+                       class="form-control" placeholder="PLZ" />
+
+                <input type="submit" value="Absenden" />
+
+                <button type="button" id="SubmitForm2">Validiere mit JavaScript</button>
+
+
+                <div id="ErrMsg3" hidden="hidden">
+                    <h4>Fehler:</h4>
+
+                </div>
+
+
+            </div>
+        </form>
+    </article>
+</div>
+<div class="row">
+    <article class="col-xs-12 col-md-6 col-lg-6">
+        <h1>Primzahlsuche mit Validierung</h1>
+
+    </article>
+
+
+    <article class="panel panel-primary col-xs-12 col-md-6 col-lg-6">
+        <h3 class="panel-heading">
+            Asynchrone Primzahlsuche
+        </h3>
+        <from id="PrimScanConsole" novalidate class="panel-body">
+
+            <div class="form-group">
+                <label for="begin">von</label>
+                <input type="number" id="begin" class="form-control" required autofocus pattern="[0-9]{1,10}" />
+
+                <label for="end">bis</label>
+                <input type="number" id="end" class="form-control" required pattern="[0-9]{1,10}" />
+
+                <button type="button" id="StartPrimscan">Starte Primzahlsuche</button>
+
+                <label for="ProgressInfo">Bereits verarbeiteter Bereich</label>
+                <input type="number" id="ProgressInfo" class="form-control" />
+                <progress id="ProgressMeter" value="0" min="0" max="100" class="form-control"></progress>
+
+                <div id="ErrMsg" hidden="hidden">
+                    <h4>Fehler:</h4>
+
+                </div>
+                <label for="result">gefundene Primzahlen</label>
+                <textarea id="result" class="form-control" rows="10" cols="20"></textarea>
+                <button id="Stop" type="button" class="btn btn-danger">Stop</button>
+            </div>
+        </from>
+    </article>
+</div>
+
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+
+    @Scripts.Render("~/bundles/JavaScriptLernen/Basics_08")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/JavaScriptLernen/Algo")
+    @Scripts.Render("~/bundles/JavaScriptLernen/FormsIO")
+}
+
+

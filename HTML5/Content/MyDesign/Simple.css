@@ -1,0 +1,541 @@
+﻿/*
+    (c) Martin Korneffel, IT-Beratung/Softwareentwicklung, Stuttgart 2014
+
+        Stylerules für elastisches Layout mit Html5
+        
+        relative Maßeinheit em: 1em = 16px (Browser- Standardeinstellung)
+        Wird Schriftfont vergrößert, dann vergrößert sich proportional em.
+*/
+
+googleFonts {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Orienta', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Cantata One', serif;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Noto Serif', serif;
+    font-family: 'Source Code Pro', sans-serif;
+    font-family: 'Oxygen', sans-serif;
+    font-family: 'Roboto Slab', serif;
+    font-family: 'Varela', sans-serif;
+    font-family: 'Capriola', sans-serif;
+}
+
+
+body {
+    background-color: #404040; /* Schrift */
+    font-family: Arial;
+    /*font-family: sans-serif;*/
+    font-weight: normal;
+    font-size: 10pt;
+    color: #dfdfdf;
+}
+
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Dokumentgliederung  */
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* Überschriften */
+
+
+h1 {
+    font-family: Arial, Helvetica, Sans-Serif;
+    font-size: larger;
+    font-weight: bold;
+    color: #e0e0e0;
+    margin-bottom: 8px;
+}
+
+
+/* Selektoren */
+article h1 {
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif; 
+    -webkit-column-span: all; 
+    column-span: all;
+    color: green;
+}
+
+article > h1 {
+    font-weight: bolder;
+    color: yellow;
+}
+
+article + h1 {
+    color: red;
+}
+/* Aufgabe: Uranus um 90Grad drehen */
+[src*="/Content/pics/Uranus-med.jpg"]
+/*#imgUranus*/
+{
+     -ms-transform: rotate(90deg); /* IE 9 */
+     -webkit-transform: rotate(90deg); /* Safari */
+     transform: rotate(90deg);
+}
+
+
+h2 {
+    font-family: Arial, Helvetica, Sans-Serif;
+    font-size: large;
+    font-weight: bold;
+    color: White;
+}
+
+h3 {
+    /* Elemente aus pseudoh3 */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: White;
+}
+
+h4 {
+    /* Elemente aus pseudoh3 */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: initial;
+    font-weight: bold;
+    color: #CC0000;
+}
+
+
+/* ------------------------------------------------------------------------------ */
+/* Absätze */
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: White;
+}
+
+ol {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: White;
+}
+
+header {
+    position: fixed;
+    margin: 8px;
+    margin-left: 0px;
+    padding: 8px;
+    border-style: none;
+    border-color: #808080;
+    border-radius: 8px;
+    background-color: #404040;
+}
+
+    header nav {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+footer {
+    margin: 8px;
+    margin-left: 0px;
+    padding: 8px;
+    border-style: none;
+    border-color: #808080;
+    border-radius: 8px;
+    background-color: #404040;
+}
+
+
+div.Logo {
+    float: left;
+    /* Dimensionen undd Abstände */
+    width: 280px;
+    margin: 8px;
+    margin-bottom: 0px;
+    padding: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: gold;
+    /* Rahmen */
+    border-radius: 8px;
+    /* Schrift */
+    color: #404040;
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+    font-size: medium;
+}
+
+section {
+    margin: 8px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+
+article {
+    /*float:left;
+    width: 350px;
+    height: 350px;
+    margin: 8px;*/
+    padding: 8px;
+    border-style: none;
+    border-color: #606060;
+    border-radius: 8px;
+    background-color: #808080;
+    /* overflow-y: scroll */
+}
+
+    article aside {
+        float: right;
+    }
+
+    article figure {
+        margin: 0;
+        margin-right: 8px;
+    }
+
+        article figure figcaption {
+            margin: 0;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+    article img {
+        width: 60%;
+    }
+
+div.multiCol {
+    margin: 0;
+    padding: 0;
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+    -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 30px; /* Firefox */
+    column-gap: 30px;
+    -webkit-column-rule: 1px solid white; /* Chrome, Safari, Opera */
+    -moz-column-rule: 1px solid white; /* Firefox */
+    column-rule: 1px solid white;
+}
+
+
+
+
+/*
+    Basishöhe einer Tile/Div und Vielfache davonn (Raster)
+    Die Höhenmaße berücksichtigen pro Tile eine Margin von 0.5em, und damit einen Abstand zwischen Margins von 1em.
+*/
+
+.TW_1 {
+
+    float: left;
+    width: 285px;
+    margin: 8px;
+}
+
+.TW_2 {
+    float: left;
+    width: 602px;
+    margin: 8px;
+}
+
+.TW_3 {
+    float: left;
+    width: 919px;
+    margin: 8px;
+}
+
+.TW_4 {
+    float: left;
+    width: 1236px;
+    margin: 8px;
+}
+
+.TW_5 {
+    float: left;
+    width: 1553px;
+    margin: 8px;
+}
+
+.TW_ {
+    float: left;
+    width: 1870px;
+    margin: 8px;
+}
+
+
+.TH_1 {
+    height: 2em;
+}
+
+.TH_2 {
+    height: 5em;
+}
+
+.TH_3 {
+    height: 8em;
+}
+
+.TH_4 {
+    height: 11em;
+}
+
+.TH_5 {
+    height: 14em;
+}
+
+.TH_6 {
+    height: 17em;
+}
+
+.TH_7 {
+    height: 20em;
+}
+
+.TH_8 {
+    height: 23em;
+}
+
+.TH_9 {
+    height: 26em;
+}
+
+.TH_10 {
+    height: 29em;
+}
+
+.TH_11 {
+    height: 32em;
+}
+
+.TH_12 {
+    height: 35em;
+}
+
+.TH_13 {
+    height: 38em;
+}
+
+.TH_14 {
+    height: 41em;
+}
+
+
+
+/* ------------------------------------------------------------------------------ */
+/* Workflow */
+
+div.WorkflowTile {
+    margin: 0.5em;
+    padding: 0.5em;
+    border-style: solid;
+    border-width: 0.12em;
+    border-color: gold;
+    border-bottom-left-radius: 0.625em;
+    border-top-right-radius: 0.625em;
+    background-color: #404040;
+}
+
+
+div.WfState {
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: gold;
+    color: #0094ff;
+    font-weight: bold;
+    border-style: outset;
+    border-color: yellow;
+    border-width: 0.2em;
+    text-align: center;
+    padding-left: 0.625em;
+    padding-right: 0.625em;
+    border-radius: 0.625em;
+    margin: 0;
+}
+
+div.WfStateActive {
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: goldenrod;
+    color: white;
+    font-weight: bold;
+    border-style: outset;
+    border-color: lightgoldenrodyellow;
+    border-width: 0.2em;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    border-radius: 0.625em;
+    margin: 0;
+}
+
+div.WfStateOld {
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: darkgray;
+    color: white;
+    font-weight: bold;
+    border-style: outset;
+    border-color: lightgray;
+    border-width: 0.2em;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    border-radius: 0.625em;
+    margin: 0;
+}
+
+
+div.WfStateFinal {
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    border-style: outset;
+    border-color: lightgray;
+    border-width: 0.2em;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    border-radius: 0.625em;
+    margin: 0;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Tabellen */
+
+.tabStyle {
+    border: solid;
+    border-color: gold;
+    /*table-layout: fixed;*/
+    padding: 0.25em;
+    border-bottom-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    color: white;
+    background-color: #404040;
+}
+
+.tabItem {
+    border-bottom: solid;
+    border-width: 1pt;
+}
+
+
+.tabItemL {
+    border-left: solid;
+    border-bottom: solid;
+    border-width: 1pt;
+}
+
+.tabItemR {
+    border-right: solid;
+    border-bottom: solid;
+    border-width: 1pt;
+}
+
+.tabItemLR {
+    border-left: solid;
+    border-right: solid;
+    border-bottom: solid;
+    border-width: 1pt;
+}
+
+
+/* ------------------------------------------------------------------------------ */
+/* Hyperlinks */
+
+a:link {
+    color: gold;
+    text-decoration: none;
+}
+
+    a:link.btn {
+        color: #404040;
+        text-decoration: none;
+    }
+
+
+a:visited {
+    color: gold;
+    text-decoration: none;
+}
+
+    a:visited.btn {
+        color: #404040;
+        text-decoration: none;
+    }
+
+
+a:focus {
+    color: aquamarine;
+    text-decoration: none;
+}
+
+a:hover {
+    color: aquamarine;
+    text-decoration: none;
+}
+
+a:active {
+    color: gold;
+    text-decoration: none;
+}
+
+    a:active.btn {
+        color: #404040;
+        text-decoration: none;
+    }
+
+
+.LikeHyperLink {
+    color: #284E98;
+    text-decoration: underline;
+}
+
+
+/*-------------------------------------------------------------------------------------*/
+/* Schaltflächen, Controls */
+
+div.btn-group {
+    display: inline-block;
+    padding: 8px;
+    margin-right: 8px;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    background-color: #404040;
+}
+
+.btn {
+    font-size: small;
+    text-align: center;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: gold;
+    border-width: 1px;
+    color: #404040;
+}
+
+.btn-primary {
+    background-color: gold;
+}
+
+.btn-alert {
+    border-color: #CC0000;
+    background-color: #CC0000;
+}
+
+.btn-success {
+    border-color: #5fe122;
+    background-color: #CC0000;
+}

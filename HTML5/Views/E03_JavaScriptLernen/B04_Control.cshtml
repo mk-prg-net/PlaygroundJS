@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Basics_04";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <article class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Kontrollstrukturen</h2>
+            <a href="http://www.w3schools.com/jsref/jsref_statements.asp" target="_blank">Übersicht</a>
+        </article>
+        <div class="panel col-xs-12 col-md-6 col-lg-6">
+            <div class="panel-heading">
+                <h3>Übungen</h3>
+            </div>
+
+
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button id="b04_ControlBlocks" type="button" class="btn btn-default" style="width: 90%">Kontrollstrukturen</button>
+                            </td>
+                            <td>
+                                Verzweigungen, Schleifen etc.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="b04_rekurisve" type="button" class="btn btn-default" style="width: 90%">Rekursion</button>
+                            </td>
+                            <td>
+                                Zinsrechnung<br />
+                                <input type="number" id="Laufzeit" /> &lt;= Laufzeit<br/>
+                                <input type="number" id="Guthaben"/> &lt;= Guthaben<br />
+                                <input type="number" id="Zinssatz"/> &lt;= Zinssatz<br/>
+                                <hr />
+                                <input type="number" id="ErgebnisRekursiv"/> &lt;= Ergebnis<br/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table id="Buchungsliste" class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Jahr</th>
+                        <th>Guthaben</th>
+                        <th>Zinsertrag</th>
+                        <th>Neues Guthaben</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <button id="StartBasics" type="button" class="btn btn-primary">
+                    Starte Grundlagenskripte
+                </button>
+            </div>
+        </div>
+
+    </div>
+}
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/JavaScriptLernen/Basics_04")
+
+}

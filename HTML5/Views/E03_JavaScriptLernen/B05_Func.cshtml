@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Basics_05";
+}
+
+<article>
+    <h1>Funktionale Programmierung in JavaScript</h1>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Funktionen als Objekte</h2>
+            <p id="ConfigObjectTest">
+                Die Menge der Abbildungsvorschriften (Funktionen) und der auf ihnen existierenden Operatoren wie <i>Komposition</i>,
+                <i>Rekursion</i> und <i>partieller Parameterbindung</i> sind in JavaScript implementiert und bilden damit den Kern der
+                <b>Funktionalen Programmierung</b>.
+            </p>
+            <figure>
+                <figcaption>
+                    Implementierung der Umrechung aus gemessenem Abstand und Winkel eines Flugobjekts mit einem
+                    Flughafenradar in Entfernung und Flughöhe.
+                </figcaption>
+                <img src="~/Content/pics/JavaScript/EVA-polar-in-kartesisch.png" class="img-responsive" />
+            </figure>
+            <p id="ConfigObjectTest2">
+                In JavaScript sind Funktionen Objekte. Sie besitzen Eigenschaften und Methoden. Auch können sie wie Objekte an Variablen zugewiesen,
+                als Parameter an Funktionen übergeben oder von diesen als Rückgabewerte zurückgegeben werden.
+            </p>
+            <figure>
+                <img src="~/Content/pics/JavaScript/JavaScriptFunktionsobjekt.svg" class="img-responsive" style="width:100%" />
+            </figure>
+
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <h3>Übungen</h3>
+
+            <dl>
+                <dt><button id="b05_create_functions" class="btn btn-primary">create functions</button></dt>
+                <dd>
+                    Syntax der Funktionsdeklaration, Methoden der Generierung von Funktionsobjekten.
+                </dd>
+
+                <dt><button id="b05_funcobject_test" class="btn btn-primary">funcobjects</button></dt>
+                <dd>
+                    Eigenschaften von Funktionsobjekte
+                </dd>
+
+                <dt><button id="b05_variadic" class="btn btn-primary">paramlists</button></dt>
+                <dd>
+                    Parameterübergabe: optionale Parameter, variadische Funktionen, Konfigurationsobjekte
+                </dd>
+
+                <dt><button id="b05_currying" class="btn btn-primary">bind-test</button></dt>
+                <dd>Linkspartielles binden von Funktionen mittels <b>bind</b>.</dd>
+
+                <dt><button id="b05_call" class="btn btn-primary">this</button></dt>
+                <dd>Verweis auf den Kontext mittels <b>this</b>. Funktionen mit call explizit an Empfänger/Kontext binden</dd>
+
+
+
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Scope von Funktionen mittels Closures erweitern</h2>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <h3>Übungen</h3>
+            <dl class="dl-horizontal">
+                <dt><button id="b05_closures" class="btn btn-primary">Closure Test</button></dt>
+                <dd>
+                    Arrays an variadische Funktionen mittels apply übergeben.
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <h2>Fuktionale Programmierung auf Arrays</h2>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <h3>Übungen</h3>
+            <dl class="dl-horizontal">
+                <dt><button id="b05_array_lisp" class="btn btn-primary">Array funktional</button></dt>
+                <dd>
+                    Funktionale Listenverarbeitung mittels forEach, map, filter, concat etc.
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+</article>
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/JavaScriptLernen/Basics_05")
+
+}
+
+

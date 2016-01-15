@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Basics_03";
+}
+
+@using (Html.BeginForm())
+{
+
+    <article>
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <h1>Datentypen und Operatoren</h1>
+                <figure>
+                    <figcaption>
+                        Datentypen bilden Mengen und ihre Verknüpfungen auf maschinell verarbeitbare Daten und Operatoren ab.
+                    </figcaption>
+                    <img src="~/Content/pics/JavaScript/JavaScriptDatentypen.svg" class="img-responsive" style="width:100%" />
+                </figure>
+                <h2>Dokumentation</h2>
+                <ul>
+                    <li>
+                        <a href="http://www.w3schools.com/jsref/jsref_obj_number.asp" target="_blank">Number</a>
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/jsref/jsref_obj_boolean.asp" target="_blank">Boolean</a>
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/jsref/jsref_obj_string.asp" target="_blank">String</a>
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/jsref/jsref_obj_date.asp" target="_blank">Date</a>
+                    </li>
+                   
+                    <li>
+                        <a href="http://www.w3schools.com/jsref/jsref_operators.asp" target="_blank">Liste aller Operatoren</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <h2>Übungen</h2>
+                <dl >
+                    <dt><button id="b03_Datatypes_and_Operators" type="button" class="btn btn-primary">Datatypes und typeof</button></dt>
+                    <dd>Typen in einer <i>dynamisch typisierten Welt</i></dd>
+
+                    <dt><button id="b03_Undefined_vs_Null" type="button" class="btn btn-primary">undefined vs. null</button></dt>
+                    <dd>Unterschied zwischen den besonderen Werten <b>undefined</b> und <b>null</b></dd>
+
+
+                    <dt><button id="b03_Number_Operators" type="button" class="btn btn-primary">Number Operators</button></dt>
+                    <dd>Operatoren auf nummerischen Typen, NaN und Infinity</dd>
+
+                    <dt><button id="b03_Number_parse_print" type="button" class="btn btn-primary">Number parse, print</button></dt>
+                    <dd>Einlesen von Zahlenwerten aus Zeichenketten und steuern der Ausgabe/dd>
+
+
+                    <dt><button id="b03_Boolean_Operators" type="button" class="btn btn-primary">Boolean Operators</button></dt>
+                    <dd>Operatoren auf boolschen Typen, logische Aussagen</dd>
+
+                    <dt><button id="b03_Boolean_Truthiness" type="button" class="btn btn-primary">Boolean Truthiness</button></dt>
+                    <dd>Was in JavaScript so alles als wahre Aussage gilt...</dd>
+
+                    <dt><button id="b03_Boolean_bitwise" type="button" class="btn btn-primary">Boolean bitwise</button></dt>
+                    <dd>Bitweise logische Operatoren</dd>
+
+                    <dt><button id="b03_StringOps" type="button" class="btn btn-primary">String Op's</button></dt>
+                    <dd>Operationen auf Zeichenketten</dd>
+
+
+
+
+                </dl>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <h1>Arrays</h1>
+                <ul>
+                    <li>
+                        <a href="http://www.w3schools.com/jsref/jsref_obj_array.asp" target="_blank">Array</a>
+                    </li>
+                </ul>
+                <figure>
+                    <img src="~/Content/pics/JavaScript/JavaScriptArray.svg" class="img-responsive" style="width:100%">
+                </figure>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <h2>Übungen</h2>
+                <dl >
+                    <dt><button id="b03_Arrays" type="button" class="btn btn-primary">Arrays</button></dt>
+                    <dd>Dichte und dünn besetzte Arrays, Dictionaries etc. </dd>
+                </dl>
+
+            </div>
+        </div>
+    </article>
+
+    <article></article>
+}
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/bundles/JavaScriptLernen/Basics_03")
+}
+
+
+
+
