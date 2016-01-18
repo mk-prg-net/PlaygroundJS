@@ -466,8 +466,10 @@
     <Content Include="Content\pics\JavaScript\NamenBloecke.png" />
     <Content Include="Content\pics\JavaScript\NamenBloecke.svg" />
     <Content Include="Content\pics\JavaScript\new-operator.svg" />
+    <Content Include="Content\pics\JavaScript\Node.JS.svg" />
     <Content Include="Content\pics\JavaScript\Objektliterale-Funktion.png" />
     <Content Include="Content\pics\JavaScript\Objektliterale-Funktion.svg" />
+    <Content Include="Content\pics\JavaScript\PatternAsyncFunction.svg" />
     <Content Include="Content\pics\JavaScript\Prototype.svg" />
     <Content Include="Content\pics\JavaScript\RequireJS.svg" />
     <Content Include="Content\pics\Jupiter-big.jpg" />
@@ -2404,6 +2406,7 @@
     <Content Include="Scripts\lodash-amd\LICENSE" />
     <Content Include="Scripts\lodash-amd\package.json" />
     <Content Include="Scripts\lodash-amd\README.md" />
+    <Content Include="Views\E03_JavaScriptLernen\NodeJSandNPM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

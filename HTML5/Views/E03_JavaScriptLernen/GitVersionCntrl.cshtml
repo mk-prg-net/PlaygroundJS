@@ -13,17 +13,23 @@
             findet man <a href="https://de.wikipedia.org/wiki/Git">hier</a>.
         </p>
         <p>
-
+            Neben der offiziellen Doku sind auch folgende Tutorials lesenswert: <a href="https://www.atlassian.com/git/tutorials" target="_blank">https://www.atlassian.com/git/tutorials</a>.
         </p>
         <h3>Workflow</h3>
         <figure class="img-responsive" style="width: 100%">
             <img src="~/Content/pics/JavaScript/git-overview.svg" />
         </figure>
 
-        <h4>Repository clonen</h4>
+        <h3>Neues Repository anlegen</h3>
+        <p>
+            Ein neues Repository wird mittels <code>git init</code>  angelegt.
+        </p>
+
+        <h3>Existierendes Repository clonen</h3>
         <p>
             Jederzeit kann von einem Repository unter dem URL <i>SRC</i> mittels dem Kommando <code>git clone &lt;SRC&gt; &lt;DEST&gt; </code> eine Kopie in <i>DEST</i> angefertigt werden.
-            Dabei wird der letzte <i>Commit</i> in DEST ausgecheckt.
+            Dabei wird der letzte <i>Commit</i> in DEST ausgecheckt. Beispiel: Herunterladen der Projektmappe <b>PlaygroundJS</b> von <b>GitHub</b> in das Verzeichnis 
+            <b>PlaygroundJS</b> mittels <code>git clone https://github.com/mk-prg-net/LearnJavaScript.git <var>PlaygroundJS</var></code>.
         </p>
         <p>
             Das Clonen ist eine fundamentale Operation im verteilten Versionsverwaltungssystem. Die Quelle befindet sich im einfachsten Fall auf der
@@ -35,10 +41,35 @@
             Die Quell- Repositorys eines Repository werden mit dem Befehl <code>git remote -v</code> aufgelistet.
         </p>
 
+        <h3>Änderungen im Repository committen</h3>
+        <p>
+            Zuerst alle noch nicht im Tracking befindliche Dateien eines Verzeichnisses erfassen mit <code>git add <var>&lt;directory&gt;</var></code><br />
+            Dann den die Änderungen durch einen Commit im Repository aufnehmen durch <code>git commit -m <var>"Eine Commitmessage"</var></code>
+        </p>
+
+
         <h4>Versionsverlauf anzeigen</h4>
         <p>
             Die Liste aller <i>Commits</i> und <i>Branches</i> wird angezeit durch
             <code>git log</code>
+        </p>
+
+        <h3>Neue Commits mit Server synchronisieren</h3>
+        <p>
+            <b>GitHub</b> bietet z.B. die Möglichkeit, Repositories öffentlich bereitzustellen. Um die Commits im Projektverzeichnis
+            auf dem Entwicklungsrechner mit dem GitHub- Rpository zu synchronisieren, ist das GitHub- Repository zunächst als 
+            <i>Quellrepository (origin)</i> festzulegen:<br/>
+            <code>git remote add <var>origin</var> &lt;URL Git Repo&gt;</code>
+            <br/>
+            Wenn zuvor ein anderes Quellrepository unter <b>origin</b> definiert war, dann muss es vor Anwendung des remote add- Befehls 
+            mittels remote remove gelöscht werden:<br/>
+            <code>git remote remove <var>origin</var></code>
+        </p>
+        <p>
+            Ist das Quell- Repository z.B. auf einem <b>GitHub</b> Server definiert worden, dann können die lokalen commits mit dem
+            Server synchronisiert werden durch: <br/>
+            <code>git push origin master</code><br/>
+            <b>master</b> bezeichnet dabei den branch, dessen commits mit dem Repo auf dem Server zu synchronimsieren sind.
         </p>
 
         <h3>Git und Visual Studio</h3>

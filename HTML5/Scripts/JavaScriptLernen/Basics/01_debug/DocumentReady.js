@@ -35,6 +35,7 @@
 
 $(document).ready(function () {
 
+    // Ein neuer Kommentar
     $("#b01_loging").click(DemoConsole);
 
 });

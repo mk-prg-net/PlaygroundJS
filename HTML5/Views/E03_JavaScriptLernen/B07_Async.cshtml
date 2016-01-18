@@ -4,6 +4,25 @@
 
 <div class="row">
     <article class="col-xs-12 col-md-12 col-lg-12">
+        <h1>Muster der asynchronen Funktionen</h1>
+        <p>
+            Das Muster der <i>asynchronen Funktionen</i> in JavaScript veranschaulicht folgende Grafik:
+            <figure>
+                <img src="~/Content/pics/JavaScript/PatternAsyncFunction.svg" class="img-responsive" />
+                <figcaption>
+                    Verarbeitung asynchroner Funktionen, betrachtet über den Zeitstrahl.
+                </figcaption>
+            </figure>
+            Asynchrone Funktionen vermeiden prinzipiell ein Blokieren des Systems bei Ein/Ausgaben.
+        </p>
+        <p>
+            So kann eine arbeitsaufwendige Primzahlsuche auf einem großen Abschnitt des Zahlenstrahls in kleine Teilaufgaben zerlegt werden.
+            Jede Teilaufgabe wird als Event in die Eventqueue gestellt, und von der JavaScript- nach Verarbeitung vorausgegangener Events
+            bearbeitet. So wird ein "einfrieren" des Browseroberfläche vermieden.
+        </p>
+    </article>
+
+    <article class="col-xs-12 col-md-12 col-lg-12">
         <from id="PrimScanConsole">
 
             <h1>Asynchrone Methoden: Asynchrone Primzahlsuche</h1>
