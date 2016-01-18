@@ -37,11 +37,54 @@
             Viele Tools und Bibliotheken, die der JavaScript- Programmierer benötigt, werden über den <a href="https://www.npmjs.com/" target="_blank">NPM- Package- Manager</a> bereitgestellt.
         </p>
         <p>
-            Ein Package- Manager ermöglicht nicht nur den Download einer Softwarebibliothekt. Er ermittelt auch alle Bibliotheken, auf denen die herunterzuladende 
+            Ein Package- Manager ermöglicht nicht nur den Download einer Softwarebibliothekt. Er ermittelt auch alle Bibliotheken, auf denen die herunterzuladende
             Bibliothek basiert, und lädt diese ebenfalls herunter.
         </p>
+        <h2>Installation von Packages mit NPM</h2>
+        <h3>Vorbereitungen</h3>
+        <p><b>npm</b> muss installiert worden sein (z.B. als Folge der Installation von NodeJS).</p>
         <p>
-            
+            Packages werden für Projekte installiert, in denen sie eingesetzt werden. Die Abhängigkeiten zwischen einem Projekt
+            und den eingesetzten Packages wird in einer <i>package.json</i> Datei dokumentieren. Diese legt man in einem
+            Projekt mittels <code>npm init</code> in einem Dialog an.
+        </p>
+        <p>
+            Im Dialog ist das Projekt zu beschreiben (wer ist der Autor, welche Version hat das Projket etc.)
+        </p>
+        <h3>Installation durchführen</h3>
+        <p>
+            Nach der Installation  von NPM  kann mit dem Kommandozeilenbefehl
+            <code>npm install <var>PackageName</var></code> ein Package vom Repository unter
+            <a href="https://www.npmjs.com/" target="_blank">www.npmjs.org</a> heruntergeladen und installiert werden.
+        </p>
+        <p>
+            Soll das installierte Package als Abhängigkeit in der <i>package.json</i> erfasst werden, dann kann dies mit der
+            Option <code>--save</code> erreicht werden.<br />
+            <code>npm install --save lodash-amd</code>
+
+        </p>
+        <p>
+            Handelt es sich bei dem zu installierenden Package um eine Abhängigkeit, die nur zum Zeitpunkt der Entwicklung
+            eingesetzt wird (wie z.B. QUnit- Testframework), dann kann sollte diese Abhängigkeit in der <i>package.json</i>
+            durch die Option <code>--save-dev</code> erfasst werden.<br />
+            <code>npm install --save-dev quintjs</code>
+
+        </p>
+        <h3>Globale vs. lokale Installation</h3>
+        <p>
+            Handelt es sich bei dem Package um eine NodeJS- Anwendung, die als Tool genutzt wird wie z.B. <b>Grunt</b> oder
+            <b>Karma</b>, dann bietet sich eine globale Installation mit dem Parameter <code>-g</code> an:
+            <code>npm install -g karma</code>.
+        </p>
+        <p>
+            Eine global installiertes Tool kann aus jeder Ebene von der Kommandozeile aus gestartet werden.
+        </p>
+        <h3>Wiederherstellen einer Installation über <i>package.json</i> Datei</h3>
+        <p>
+            Wurden die Abhängigkeiten bei der Installation von Packages in einer <i>package.json</i> erfasst,
+            dann kann mittels dieser das <i>node_modules</i> Verzeichnis wiederhergestellt werden, wenn der
+            Befehl <code>npm install</code> in einem Verzeichnis kausgeführt wird, in dem auch die <i>package.json</i>
+            abgelegt ist.
         </p>
     </section>
 
