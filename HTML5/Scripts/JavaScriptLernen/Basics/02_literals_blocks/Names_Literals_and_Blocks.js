@@ -41,7 +41,10 @@ function NameLiteralsBlocks() {
     // Eine Anweisung ist ein zur Laufzeit des Programmes ausführbarer Befehl, der den Zustand des Computersystems ändern kann.
     // JavaScript Anweisungen werden mit einem Semikolon beendet. Die kleineste Anweisung ist die leere Anweisungen, welche auch die 
     // geringsten Auswirkungen auf das Conmputersystem hat- keine:
-    ;    
+    ;
+
+    eine_variable = 99
+
 
     // Eine Deklarationsanweisung reserviert ein Stück Arbeitsspeicher, und macht ihn unter einem Namen verfügbar- dem Variablenname.
     // Dies geschieht, indem dem Namen auf der linken Seite ein Wert mittels eines Gleichheitszeichens auf der rechten Seite zugewiesen wird:
@@ -57,6 +60,10 @@ function NameLiteralsBlocks() {
 
     // Variablen mit $-Zeichen erfreuen sich in letzter Zeit großer Beliebtheit
     $Preis = true;
+
+    Meldung = "Eine Meldung:";
+    Meldung += ' Hallo Welt';
+
 
     //... sie werden oft als Kürzel großer Bibliotheksobjekte genutz
     // Folgende Zeile ist gefährlich, wenn jQuery.noConflikt() nicht vorher durchgeführt wurde

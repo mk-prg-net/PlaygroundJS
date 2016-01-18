@@ -142,6 +142,18 @@ function GlobalVsLocal() {
         
     })();
 
+    function eineNeueFunktion() {
+        console.log("hallooooo");
+    }
+
+    eineNeueFunktion();
+
+    // Anonyme Funktion mit Parameter wird dem Funktionsaufrufoperator (fptr)(p1, p2, ...)
+    (function (msg) {
+        console.log("hallooooo");
+    })("halloooooooooo");
+
+
     // Ab ECMA6 gibts abhilfe gegen Hoisting
     (function () {
         "use strict"

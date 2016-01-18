@@ -103,6 +103,15 @@ function Datatypes() {
     // Im Namespace Number ist der Wertebereich von Number definiert
     console.log("Number Min: " + Number.MIN_VALUE + " Max: " + Number.MAX_VALUE);
 
+    var numCalc = 1 / 0;
+    console.assert(numCalc == Number.POSITIVE_INFINITY, "Kein +Unendlich");
+
+    numCalc = -1 / 0;
+    console.assert(numCalc == Number.NEGATIVE_INFINITY, "Kein +Unendlich");
+
+    numCalc = 0 / 0;
+    console.assert(isNaN(numCalc), "Kein +Unendlich");
+
    
     // Integers werden ebenfalls durch 64- Bit Gleitpunktzahlen dargestellt. Es erfolgt jedoch keine Rundung der Nachkommastellen
     var permutationen = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12;
