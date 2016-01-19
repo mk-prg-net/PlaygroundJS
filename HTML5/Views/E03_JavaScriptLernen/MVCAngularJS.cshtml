@@ -1,7 +1,14 @@
 ﻿@{
     ViewBag.Title = "MVC mit AngularJS";
 }
+
+@*
+    AngularJS verändert das Dom aktiv, um die Daten zwischen View und Model zu synchronisieren.
+    Der Wirkungsbereich im Dom wird dabei über die AngularJS Direktive ng-app gesteuert:
+    Alle Elemente unterhalb des Elements mit der Direktive ng-app unterliegen der Kontrolle von AngularJS
+*@
 <div ng-app="kombiniertesModul">
+
     <h2>MVCAngular</h2>
     <dl class="dl-horizontal">
         <dt><a href="https://angularjs.org">angularjs.org</a></dt>
@@ -20,66 +27,83 @@
         optimiert wurde. Sie folgt dem MVC- Muster, wobei die View durch direkt als HTML- Formular mit speziellen Datenbindungsausdrücken implementiert wird.
     </p>
     <div class="row">
-        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-8">
-            <div class="panel-heading">
-                MVC: Model View Controller
-            </div>
-            <div class="panel-body">
-                <figure>
-                    <img src="~/Content/pics/MVCAngularJS/BasicMVCStruct.svg" class="img-responsive" />
+        <article class="col-xs-12 col-md-6 col-lg-8">
+            <h3>MVC: Model View Controller</h3>
 
-                    <figcaption>
-                        Blockschaltbild <i>Angular JS Model View Controler</i>. Details siehe unter
-                        <a href="https://docs.angularjs.org/guide/databinding" target="_blank">Databinding</a>,
-                        <a href="https://docs.angularjs.org/guide/scope" target="_blank">Scope/Model</a>,
-                        <a href="https://docs.angularjs.org/guide/expression" target="_blank">Expressions</a>,
-                        <a href="https://docs.angularjs.org/guide/directive" target="_blank">Directives</a>,
-                        <a href="https://docs.angularjs.org/guide/controller" target="_blank">Controler</a>
-                    </figcaption>
-                </figure>
+            <figure>
+                <img src="~/Content/pics/MVCAngularJS/BasicMVCStruct.svg" class="img-responsive" />
 
-            </div>
+                <figcaption>
+                    Blockschaltbild <i>Angular JS Model View Controler</i>. Details siehe unter
+                    <a href="https://docs.angularjs.org/guide/databinding" target="_blank">Databinding</a>,
+                    <a href="https://docs.angularjs.org/guide/scope" target="_blank">Scope/Model</a>,
+                    <a href="https://docs.angularjs.org/guide/expression" target="_blank">Expressions</a>,
+                    <a href="https://docs.angularjs.org/guide/directive" target="_blank">Directives</a>,
+                    <a href="https://docs.angularjs.org/guide/controller" target="_blank">Controler</a>
+                </figcaption>
+            </figure>
 
-        </div>
+        </article>
 
-        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-4" data-ng-controller="MyCalcCtrl" data-ng-init="A=99; B=-99;">
+        @*
+            Die Daten unterhalb des mit ng-controller markierten Elements werden mit dem Scope synchronisiert,
+            welcher durch den in der ng-controller Direktive genannten Controller verwaltet wird.
+        *@
+        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-4" ng-controller="MyCalcCtrl" ng-init="A=3.14; B=-2.72;">
             <div class="panel-heading">
                 Taschenrechner gemäß MVC Pattern mittels AngularJS
             </div>
             <div class="panel-body ">
+                @*
+                    HTML- Validierungen durch den Browser abschalten: werden von AngularJS übernommen
+                *@
                 <form novalidate>
                     <p class="well">
                         @* Angular- Expression. Wird beim Laden kompiliert in eine two way binding *@
                         {{Res.toFixed(0+Accuracy) | currency }}
                     </p>
                     <p>
-                        <div>
-
-                        </div>
+                        @*
+                            Bindung der Scope- Eigenschaft Accuracy an ein Radiobutton über ng-model Direktive
+                        *@
                         Genauigkeit:
-                        <label class="radio-inline"><input type="radio" name="Accur" value="2" data-ng-model="Accuracy" />2</label>
+                        <label class="radio-inline"><input type="radio" name="Accur" value="2" ng-model="Accuracy" />2</label>
                         <label class="radio-inline"><input type="radio" name="Accur" value="4" ng-model="Accuracy" />4</label>
+                    </p>
+                    <p>
+                        <div class="form-group">
+                            <label for="A">A=</label>
+                            <input type="text" ng-model="A" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="B">B=</label>
+                            <input type="text" ng-model="B" class="form-control" />
+                        </div>
+                    </p>
+                    <p>
+
+                        @*
+                            Bindung von Events an Eventhandler mittels ng-click Direktive
+                        *@
+                        <button ng-click="Add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button ng-click="Sub()" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
+                        <button ng-click="Mul()" class="btn btn-primary"><span class="glyphicon glyphicon-asterisk"></span></button>
+                        <button ng-click="Div()" class="btn btn-primary"><span class="glyphicon glyphicon-th"></span></button>
+                        <button ng-click="Clear()" class="btn btn-primary"><span class="glyphicon glyphicon-scissors"></span></button>
+                        <button ng-click="GetHistory()" class="btn btn-primary">GetHistory</button>
 
                     </p>
-                    <dl class="dl-horizontal">
-                        <dt>A=</dt>
-                        <dd><input type="text" data-ng-model="A" /> </dd>
-                        <dt>B=</dt>
-                        <dd><input type="text" data-ng-model="B" /></dd>
-                        <dt>OP's</dt>
-                        <dd>
-                            <button data-ng-click="Add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
-                            <button data-ng-click="Sub()" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
-                            <button data-ng-click="Mul()" class="btn btn-primary"><span class="glyphicon glyphicon-asterisk"></span></button>
-                            <button data-ng-click="Div()" class="btn btn-primary"><span class="glyphicon glyphicon-th"></span></button>
-                            <button data-ng-click="Clear()" class="btn btn-primary"><span class="glyphicon glyphicon-euro"></span></button>
-                            <button data-ng-click="GetHistory()" class="btn btn-primary">GetHistory</button>
-                        </dd>
-                    </dl>
                 </form>
             </div>
             <table class="table table-striped">
-                <tr data-ng-repeat="rop in Protokoll">
+                @*
+                    Die ng-repeat Direktive kann  als eine for...in Schleife betrachtet werden. Aus der Eigenschaft
+                    Protokoll, die eine Collection darstellt, werden alle Einträge gelesen. Jeder eintrag wird über
+                    rop verfügbar. Es wird eine neue Tabellenzeile im Dom eingefügt, deren Spalten Werte haben,
+                    die durch Auflösung der Angular- Expressions {{...}} bestimmt wurden.
+
+                *@
+                <tr ng-repeat="rop in Protokoll">
                     <td>
                         {{rop.Res}}
                     </td>
@@ -113,7 +137,7 @@
             <div class="panel-heading">
                 Taschenrechner mit Validierung
             </div>
-            <div class="panel-body " data-ng-controller="MyCalcCtrl2">
+            <div class="panel-body " ng-controller="MyCalcCtrl2">
                 @* Über das Name- Attribut wird ein Form- Controller für die Validierung definiert *@
                 <form novalidate name="form">
                     <p class="well">
@@ -124,7 +148,7 @@
                         <dd>
                             <div>
                                 @* Zusätzlich zur Datenbindung muss bei der Validierung für den Form- Controller eine name- Attribut gesetzt werden*@
-                                <input type="number" data-ng-model="A" name="A"/>
+                                <input type="number" data-ng-model="A" name="A" />
                             </div>
                             @* über ng-show="true | false" kann angularJS die Sichtbarkeit eines Elements beeinflussen  *@
                             <div data-ng-show="form.A.$dirty && form.A.$invalid">

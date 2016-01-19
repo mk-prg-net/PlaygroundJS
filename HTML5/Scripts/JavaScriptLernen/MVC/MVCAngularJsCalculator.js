@@ -35,13 +35,20 @@
 
 
 function ROP(A, B, Res, OP) {
-
-    
-
     this.A = A;
     this.B = B;
     this.Res = Res;
     this.OP = OP;
+}
+
+function MakeNumCultureInvariant(val_cultspec) {
+    // eventuelle Kommas (de-De durch Punkte ersetzen, ' de-CH löschen
+    return parseFloat(val_cultspec.toString().trim().replace(',', '.').replace("'", ""));
+}
+
+function MakeCultureInvariant($scope) {
+    $scope.A = MakeNumCultureInvariant($scope.A);
+    $scope.B = MakeNumCultureInvariant($scope.B);
 }
 
 var app = angular.module('MyCalc', []);
@@ -53,28 +60,23 @@ app.controller('MyCalcCtrl', function ($scope) {
 
     $scope.Add = function () {
         console.log($scope.Accuracy);
-        // eventuelle Kommas durch Punkte ersetzen
-        $scope.A = "" + $scope.A;
-        $scope.A = $scope.A.replace(',', '.');
-        $scope.A = parseFloat($scope.A);
+        MakeCultureInvariant($scope);
 
-        $scope.B = "" + $scope.B;
-        $scope.B = $scope.B.replace(',', '.');
-        $scope.B = parseFloat($scope.B);
-        
         $scope.Res = $scope.A + $scope.B;
         $scope.Protokoll.push(new ROP($scope.A, $scope.B, $scope.Res, "+"));
     };
     $scope.Sub = function () {
-        "use strict"
+        MakeCultureInvariant($scope);
         $scope.Res = $scope.A - $scope.B;
         $scope.Protokoll.push(new ROP($scope.A, $scope.B, $scope.Res, "-"));
     };
-    $scope.Mul = function() {
+    $scope.Mul = function () {
+        MakeCultureInvariant($scope);
         $scope.Res = $scope.A * $scope.B;
         $scope.Protokoll.push(new ROP($scope.A, $scope.B, $scope.Res, "*"));
     };
-    $scope.Div = function() {
+    $scope.Div = function () {
+        MakeCultureInvariant($scope);
         $scope.Res = $scope.A / $scope.B;
         $scope.Protokoll.push(new ROP($scope.A, $scope.B, $scope.Res, "/"));
     };
@@ -92,12 +94,7 @@ app.controller('MyCalcCtrl', function ($scope) {
             console.log(Data.toString());
 
             var historyObj = JSON.parse(Data);
-
-            $scope.Protokoll = historyObj;
-
-
-
-            
+            $scope.Protokoll = historyObj;            
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.status.toString());
