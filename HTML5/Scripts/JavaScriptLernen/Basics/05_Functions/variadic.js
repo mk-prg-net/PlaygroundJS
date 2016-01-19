@@ -68,6 +68,15 @@ function VariadicTest() {
     var v2 = CreateVector(1, 2);
     var v3 = CreateVector(1, 2, 3);
 
+    var AliasVector2d = Vector2d;
+
+    // new sollte/muss bei einer beabsichtigten Objektkonstruktion aufgerufen werden
+    var v4_falsch = AliasVector2d(4, 5);
+    console.assert(window.X === 4);
+
+    var v4 = new AliasVector2d(4, 5);
+
+
 
     // Die Durchschnittsbildung kann über beliebig viele Werte erfolgen. Gut das JavaScript
     // generell Parameterlisten als flexible Strukturen betrachtet
@@ -202,6 +211,13 @@ function VariadicTest() {
             color: "blue",
             backgroundColor: '#cfe2f3ff'
         });
+
+    SetStylWithConfigObj("#ConfigObjectTest2",
+    {
+        borderStyle: "solid",
+        backgroundColor: '#aabb00'
+    });
+
 
 
 

@@ -1,5 +1,7 @@
 ﻿function OO_Literal() {
 
+    "use strict";
+
     console.log("OO_Literal");
 
     // Objektliterale: Eigenschaften und Methoden als Schlüssel- Wertzuordnungen darstellen
@@ -15,6 +17,17 @@
             return Math.sqrt(this.X * this.X + this.Y * this.Y);
         }
     };
+
+    // Anlegen einer nur lesbaren Eigenschaft mittels Methoden aus ECMA5 
+
+    Object.defineProperty(Point, 'constPI', {
+        writable: false,
+        value: Math.PI
+    });
+
+
+    console.assert("constPI" in Point, "Die Eigenschaft constPI fehlt!");
+    Point.constPI = 99;
 
     // Objektorientierter Zugriff über Eigenschaften und Methoden
     Point.X = 1;

@@ -64,7 +64,7 @@ function ClosureTest() {
             return Unit * l_in_unit;
         }
     }
-
+    
     var LengthUnits = {
         mm: 0.001,
         cm: 0.01,
@@ -72,11 +72,40 @@ function ClosureTest() {
         km: 1000
     };
 
+
+    function CreateMyObject(Name) {
+
+        var obj = { Name: Name };
+
+        return function () {
+            return obj;
+        };
+    }
+
+
+    function ClosureBox(obj) {        
+
+        return function () {
+            return obj;
+        };
+    }
+
+    var Testobjekt = {};
+
+    var closureObj1 = ClosureBox(Testobjekt);
+    var closureObj2 = ClosureBox(Testobjekt);
+
+    console.assert(closureObj1() === closureObj2(), "closureObj1 === closureObj2 gilt nicht !")
+
+
     // ... jezt können wir passende Umrechnungsmethoden erzeugen
     var Millimeter = Length(LengthUnits.mm);
     var Centimeter = Length(LengthUnits.cm);
     var Meter = Length(LengthUnits.m);
     var Kilometer = Length(LengthUnits.km);
+
+
+    var MillimeterTxt = Millimeter.toString();
 
 
     // ------------------------------------------------------

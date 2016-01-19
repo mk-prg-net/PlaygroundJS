@@ -66,4 +66,9 @@ function ArrayLisp() {
         PlanetenGross2.push(val.toUpperCase());
     });
 
+
+    var PlanetenlisteTxt = Planeten.join("; ");
+
+    var NameMit6Zeichen = Planeten.find(function (p) { return p.length === 6 });
+
 }

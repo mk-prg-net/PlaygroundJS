@@ -41,7 +41,7 @@ function create_functions_test() {
 
     // Bei der Deklaration einer Funktion wird unterschieden in: 
 
-    // Funktionsanweisung (benannter Funktionsblock)
+    // Funktionsanweisung (benannter Funktionsblock) U: D -> Pi*D
     function Ucirc(D) {
         return Math.PI * D;
     }
@@ -101,6 +101,8 @@ function create_functions_test() {
     var Rechteckflaeche = Arect(2, 5);
 
     var Weglaenge = Centimeter(125) + Meter(0.5) + Millimeter(1750);
+    var Weglaenge2 = Length(LengthUnits.cm)(125);
+    var Weglaenge3 = Length(LengthUnits.cm)(125) + Meter(0.5) + Millimeter(1750);
 
     // Komposition
     var Flugzeugposition = polar_to_cartesian(toRad(45), 14142.135623);

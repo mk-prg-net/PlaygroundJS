@@ -68,6 +68,23 @@ function Arrays() {
 
     Farben.violett = "#ac1caaff";
 
+    console.assert(Farben["violett"] === "#ac1caaff");
+
+
+    var ArrayObjektMix = [];
+
+    ArrayObjektMix[0] = 99;
+    ArrayObjektMix["rot"] = "FF0000";
+
+    // Achtung: -1 ist kein index sondern bezeichnet eine Eigenschaftsname !
+    ArrayObjektMix[-1] = -99;
+
+    console.assert(ArrayObjektMix[-1] == -99);
+
+    // Zugriff auf die exotisch bezeichnete Eigenschaft -1 über . Propertyzugriffsoperator gelingt nicht
+    // ArrayObjektMix.-1
+
+
     // Achtung: folgender Push löscht alle Einträge und legt ein neues Array an Wertepaaren
     Farben.push(["gelb", "#FFFF00"]);
 
@@ -126,16 +143,43 @@ function Arrays() {
 
     });
 
+    var MischMasch = [4, 2, "Hallo", 32, 3, "Ains"];    
+    MischMasch.sort();
+
+    var reineZahlen = [4, 2, 32, 3];
+    reineZahlen.sort();
+
+
+
     // Möglichkeiten, über Arrays zu iterieren:
 
     // for-in Schleife: Alle Werte in einem Array besuchen
     for (var val in Planeten) {
-        console.log(val);
+        console.log(val.toString() + " " + Planeten[val].toString());
     }
+
+    // Summieren mit der for in- Schleife
+    var summe = 0;
+    for(var val in reineZahlen){
+        summe += val;
+    }
+
+    // Ab ECMA6 ogibt es die sichere Variante von for in: for of
+    for (var val of Planeten) {
+        console.log(val.toString());
+    }
+
+    summe = 0;
+    for(var val of reineZahlen){
+        summe += val;
+    }
+
+
+
 
     // for- Schleife: Index hochzählen
     for (var i = 0; i < Planeten.length; i++) {
-        console.log(val);
+        console.log(i.toString() + " " + Planeten[i].toString());
     }
 
     // ... Optimierung: Indexobergrenze beim Initialisieren er Schleife berechnen

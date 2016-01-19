@@ -149,10 +149,13 @@ function call_test() {
     function CreatePersistentPoint2(x, y, cfg) {
         var ser = stdSer;
         var toString = function () { return "(" + this.X + ", " + this.Y + ")"; };
+
         if (typeof cfg !== "undefined") {
             // Stadardkonfiguration
+            // Überprüfung der Struktur des Konfigurationsobjektes auf Gültigkeit = Ducktyping
             cfg.serializer && (ser = cfg.serializer);
             cfg.toString && (toString = cfg.toString);
+
         } else {
             ser = stdSer;
         }
