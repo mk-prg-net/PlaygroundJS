@@ -33,35 +33,35 @@
 //</unit_history>
 //</unit_header>        
 
-QUnit.test("Lisp und Linq testen", function () {
+QUnit.test("Lisp und Linq testen", function (assert) {
 
     var liste1 = [2, 5, 15, 13, 12, 27];
     var liste2 = [47, 32, 56, 10, 3, 99];
 
-    ok(mko.lisp.Equals([], []), "Equals hat zwei leere Listen als ungleich eingestuft");
-    ok(!mko.lisp.Equals([], liste1), "Equals hat ungleiche Listen als gleich eingestuft");
-    ok(mko.lisp.Equals(liste1, liste1), "Equals hat gleiche Listen als ungleich eingestuft");
-    ok(!mko.lisp.Equals(liste1, liste2), "Equals hat ungleiche Listen als gleich eingestuft");
+    assert.ok(mko.lisp.Equals([], []), "Equals sollte zwei leere Listen als gleich betrachten");
+    assert.ok(!mko.lisp.Equals([], liste1), "Equals sollte ungleiche Listen als ungleich erkennen");
+    assert.ok(mko.lisp.Equals(liste1, liste1), "Equals sollte gleiche Listen als gleich erkennen");
+    assert.ok(!mko.lisp.Equals(liste1, liste2), "Equals sollte ungleiche Listen als ungleich erkennen");
 
     var listeGesamt = mko.lisp.Concat(liste1, liste2);
     ok(mko.lisp.Equals(listeGesamt, [2, 5, 15, 13, 12, 27, 47, 32, 56, 10, 3, 99]), "Concat funktioniert nicht");
 
     var first = mko.lisp.First(listeGesamt);
-    equals(first, 2, "First funktioniert nicht");
+    assert.equal(first, 2, "First liefert das erste Listenelement");
 
     var last = mko.lisp.Last(listeGesamt);
-    equals(last, 99, "Last funktioniert nicht");
+    assert.equal(last, 99, "Last liefert das letzte Listenelement");
 
     var listeKopflos = mko.lisp.Skip(listeGesamt, 3);
-    ok(mko.lisp.Equals(listeKopflos, [13, 12, 27, 47, 32, 56, 10, 3, 99]), "Skip funktioniert nicht");
+    assert.ok(mko.lisp.Equals(listeKopflos, [13, 12, 27, 47, 32, 56, 10, 3, 99]), "Skip überspringt die ersten drei Listenelemente und liefert den Rest");
 
     var listeSchwanzlos = mko.lisp.Take(listeGesamt, 3);
-    ok(mko.lisp.Equals(listeSchwanzlos, [2, 5, 15]), "Take funktioniert nicht");
+    assert.ok(mko.lisp.Equals(listeSchwanzlos, [2, 5, 15]), "Take liefert die ertsten drei Listenelemente");
 
 
     var alleDurch3tlb = mko.lisp.Where(listeGesamt, function (z) { return z % 3 === 0 });
-    deepEqual(alleDurch3tlb, [15, 12, 27, 3, 99], "Where funktioniert nicht");
+    assert.deepEqual(alleDurch3tlb, [15, 12, 27, 3, 99], "Where filtert alle durch 3 teilbaren");
 
     var alleDurch30tlb = mko.lisp.Map(alleDurch3tlb, function (z) { return z * 10 });
-    deepEqual(alleDurch30tlb, [150, 120, 270, 30, 990], "Where funktioniert nicht");
+    assert.deepEqual(alleDurch30tlb, [150, 120, 270, 30, 990], "map bildet alle Elemente einer Liste auf eine Liste von Funktionswerten ab");
 });

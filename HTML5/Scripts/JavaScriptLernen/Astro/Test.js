@@ -5,8 +5,8 @@ requirejs.config({
     //By default load any module IDs from js/lib
     baseUrl: '/Scripts/JavaScriptLernen/Astro',
 
-    path: {
-        'QUnit': 'qunit'
+    paths: {
+        "QUnit": "../../qunit"
     },
 
     shim: {
@@ -25,7 +25,7 @@ requirejs.config({
 requirejs(['QUnit', 'Galaxien/Galaxie', 'Sterne/Stern'],
     function (QUnit, Galaxie, Stern) {
 
-        QUnit.test("Allgemeiner Test", function () {
+        QUnit.test("Allgemeiner Test", function (assert) {
 
             var MeineSterne = [
                 new Stern("Sirius", 1000),
@@ -34,7 +34,7 @@ requirejs(['QUnit', 'Galaxien/Galaxie', 'Sterne/Stern'],
                 new Stern("Sonne", 5000)
             ];
 
-            equal(MeineSterne.length === 4);
+            assert.equal(MeineSterne.length, 4);
 
             var MasseSonne = MeineSterne[3].GetMasse();
             var MasseSonne2 = MeineSterne[3].GetMassePrivat();

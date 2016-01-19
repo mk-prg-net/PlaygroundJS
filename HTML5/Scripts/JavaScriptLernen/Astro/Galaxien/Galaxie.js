@@ -1,6 +1,6 @@
 ﻿// Basisklasse aller Galaxien
 
-define(["Base/CB"], function(CB){
+define(["Base/CB"], function (CB) {
 
     var Galaxie = function (Name, Sterne) {
         CB.call(this, Name, 0);
@@ -30,7 +30,7 @@ define(["Base/CB"], function(CB){
         });
 
         Gesamtmasse = 0;
-        Gesamtmasse = Array.reduce(this.Sterne, function (a, b) { return a.GetMasse() + b.GetMasse() });
+        //Gesamtmasse = Array.reduce(this.Sterne, function (a, b) { return a.GetMasse() + b.GetMasse() });
         
     }
 

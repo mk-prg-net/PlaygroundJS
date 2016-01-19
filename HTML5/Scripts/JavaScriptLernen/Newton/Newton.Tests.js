@@ -33,23 +33,23 @@
 //</unit_history>
 //</unit_header>        
 
-QUnit.test("Newton Lib für Messwerte testen", function () {
+QUnit.test("Newton Lib für Messwerte testen", function (assert) {
 
 
 	var Meter5 = mko.newton.Meter(5);
 
-	equal(Meter5.Value, 5, "Meter5.Value unkorrekt");
-	equal(Meter5.UnitSymbol, "m", "Meter5.UnitSymbol unkorrekt");
-	equal(Meter5.GetUnit(), "m", "Meter5.Unit unkorrekt");
-	equal(Meter5.toString(), "5 [m]", "Meter5.toString() unkorrekt");
+	assert.equal(Meter5.Value, 5, "Meter5.Value unkorrekt");
+	assert.equal(Meter5.UnitSymbol, "m", "Meter5.UnitSymbol unkorrekt");
+	assert.equal(Meter5.GetUnit(), "m", "Meter5.Unit unkorrekt");
+	assert.equal(Meter5.toString(), "5 [m]", "Meter5.toString() unkorrekt");
 
 
 	var Cm500 = mko.newton.Centimeter(0).From(Meter5);
 
-	equal(Cm500.Value, 500, "Cm500.Value unkorrekt");
-	equal(Cm500.UnitSymbol, "m", "Cm500.UnitSymbol unkorrekt");
-	equal(Cm500.GetUnit(), "cm", "Cm500.Unit unkorrekt");
-	equal(Cm500.toString(), "500 [cm]", "Cm500.toString() unkorrekt");
+	assert.equal(Cm500.Value, 500, "Cm500.Value unkorrekt");
+	assert.equal(Cm500.UnitSymbol, "m", "Cm500.UnitSymbol unkorrekt");
+	assert.equal(Cm500.GetUnit(), "cm", "Cm500.Unit unkorrekt");
+	assert.equal(Cm500.toString(), "500 [cm]", "Cm500.toString() unkorrekt");
 
 
     var Meter10 = mko.newton.Meter(10);

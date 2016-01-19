@@ -1366,8 +1366,6 @@
     <Content Include="Scripts\JavaScriptLernen\Astro\app.js" />
     <Content Include="Scripts\JavaScriptLernen\Astro\Base\CB.js" />
     <Content Include="Scripts\JavaScriptLernen\Astro\Galaxien\Galaxie.js" />
-    <Content Include="Scripts\JavaScriptLernen\Astro\qunit.js" />
-    <Content Include="Scripts\JavaScriptLernen\Astro\require.js" />
     <Content Include="Scripts\JavaScriptLernen\Astro\Sterne\Stern.js" />
     <Content Include="Scripts\JavaScriptLernen\Astro\Test.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\01_debug\DocumentReady.js" />
@@ -1779,10 +1777,10 @@
     <Content Include="Scripts\cldr\supplemental\weekData.json" />
     <Content Include="Scripts\cldr\supplemental\windowsZones.json" />
     <Content Include="Scripts\JavaScriptLernen\FileAPI\DocumentReady.js" />
+    <Content Include="Scripts\JavaScriptLernen\lodash\Tests.js" />
     <Content Include="Scripts\JavaScriptLernen\Namespace\GetNamespace.js" />
     <Content Include="Scripts\JavaScriptLernen\Newton\Newton.Tests.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\app.js" />
-    <Content Include="Scripts\JavaScriptLernen\RequireJS\jquery.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\mko\CreateCancellationToken.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\mko\PrimScan.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\Newton\Centimeter.js" />
@@ -1791,7 +1789,6 @@
     <Content Include="Scripts\JavaScriptLernen\RequireJS\Newton\Measurement.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\Newton\Newton.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\Newton\OrderOfMagnitudes.js" />
-    <Content Include="Scripts\JavaScriptLernen\RequireJS\require.js" />
     <Content Include="Scripts\JavaScriptLernen\shape\Shape.Test.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\basics.js" />
@@ -2344,6 +2341,7 @@
     <Content Include="Scripts\lodash-amd\zipWith.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\qunit.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -2407,6 +2405,7 @@
     <Content Include="Scripts\lodash-amd\package.json" />
     <Content Include="Scripts\lodash-amd\README.md" />
     <Content Include="Views\E03_JavaScriptLernen\NodeJSandNPM.cshtml" />
+    <Content Include="Views\E03_JavaScriptLernen\lodashTests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -34,63 +34,74 @@
 //</unit_history>
 //</unit_header>        
 
-QUnit.test("Convert Romzahl", function () {
+QUnit.test("Convert Romzahl", function (assert) {
 
     var Arab = mko.algo.RomToArab('MDCLXVI');
-    equal(Arab, 1666, "Die Zahl MDCLXVI wurde von RomToArab falsch berechnet");
-
+    assert.equal(Arab, 1666, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
+    
 
     //var Neu = mko.algo.zuef('D', 'M', 0);
     //deepEqual(Neu, { NeuerZustand: 'M', NeuerWert: 500 }, "zuef hat Folge DM falsch verarbeitet");
 });
 
-QUnit.test("PrimeTest", function () {
+QUnit.test("PrimeTest", function (assert) {
 
-    ok(mko.algo.PrimTest(2), "2 als Primzahl nicht erkannt");
-    ok(!mko.algo.PrimTest(9), "9 fälschlich als Primzahl erkannt");
-    ok(!mko.algo.PrimTest(41 * 51), '' + (41 * 51) + " fälschlich als Primzahl erkannt");
-    ok(mko.algo.PrimTest(53), "51 als Primzahl nicht erkannt");
+    assert.ok(mko.algo.PrimTest(2), "2 sollte als Primzahl erkannt werden");
+    assert.ok(!mko.algo.PrimTest(9), "9 Zahlen sollten als nicht Primzahl erkannt werden");
+    assert.ok(!mko.algo.PrimTest(41 * 51), '' + (41 * 51) + " sollte als nicht Primzahl erkannt werden");
+    assert.ok(mko.algo.PrimTest(53), "51 sollte als Primzahl erkannt werden");
 
 });
 
 
 // Test einer asynchronen Methode !
-QUnit.asyncTest('PrimeScan', function () {
+QUnit.asyncTest('PrimeScan', function (assert) {
+
+    // QUnit wird solange angehalten, bis der die asynchrone Methode endet.
+    // assert.async liefert einen Callback zurück, über den QUnit wieder 
+    // gestartet werden kann.
+
+    var doneAsync = assert.async(1);
 
     mko.algo.PrimScan(1, 10000,
         // done
         function (Cancellationtoken, PrimNums) {
 
-            ok(!Cancellationtoken.stop);
-            ok(true);
-            QUnit.start();
+            assert.ok(!Cancellationtoken.stop, "Am Ende der asynchronen Methode sollte das Cancellationtoken keinen Stop signalisieren.");
+            assert.ok(true);
+            doneAsync();
         },
 
         // fail
         function (err) {
-            ok(false, err);
-            QUnit.start();
+            assert.ok(false, err);
+            doneAsync();
         },
 
         // progress info
         function (begin) {
-            ok(true);
+            assert.ok(true);
             console.log("Primzahlscanner jetzt bei " + begin);
         });
 });
 
-QUnit.test("PredSuccRatio", function () {
+QUnit.test("PredSuccRatio", function (assert) {
 
+    // QUnit wird solange angehalten, bis der die asynchrone Methode endet.
+    // assert.async liefert einen Callback zurück, über den QUnit wieder 
+    // gestartet werden kann.
+    var doneAsync = assert.async();
 
     mko.algo.PredSuccRatio([2, 4, 6, 8, 10],
         function (CancellationToken, resultList) {
-            ok(!CancellationToken.stop);
-            equal(resultList.length, 3, "Ergebnisliste unkorrekt");
+            assert.ok(!CancellationToken.stop);
+            assert.equal(resultList.length, 3, "Ergebnisliste sollte drei Einträge haben.");
+            doneAsync();
         },
 
         function (err) {
-            ok(false, err);
-            QUnit.start();
+            assert.ok(false, err);
+            done();
         },
 
         function (begin) {
