@@ -484,6 +484,7 @@
     <Content Include="Content\pics\Merkur-big.jpg" />
     <Content Include="Content\pics\Merkur-med.jpg" />
     <Content Include="Content\pics\Merkur-small.jpg" />
+    <Content Include="Content\pics\MVCAngularJS\AngularJS.svg" />
     <Content Include="Content\pics\MVCAngularJS\BasicMVCStruct.svg" />
     <Content Include="Content\pics\Neptune-big.jpg" />
     <Content Include="Content\pics\Neptune-med.jpg" />

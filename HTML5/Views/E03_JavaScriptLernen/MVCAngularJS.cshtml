@@ -124,51 +124,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-8">
-            <div class="panel-heading">
-                Validierung
-            </div>
-            <div class="panel-body">
+        <article class="col-md-12">
+            <h3>Modularität und Dependency Injection</h3>
 
-            </div>
-        </div>
+            Eine <b>AngularJS</b> gliedert sich in Module, die 
+            <ol>
+                <li><i>Dienste</i> (<i>Services</i>), die teilweise die Rolle von Unterprogrammen haben</li>
+                <li>einen <i>Controller</i> für einen View</li>
+                <li><i>Filter</i>, durch welche das Ergebnis von <i>Expressions</i> bei der Ausgabe formatiert wird</li>
+                <li><i>Direktiven</i></li>
+            </ol>
+            <figure>
+                <img src="~/Content/pics/MVCAngularJS/AngularJS.svg" class="img-responsive">
+            </figure>
+        </article>
 
-        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-4">
-            <div class="panel-heading">
-                Taschenrechner mit Validierung
-            </div>
-            <div class="panel-body " ng-controller="MyCalcCtrl2">
-                @* Über das Name- Attribut wird ein Form- Controller für die Validierung definiert *@
-                <form novalidate name="form">
-                    <p class="well">
-                        {{Res.toFixed(Accuracy2 ? 2 : 4)}}
-                    </p>
-                    <dl class="dl-horizontal">
-                        <dt>A=</dt>
-                        <dd>
-                            <div>
-                                @* Zusätzlich zur Datenbindung muss bei der Validierung für den Form- Controller eine name- Attribut gesetzt werden*@
-                                <input type="number" data-ng-model="A" name="A" />
-                            </div>
-                            @* über ng-show="true | false" kann angularJS die Sichtbarkeit eines Elements beeinflussen  *@
-                            <div data-ng-show="form.A.$dirty && form.A.$invalid">
-                                @* mittels des Filters json wird das Ergebnis der Expression als json ausgegeben *@
-                                {{form.A.$error | json}}
-                            </div>
-                        </dd>
-                        <dt>B=</dt>
-                        <dd><input type="number" data-ng-model="B" /></dd>
-                        <dt>OP's</dt>
-                        <dd>
-                            <button data-ng-click="Add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
-                            <button data-ng-click="Sub()" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
-                            <button data-ng-click="Mul()" class="btn btn-primary"><span class="glyphicon glyphicon-asterisk"></span></button>
-                            <button data-ng-click="Div()" class="btn btn-primary"><span class="glyphicon glyphicon-th"></span></button>
-                        </dd>
-                    </dl>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 

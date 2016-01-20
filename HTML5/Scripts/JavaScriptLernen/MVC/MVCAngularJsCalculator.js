@@ -41,18 +41,40 @@ function ROP(A, B, Res, OP) {
     this.OP = OP;
 }
 
-function MakeNumCultureInvariant(val_cultspec) {
-    // eventuelle Kommas (de-De durch Punkte ersetzen, ' de-CH löschen
-    return parseFloat(val_cultspec.toString().trim().replace(',', '.').replace("'", ""));
-}
 
-function MakeCultureInvariant($scope) {
-    $scope.A = MakeNumCultureInvariant($scope.A);
-    $scope.B = MakeNumCultureInvariant($scope.B);
-}
 
-var app = angular.module('MyCalc', []);
-app.controller('MyCalcCtrl', function ($scope) {
+// Ein Angular- Modul anlegen, in dem eigene Tools in Form von Services gesammelt werden
+// Das Modul bekommt einen Namen, der zur Dokumentation von Abhängigkeiten und damit als 
+// Grundlage der Implementierung der Dependency- Injection dient.
+var tools = angular.module('MyTools', []);
+
+// Dienst, der einen Zahl in eine Sprachinvariante Form umwandelt
+tools.factory('MakeNumCultureInvariant', function () {
+    return function (val_cultspec) {
+        // eventuelle Kommas (de-De durch Punkte ersetzen, ' de-CH löschen
+        return parseFloat(val_cultspec.toString().trim().replace(',', '.').replace("'", ""));
+    }
+});
+
+// Dienst, der Zahlen aus einem Scope in eine Invariabte Form umwandelt.
+// Dieser Dienst baut auf den zuvor definierten Dienst auf. Via Dependency Injection durch
+// ['MakeNumCultureInvariant', function (MakeNumCultureInvariant){...}] wird der Dienst als Parameter 
+// übergeben
+tools.factory('MakeCultureInvariant', ['MakeNumCultureInvariant', function (MakeNumCultureInvariant) {
+    return function ($scope) {
+        $scope.A = MakeNumCultureInvariant($scope.A);
+        $scope.B = MakeNumCultureInvariant($scope.B);
+    }
+}]);
+
+
+// Ein neues Modul, das einen Controller für unsere Views implementiert, wird angelegt.
+// Es baut auf Dienste aus dem Modul MyTools auf
+var app = angular.module('MyCalc', ['MyTools']);
+
+// Der Controller benötigt den $scope und den Dienst MyTools.MakeCultureInvariant. Mittels DI werden
+// diese injeziert
+app.controller('MyCalcCtrl', ['$scope', 'MakeCultureInvariant', function ($scope, MakeCultureInvariant) {
 
     // Angezeigte Genauigkeit (wird in der View in einer Expression ausgewertet)
     $scope.Accuracy = 2;
@@ -106,7 +128,7 @@ app.controller('MyCalcCtrl', function ($scope) {
         // 3. Protokoll mit Daten vom Server aktualisieren
     }
 
-});
+}]);
 
 var app2 = angular.module('MyCalc2', []);
 app2.controller('MyCalcCtrl2', function ($scope) {
