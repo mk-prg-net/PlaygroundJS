@@ -45,5 +45,12 @@ jQuery(document).ready(function () {
     jQuery("#b06_namespaces").click(EmulateNamespaces);
     jQuery("#b06_StaticMembers").click(EmulateStaticMember);
 
+    // Die Testfunktion für unsere Übung als Click- Eventhandeler
+    // des Buttuns StartOOue definieren
+    jQuery("#StartOOue").click(TestOO_Points);
+    
+    jQuery("#StartOOPrototypeInheritance").click(AstroPrototypVererbungTest);
+
+
 });
 

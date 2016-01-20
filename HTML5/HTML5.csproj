@@ -1393,10 +1393,12 @@
     <Content Include="Scripts\JavaScriptLernen\Basics\05_Functions\funcobject.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\05_Functions\variadic.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\DocumentReady.js" />
+    <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Astro_Prototypvererbung.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Json.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Konstruktor.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Literal.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Namespaces.js" />
+    <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Points.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Prototyp.js" />
     <Content Include="Scripts\JavaScriptLernen\Ajax\CurrencyExchange.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_StaticMembers.js" />
