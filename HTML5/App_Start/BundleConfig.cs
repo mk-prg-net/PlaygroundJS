@@ -116,7 +116,10 @@ namespace HTML5
             bundles.Add(new ScriptBundle("~/bundles/JavaScriptLernen/AjaxIntro").IncludeDirectory("~/Scripts/JavaScriptLernen/Ajax", "*.js").Include("~/Scripts/JavaScriptLernen/Basics/Helper.js"));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/AngularJS").Include("~/Scripts/angular1-5/angular.js", "~/Scripts/i18n/angular-locale_de-de.js"));
+            bundles.Add(new ScriptBundle("~/bundles/AngularJS").Include(
+                "~/Scripts/angular1-5/angular.js",
+                "~/Scripts/angular1-5/angular-mocks.js",
+                "~/Scripts/i18n/angular-locale_de-de.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/WebWorker").IncludeDirectory("~/Scripts/JavaScriptLernen/WebWorker", "*.js"));
 

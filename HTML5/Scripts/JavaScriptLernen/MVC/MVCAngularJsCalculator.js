@@ -74,11 +74,13 @@ var app = angular.module('MyCalc', ['MyTools']);
 
 // Der Controller benötigt den $scope und den Dienst MyTools.MakeCultureInvariant. Mittels DI werden
 // diese injeziert
-app.controller('MyCalcCtrl', ['$scope', 'MakeCultureInvariant', function ($scope, MakeCultureInvariant) {
+app.controller('MyCalcCtrl', ['$scope', '$http', 'MakeCultureInvariant', function ($scope, $http, MakeCultureInvariant) {
 
     // Angezeigte Genauigkeit (wird in der View in einer Expression ausgewertet)
     $scope.Accuracy = 2;
     $scope.Protokoll = [];
+    $scope.A = 0;
+    $scope.B = 0;
 
     $scope.Add = function () {
         console.log($scope.Accuracy);
@@ -107,48 +109,117 @@ app.controller('MyCalcCtrl', ['$scope', 'MakeCultureInvariant', function ($scope
     }
 
     $scope.GetHistory = function () {
-        // 1. Webdienst aufrufen
-        $.ajax({
+
+        // angular.element ermöglicht Zugriff auf jQuery, falls jQuery vor AngularJS geladen wurde.
+        // Wurde kein Angular geladen, dann liefert element Zugriff auf die heuseigene Version
+        // von jQuery: jsLite. Siehe https://docs.angularjs.org/api/ng/function/angular.element
+        var url = angular.element("#btnGetHistoryWithNgHttp").attr("data-websrv-url");
+
+
+        // 1. Webdienst mit jQuery aufrufen (wird in angular.element bereitgestellt)
+        angular.element.ajax({
             type: "GET",
-            url: "/E03_JavaScriptLernen/GetHistory",
+            url: url,
+            cache: false,
             data: "job=" + JSON.stringify({gruss: "hallo"})
         }).done(function (Data, status, req) {
             console.log(Data.toString());
 
             var historyObj = JSON.parse(Data);
-            $scope.Protokoll = historyObj;            
+            $scope.Protokoll = historyObj;
+
+            // Bindungen aktualisieren, da Änderungen aus jQuery heraus vom Dirty- Checking
+            // nicht erkannt werden
+            $scope.$digest();
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.status.toString());
         });
+    }
 
+    $scope.GetHistoryWithAngularHttp = function () {
 
-        // 2. Ergebnis deserialisieren
+        // angular.element ermöglicht Zugriff auf jQuery, falls jQuery vor AngularJS geladen wurde.
+        // Wurde kein Angular geladen, dann liefert element Zugriff auf die heuseigene Version
+        // von jQuery: jsLite. Siehe https://docs.angularjs.org/api/ng/function/angular.element
+        var url = angular.element("#btnGetHistoryWithNgHttp").attr("data-websrv-url");
 
-        // 3. Protokoll mit Daten vom Server aktualisieren
+        $http
+            .get(url,
+                  {
+                      // Querystring- Parameter. noCache wird ständig mit einem neuen Zeitstempel
+                      // initialisiert, um so die Bedieung aus dem Cache zu vermeiden
+                      params: { job: JSON.stringify({ gruss: "hallo" }), noCache: Date.now() },
+
+                      // Caching abschalten
+                      cache: false
+                  })
+            .then(function (result) {
+                console.log(result.toString());
+
+                var historyObj = JSON.parse(result.data);
+                $scope.Protokoll = historyObj;
+
+            })
+            .catch(function (result) {
+                console.log("Fehler: " + result.status + " " + result.statusText);
+            });
+
     }
 
 }]);
 
-var app2 = angular.module('MyCalc2', []);
-app2.controller('MyCalcCtrl2', function ($scope) {
+//var app2 = angular.module('MyCalc2', []);
+//app2.controller('MyCalcCtrl2', function ($scope) {
 
-    // Angezeigte Genauigkeit (wird in der View in einer Expression ausgewertet)
-    $scope.Accuracy = 2;
+//    // Angezeigte Genauigkeit (wird in der View in einer Expression ausgewertet)
+//    $scope.Accuracy = 2;
 
-    $scope.Add = function () {
-        console.log($scope.Accuracy);
-        $scope.Res = $scope.A + $scope.B;
-    };
-    $scope.Sub = function () {
-        $scope.Res = $scope.A - $scope.B;
-    };
-    $scope.Mul = function () {
-        $scope.Res = $scope.A * $scope.B;
-    };
-    $scope.Div = function () {
-        $scope.Res = $scope.A / $scope.B;
-    };
+//    $scope.Add = function () {
+//        console.log($scope.Accuracy);
+//        $scope.Res = $scope.A + $scope.B;
+//    };
+//    $scope.Sub = function () {
+//        $scope.Res = $scope.A - $scope.B;
+//    };
+//    $scope.Mul = function () {
+//        $scope.Res = $scope.A * $scope.B;
+//    };
+//    $scope.Div = function () {
+//        $scope.Res = $scope.A / $scope.B;
+//    };
+//});
+
+//angular.module("kombiniertesModul", ["MyCalc", "MyCalc2"]);
+
+QUnit.test("Selbsdefinierten Service aus MyTools Modul testen", function (assert) {
+
+    var injector = angular.injector(['MyTools']);
+    var $MakeNumInvariant = injector.get('MakeNumCultureInvariant');
+
+    assert.equal($MakeNumInvariant("3,142"), 3.142, "3,142 nach de-Kultur sollte zu 3.142 gewandewlt werden");
+
 });
 
-angular.module("kombiniertesModul", ["MyCalc", "MyCalc2"]);
+QUnit.test("app controller Testen", function (assert) {
+
+    // Der Injektor ist für die Auflösung der Abhängigkeiten zuständig
+    // Parameter sind die Module, in denen Dienste etc. für die Auflösung der DI bereitstehen
+    var injector = angular.injector(['ng', 'MyTools', 'MyCalc']);
+
+    // Zugriff aud Dienste
+    var $http = injector.get('$http');
+
+    // Dienst holen, mit dem ein Controller gestartet werden kann
+    var $controller = injector.get('$controller');
+    var $scope = {};
+
+    // Kontroller MyCalcCtrl kaufrufen: 2. Parameter bestückt die Parameterliste der Konstruktorfunktion vom Controller
+    $controller('MyCalcCtrl', { $http: $http, $scope: $scope });
+
+    $scope.A = 2;
+    $scope.B = 3;
+    var summe = $scope.Add();
+    assert.equal($scope.Res, 5, "2 + 3 sollte 5 sein");
+
+});

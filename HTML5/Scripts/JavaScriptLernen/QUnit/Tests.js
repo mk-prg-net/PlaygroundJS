@@ -37,8 +37,17 @@
 QUnit.test("Convert Romzahl", function (assert) {
 
     var Arab = mko.algo.RomToArab('MDCLXVI');
-    assert.equal(Arab, 1666, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
+    //assert.equal(Arab, 1666, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
+
+
+    assert.equal(mko.algo.RomToArab('M'), 1000, "M sollte 1000 sein");
+    assert.equal(mko.algo.RomToArab('D'), 500, "D sollte 500 sein");
+    assert.equal(mko.algo.RomToArab('C'), 100, "C sollte 100 sein");
+    assert.equal(mko.algo.RomToArab('L'), 50, "L sollte 50 sein");
+    assert.equal(mko.algo.RomToArab('X'), 10, "X sollte 10 sein");
     
+    assert.equal(Arab, 1667, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
+
 
     //var Neu = mko.algo.zuef('D', 'M', 0);
     //deepEqual(Neu, { NeuerZustand: 'M', NeuerWert: 500 }, "zuef hat Folge DM falsch verarbeitet");
@@ -55,7 +64,7 @@ QUnit.test("PrimeTest", function (assert) {
 
 
 // Test einer asynchronen Methode !
-QUnit.asyncTest('PrimeScan', function (assert) {
+QUnit.test('PrimeScan', function (assert) {
 
     // QUnit wird solange angehalten, bis der die asynchrone Methode endet.
     // assert.async liefert einen Callback zurück, über den QUnit wieder 
@@ -68,19 +77,20 @@ QUnit.asyncTest('PrimeScan', function (assert) {
         function (Cancellationtoken, PrimNums) {
 
             assert.ok(!Cancellationtoken.stop, "Am Ende der asynchronen Methode sollte das Cancellationtoken keinen Stop signalisieren.");
-            assert.ok(true);
+            assert.ok(true, "Wie zu erwarten lief die Primzahlsuche fehlerfrei");
             doneAsync();
         },
 
         // fail
         function (err) {
+            // 
             assert.ok(false, err);
             doneAsync();
         },
 
         // progress info
         function (begin) {
-            assert.ok(true);
+            assert.ok(true, "eine erfolgreich Frotschrittsanzeige");
             console.log("Primzahlscanner jetzt bei " + begin);
         });
 });

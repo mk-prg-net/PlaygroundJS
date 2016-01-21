@@ -12,7 +12,6 @@ function (PrimScan, Newton) {
     var inCm = Newton.Centimeter(0).From(EinMeter);
     
 
-
     PrimScan(1, 10000,
         function (CancelationToken, primNums) {
             alert(primNums.length);

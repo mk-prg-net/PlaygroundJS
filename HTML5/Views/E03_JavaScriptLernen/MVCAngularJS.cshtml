@@ -2,12 +2,13 @@
     ViewBag.Title = "MVC mit AngularJS";
 }
 
+
 @*
     AngularJS verändert das Dom aktiv, um die Daten zwischen View und Model zu synchronisieren.
     Der Wirkungsbereich im Dom wird dabei über die AngularJS Direktive ng-app gesteuert:
     Alle Elemente unterhalb des Elements mit der Direktive ng-app unterliegen der Kontrolle von AngularJS
 *@
-<div ng-app="kombiniertesModul">
+<div>
 
     <h2>MVCAngular</h2>
     <dl class="dl-horizontal">
@@ -23,120 +24,206 @@
         <dd>Artikelreihe auf heise.de von Mafred Steyer</dd>
     </dl>
     <p>
-        AngularJS ist eine von Google bereitgestellt freie Bibliothek, welche für die Entwicklung von CRUD- Anwednungen (Create - Read - Update - Delete)
-        optimiert wurde. Sie folgt dem MVC- Muster, wobei die View durch direkt als HTML- Formular mit speziellen Datenbindungsausdrücken implementiert wird.
+        <b>AngularJS</b> ist eine von Google bereitgestellt freie Bibliothek, welche für die Entwicklung von CRUD- Anwednungen (Create - Read - Update - Delete)
+        optimiert wurde. Sie folgt dem MVC- Muster, wobei die View direkt als HTML- Formular mit speziellen <b>AngularJS</b>- Erweiterungen, den <i>Direktiven</i>
+        und <i>Ausdrücken (engl. Expressions)</i>implementiert wird.
+    </p>
+    <p>
+        AngularJS integriert die Funktionalität von <b>jQuery</b> und stellt das jQuery- Objekt über <code>angular.element</code> bereit.
     </p>
     <div class="row">
-        <article class="col-xs-12 col-md-6 col-lg-8">
-            <h3>MVC: Model View Controller</h3>
 
-            <figure>
-                <img src="~/Content/pics/MVCAngularJS/BasicMVCStruct.svg" class="img-responsive" />
+        <figure class="col-xs-12 col-md-6 col-lg-8">
+            <img src="~/Content/pics/MVCAngularJS/BasicMVCStruct.svg" class="img-responsive" />
 
-                <figcaption>
-                    Blockschaltbild <i>Angular JS Model View Controler</i>. Details siehe unter
-                    <a href="https://docs.angularjs.org/guide/databinding" target="_blank">Databinding</a>,
-                    <a href="https://docs.angularjs.org/guide/scope" target="_blank">Scope/Model</a>,
-                    <a href="https://docs.angularjs.org/guide/expression" target="_blank">Expressions</a>,
-                    <a href="https://docs.angularjs.org/guide/directive" target="_blank">Directives</a>,
-                    <a href="https://docs.angularjs.org/guide/controller" target="_blank">Controler</a>
-                </figcaption>
-            </figure>
+            <figcaption>
+                Blockschaltbild <i>Angular JS Model View Controler</i>. Details siehe unter
+                <a href="https://docs.angularjs.org/guide/databinding" target="_blank">Databinding</a>,
+                <a href="https://docs.angularjs.org/guide/scope" target="_blank">Scope/Model</a>,
+                <a href="https://docs.angularjs.org/guide/expression" target="_blank">Expressions</a>,
+                <a href="https://docs.angularjs.org/guide/directive" target="_blank">Directives</a>,
+                <a href="https://docs.angularjs.org/guide/controller" target="_blank">Controler</a>
+            </figcaption>
+        </figure>
 
-        </article>
+
 
         @*
             Die Daten unterhalb des mit ng-controller markierten Elements werden mit dem Scope synchronisiert,
             welcher durch den in der ng-controller Direktive genannten Controller verwaltet wird.
         *@
-        <div class="panel panel-primary col-xs-12 col-md-6 col-lg-4" ng-controller="MyCalcCtrl" ng-init="A=3.14; B=-2.72;">
-            <div class="panel-heading">
-                Taschenrechner gemäß MVC Pattern mittels AngularJS
+        <div ng-app="MyCalc">
+            <div class="panel panel-primary col-xs-12 col-md-6 col-lg-4" ng-controller="MyCalcCtrl" ng-init="A=3.14; B=-2.72;">
+                <div class="panel-heading">
+                    Taschenrechner gemäß MVC Pattern mittels AngularJS
+                </div>
+                <div class="panel-body ">
+                    @*
+                        HTML- Validierungen durch den Browser abschalten: werden von AngularJS übernommen
+                    *@
+                    <form novalidate>
+                        <p class="well">
+                            @* Angular- Expression. Wird beim Laden kompiliert in eine two way binding *@
+                            {{Res.toFixed(0+Accuracy) | currency }}
+                        </p>
+                        <p>
+                            @*
+                                Bindung der Scope- Eigenschaft Accuracy an ein Radiobutton über ng-model Direktive
+                            *@
+                            Genauigkeit:
+                            <label class="radio-inline"><input type="radio" name="Accur" value="2" ng-model="Accuracy" />2</label>
+                            <label class="radio-inline"><input type="radio" name="Accur" value="4" ng-model="Accuracy" />4</label>
+                        </p>
+                        <p>
+                            <div class="form-group">
+                                <label for="A">A=</label>
+                                <input type="text" ng-model="A" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="B">B=</label>
+                                <input type="text" ng-model="B" class="form-control" />
+                            </div>
+                        </p>
+                        <p>
+
+                            @*
+                                Bindung von Events an Eventhandler mittels ng-click Direktive
+                            *@
+                            <button ng-click="Add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                            <button ng-click="Sub()" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
+                            <button ng-click="Mul()" class="btn btn-primary"><span class="glyphicon glyphicon-asterisk"></span></button>
+                            <button ng-click="Div()" class="btn btn-primary"><span class="glyphicon glyphicon-th"></span></button>
+                            <button ng-click="Clear()" class="btn btn-primary"><span class="glyphicon glyphicon-scissors"></span></button>
+                            <button ng-click="GetHistory()" class="btn btn-primary">GetHistory</button>
+                            <button ng-click="GetHistoryWithAngularHttp()" class="btn btn-primary" id="btnGetHistoryWithNgHttp" data-websrv-url="@Url.Action("GetHistory", "E03_JavaScriptLernen")">GetHistory ng</button>
+
+
+                        </p>
+                    </form>
+                </div>
+                <table class="table table-striped">
+                    @*
+                        Die ng-repeat Direktive kann  als eine for...in Schleife betrachtet werden. Aus der Eigenschaft
+                        Protokoll, die eine Collection darstellt, werden alle Einträge gelesen. Jeder eintrag wird über
+                        rop verfügbar. Es wird eine neue Tabellenzeile im Dom eingefügt, deren Spalten Werte haben,
+                        die durch Auflösung der Angular- {{ }} Expressions bestimmt wurden.
+
+                    *@
+                    <tr ng-repeat="rop in Protokoll">
+                        <td>
+                            {{rop.Res}}
+                        </td>
+                        <td>
+                            =
+                        </td>
+                        <td>
+                            {{rop.A}}
+                        </td>
+                        <td>
+                            {{rop.OP}}
+                        </td>
+                        <td>
+                            {{rop.B}}
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div class="panel-body ">
-                @*
-                    HTML- Validierungen durch den Browser abschalten: werden von AngularJS übernommen
-                *@
-                <form novalidate>
-                    <p class="well">
-                        @* Angular- Expression. Wird beim Laden kompiliert in eine two way binding *@
-                        {{Res.toFixed(0+Accuracy) | currency }}
-                    </p>
-                    <p>
-                        @*
-                            Bindung der Scope- Eigenschaft Accuracy an ein Radiobutton über ng-model Direktive
-                        *@
-                        Genauigkeit:
-                        <label class="radio-inline"><input type="radio" name="Accur" value="2" ng-model="Accuracy" />2</label>
-                        <label class="radio-inline"><input type="radio" name="Accur" value="4" ng-model="Accuracy" />4</label>
-                    </p>
-                    <p>
-                        <div class="form-group">
-                            <label for="A">A=</label>
-                            <input type="text" ng-model="A" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="B">B=</label>
-                            <input type="text" ng-model="B" class="form-control" />
-                        </div>
-                    </p>
-                    <p>
-
-                        @*
-                            Bindung von Events an Eventhandler mittels ng-click Direktive
-                        *@
-                        <button ng-click="Add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
-                        <button ng-click="Sub()" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></button>
-                        <button ng-click="Mul()" class="btn btn-primary"><span class="glyphicon glyphicon-asterisk"></span></button>
-                        <button ng-click="Div()" class="btn btn-primary"><span class="glyphicon glyphicon-th"></span></button>
-                        <button ng-click="Clear()" class="btn btn-primary"><span class="glyphicon glyphicon-scissors"></span></button>
-                        <button ng-click="GetHistory()" class="btn btn-primary">GetHistory</button>
-
-                    </p>
-                </form>
-            </div>
-            <table class="table table-striped">
-                @*
-                    Die ng-repeat Direktive kann  als eine for...in Schleife betrachtet werden. Aus der Eigenschaft
-                    Protokoll, die eine Collection darstellt, werden alle Einträge gelesen. Jeder eintrag wird über
-                    rop verfügbar. Es wird eine neue Tabellenzeile im Dom eingefügt, deren Spalten Werte haben,
-                    die durch Auflösung der Angular- Expressions {{...}} bestimmt wurden.
-
-                *@
-                <tr ng-repeat="rop in Protokoll">
-                    <td>
-                        {{rop.Res}}
-                    </td>
-                    <td>
-                        =
-                    </td>
-                    <td>
-                        {{rop.A}}
-                    </td>
-                    <td>
-                        {{rop.OP}}
-                    </td>
-                    <td>
-                        {{rop.B}}
-                    </td>
-                </tr>
-            </table>
         </div>
     </div>
     <div class="row">
         <article class="col-md-12">
+            <h3>HTML mit Direktiven und Ausdrücken für das <i>two way binding</i> präparieren und kompilieren</h3>
+            <p>
+                Damit HTML- Elemente mit Eigenschaften aus dem Model im Rahmen des <a href="https://docs.angularjs.org/guide/databinding" target="_blank">
+                    two way binding
+                </a> synchronisiert werden können, muss die Zuordnung der Modelleigenschaften an HTML- Elemente definiert werden:
+                <code>Model.Property &harr; HTML.Element</code>.<br />
+                Dies erfolgt mittels spezieller Attribute, den <b>Direktiven</b> wie <code>ng-model</code>, und besonderen Paltzhaltern der
+                Art <code></code>, genannt <b>Expressions</b>.
+            </p>
+            <p>
+                Nach dem Laden des HTML- Dokuments in den Browser und der Initialisierung von AngularJS analysiert AngularJS
+                das DOM. Alle mit Direktiven markierten Elemente werden mit einem Verhalten in Form von JavaScript Eventhandlern
+                ausgestattet, welche die Semantik der Direktiven implementieren. Ähnliches passiert mit den Expressions. Dieser Prozess
+                wird auch als <i>Compilation des DOMs</i> bezichnet
+            </p>
+        </article>
+
+        <article class="col-md-12">
+            <h3>Datenbindung, dirty checking, digest cycles</h3>
+            <p>
+                Model und View werden in AngularJS durch das <a href="https://docs.angularjs.org/guide/databinding" target="_blank">
+                    two way binding
+                </a> synchronisiert. Wurden z.B. REST- Dienste auf dem Server
+                erfolgreich aufgerufen oder sind Eingaben durch den Benutzer in der View erfolgt, dann beginnt AngularJS automatisch
+                die Eigenschaften von Modellen und die Inhalte von Formularelementen in der View auf Veränderungen hin zu untersuchen.
+                Dieser Prozess wird auch als <b>dirty checking</b> bezeichnet. Die Dauer eines solchen dirty checks wird mit <b>digest cycle</b>
+                bezeichnet.
+            </p>
+            <p>
+                Werden Änderungen an der View über Scripte vorgenommen, die nicht zu AngularJS gehören, dann erfolgt kein
+                dirty checking und die Synchronisierung zwischen Model und View erfolgt nicht. In diesen Fällen kann
+                ein <i>digest cycle</i> manuell angestossen werden mittels <code>$scope.digest();</code>.<br />
+                Alternativ zum manuellen Anstoßen mit <code>$scope.$digest();</code> können Routinen, die in jedem
+                Fall mit einem <i>digest cycle</i> abgeschlossen werden sollen, als callback an <code>$scope.apply(<var>callback</var>)</code>
+                zur Ausführung übergeben werden.
+            </p>
+            <p>
+                Das <i>dirty checking</i> kann als Überwachungsdienst für Anwendung genutzt werden, indem
+                für skalare Eigenschaften des <i>$scope</i> mittles
+                <code>$scope.$watch('<var>Name der Eigenschaft</var>', <var>function(newValue, oldValue){...}</var>)</code>
+                callback- Funktionen registriert werden.<br />
+                Ist die zu überwachende Eigenschaft ein Array oder ein Objekt, dann ist die Funktion
+                <code>$scope.$watchCollection('<var>Name der Eigenschaft</var>', <var>function(newValue, oldValue){...}</var>)</code>
+                einzusetzen.
+            </p>
+
+        </article>
+
+        <article class="col-md-12">
+            <h3>Filter</h3>
+            <p>
+                <a href="https://docs.angularjs.org/guide/filter" target="_blank">Filter</a> dienen zur Formatierung von Daten während der Datenbindung. Sie werden in Ausdrücken mittels
+                des <code>|</code> Operators auf die links von ihm evaliuerten Wert angewendet: <code>{{<var>Ausdruck</var> | <var>Filtername</var>}}</code>
+                <br />
+                Beispiel: <code>{{Res.toFixed(0+Accuracy) | currency }}</code> Der Wert aus der Modelleigenschaft Res wird als Währungsangabe
+                formatiert
+            </p>
+            <p>
+                Filter können Parameter haben. Diese sind in einem Ausdruck mittels des <code>:</code> an den Filtername anzuhängen:
+                <code>{{<var>Ausdruck</var> | <var>Filtername</var>:<var>Parameter1</var>}}</code><br />
+                Benötigt das Filter mehrere Parameter, dann ist die Doppelpunkt- getrennte Parameterliste einfach fortzusetzen:
+                <code>{{<var>Ausdruck</var> | <var>Filtername</var>:<var>Parameter1</var>:<var>Parameter2</var>}}</code>
+            </p>
+            <p>
+                Auf die Ergebnisse von Filtern können wiederum Filter angewendet werden, indem mit dem <code>|</code> weitere Filter
+                im Ausdruck angehangen werden: <code>{{<var>Ausdruck</var> | <var>Filtername</var>:<var>Parameter1</var>:<var>Parameter2</var>|<var>Filter2</var>}}</code>
+            </p>
+        </article>
+
+
+        <article class="col-md-12">
             <h3>Modularität und Dependency Injection</h3>
 
-            Eine <b>AngularJS</b> gliedert sich in Module, die 
+            Eine <b>AngularJS</b> gliedert sich in Module, die
             <ol>
                 <li><i>Dienste</i> (<i>Services</i>), die teilweise die Rolle von Unterprogrammen haben</li>
                 <li>einen <i>Controller</i> für einen View</li>
                 <li><i>Filter</i>, durch welche das Ergebnis von <i>Expressions</i> bei der Ausgabe formatiert wird</li>
-                <li><i>Direktiven</i></li>
+                <li>
+                    und <i>Direktiven</i>, mit denen Elemente im Dom markiert werden, die von AngularJS Dom- Kompiler mit einer,
+                    in der Direktive festgelegten Verhaltensweise auszustatten sind
+                </li>
             </ol>
             <figure>
                 <img src="~/Content/pics/MVCAngularJS/AngularJS.svg" class="img-responsive">
             </figure>
+        </article>
+
+        <article class="col-md-12">
+            <h3>Testen</h3>
+            <div id="qunit"></div>
+            <div id="qunit-fixture"></div>
         </article>
 
     </div>
@@ -144,10 +231,15 @@
 
 @* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
 @section Scripts {
+    @Scripts.Render("~/bundles/qunit")
     @Scripts.Render("~/bundles/AngularJS")
     @Scripts.Render("~/Scripts/JavaScriptLernen/MVC/MVCAngularJsCalculator.js")
 
+}
 
+@* Style wird für Gestaltung der QUnit- Testausgabe benötigt *@
+@section Styles {
+    <link rel="stylesheet" href="~/Content/qunit.css" />
 }
 
 

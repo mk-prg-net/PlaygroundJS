@@ -66,10 +66,26 @@ jQuery(document).ready(function () {
             function (CancellationToken, PrimList) {
                 //jQuery("#ProgressInfo").val(PrimList.length);
                 jQuery("#result").append(PrimList.join(", "));
+
+                // Hintereinandrschalten einer weiteren async Methode
+                mko.algo.PredSuccRatio(PrimList,
+
+                    function (CancellationToken, PredSucc) {
+                        jQuery("#result").append(PredSucc.join(", "));
+                    },
+                    function (err) {
+                        jQuery('#ErrMsg').append(err).toggle(true);
+                    },
+                    function (beginPart) {
+                        jQuery("#ProgressInfo").val(beginPart);
+                        jQuery("#ProgressMeter").val(beginPart);
+                    }
+                    );
+
             },
 
             // Callback für Behandlung von Fehlern
-            function(err) {
+            function (err) {
                 jQuery('#ErrMsg').append(err).toggle(true);
             },
 
