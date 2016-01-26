@@ -66,6 +66,11 @@
                             @* Angular- Expression. Wird beim Laden kompiliert in eine two way binding *@
                             {{Res.toFixed(0+Accuracy) | currency }}
                         </p>
+                        <hr />
+                        <p class="well">
+                            {{Res | MyNumFlt:4 }}
+                        </p>
+
                         <p>
                             @*
                                 Bindung der Scope- Eigenschaft Accuracy an ein Radiobutton über ng-model Direktive

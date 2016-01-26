@@ -41,12 +41,12 @@ function ROP(A, B, Res, OP) {
     this.OP = OP;
 }
 
-
+// Wenn AngularJS geladen wurde, dann ist ein module namesn $ng eingerichtet worden
 
 // Ein Angular- Modul anlegen, in dem eigene Tools in Form von Services gesammelt werden
 // Das Modul bekommt einen Namen, der zur Dokumentation von Abhängigkeiten und damit als 
 // Grundlage der Implementierung der Dependency- Injection dient.
-var tools = angular.module('MyTools', []);
+var tools = angular.module('MyTools', []); // ['$ng']);
 
 // Dienst, der einen Zahl in eine Sprachinvariante Form umwandelt
 tools.factory('MakeNumCultureInvariant', function () {
@@ -72,15 +72,26 @@ tools.factory('MakeCultureInvariant', ['MakeNumCultureInvariant', function (Make
 // Es baut auf Dienste aus dem Modul MyTools auf
 var app = angular.module('MyCalc', ['MyTools']);
 
+
+app.filter('MyNumFlt', function () {
+    return function (val, precision) {
+        return val.toFixed(precision).toString() + " ??";
+    }
+});
+
 // Der Controller benötigt den $scope und den Dienst MyTools.MakeCultureInvariant. Mittels DI werden
 // diese injeziert
 app.controller('MyCalcCtrl', ['$scope', '$http', 'MakeCultureInvariant', function ($scope, $http, MakeCultureInvariant) {
+
+    // Ein Geschäftsobjekt mittels Webdienst aus einer DB laden
+    // $scope.bObject = ....
 
     // Angezeigte Genauigkeit (wird in der View in einer Expression ausgewertet)
     $scope.Accuracy = 2;
     $scope.Protokoll = [];
     $scope.A = 0;
     $scope.B = 0;
+    $scope.Res = 0;
 
     $scope.Add = function () {
         console.log($scope.Accuracy);
@@ -121,7 +132,7 @@ app.controller('MyCalcCtrl', ['$scope', '$http', 'MakeCultureInvariant', functio
             type: "GET",
             url: url,
             cache: false,
-            data: "job=" + JSON.stringify({gruss: "hallo"})
+            data: "job=" + JSON.stringify({ gruss: "hallo" })
         }).done(function (Data, status, req) {
             console.log(Data.toString());
 
@@ -195,9 +206,9 @@ app.controller('MyCalcCtrl', ['$scope', '$http', 'MakeCultureInvariant', functio
 QUnit.test("Selbsdefinierten Service aus MyTools Modul testen", function (assert) {
 
     var injector = angular.injector(['MyTools']);
-    var $MakeNumInvariant = injector.get('MakeNumCultureInvariant');
+    var MakeNumInvariant = injector.get('MakeNumCultureInvariant');
 
-    assert.equal($MakeNumInvariant("3,142"), 3.142, "3,142 nach de-Kultur sollte zu 3.142 gewandewlt werden");
+    assert.equal(MakeNumInvariant("3,142"), 3.142, "3,142 nach de-Kultur sollte zu 3.142 gewandewlt werden");
 
 });
 
@@ -221,5 +232,37 @@ QUnit.test("app controller Testen", function (assert) {
     $scope.B = 3;
     var summe = $scope.Add();
     assert.equal($scope.Res, 5, "2 + 3 sollte 5 sein");
+
+});
+
+QUnit.test("app controller Testen mit MakeCult Atrappe", function (assert) {
+
+    // Der Injektor ist für die Auflösung der Abhängigkeiten zuständig
+    // Parameter sind die Module, in denen Dienste etc. für die Auflösung der DI bereitstehen
+    var injector = angular.injector(['ng', 'MyCalc']);
+
+    // Zugriff aud Dienste
+    var $http = injector.get('$http');
+
+    // Dienst holen, mit dem ein Controller gestartet werden kann
+    var $controller = injector.get('$controller');
+    var $scope = {};
+
+
+    function mock($scope) {
+
+        $scope.A = $scope.A * 10;
+        $scope.B = $scope.B * 10;
+    }
+
+    // Kontroller MyCalcCtrl kaufrufen: 2. Parameter bestückt die Parameterliste der Konstruktorfunktion vom Controller
+    $controller('MyCalcCtrl', { $http: $http, $scope: $scope, MakeCultureInvariant: mock });
+
+    $scope.A = 2;
+    $scope.B = 3;
+    var summe = $scope.Add();
+    assert.equal($scope.A, 20, "mock funkt");
+    assert.equal($scope.B, 30, "mock funkt");
+
 
 });

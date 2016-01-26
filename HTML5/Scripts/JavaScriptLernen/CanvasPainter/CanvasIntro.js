@@ -93,6 +93,7 @@
 
         ctx.fill();
         ctx.closePath();
+        
 
         mko.graph.CanvasRobotTest(ctx, width, height);
     }

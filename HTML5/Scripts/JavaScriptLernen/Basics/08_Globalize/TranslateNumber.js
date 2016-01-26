@@ -45,12 +45,21 @@ function TranslateNumber(langFrom, langTo, InputNumber, InputDate, setResult) {
         return [].slice.apply(arguments, [0]).map(function (result) {
             return result[0];
         });
+
+        //var args = [].slice.apply(arguments, [0]); //arguments.slice(0);
+        //var argsMap = args.map(function (result) {
+        //    return [0];
+        //});
+
+
+
+
+
     },
-        // fail:
-        function () {
-            alert("funkt nicht...");
-        }
-    ).then(Globalize.load).then(function () {
+    // fail:
+    function () {
+        alert("funkt nicht...");
+    }).then(Globalize.load).then(function () {
 
         // Jetzt kann endlich globalisiert werden !
 
@@ -69,7 +78,7 @@ function TranslateNumber(langFrom, langTo, InputNumber, InputDate, setResult) {
         var outputDate = "";
         if (dat != null) {
             var outputformatterDate = Globalize(langTo).dateFormatter();
-            outputDate =  outputformatterDate(dat);
+            outputDate = outputformatterDate(dat);
         }
 
         setResult(output, outputDate);

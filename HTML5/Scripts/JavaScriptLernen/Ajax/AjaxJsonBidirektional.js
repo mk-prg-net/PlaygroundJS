@@ -6,7 +6,9 @@ function Add() {
     var task = {
         A : parseFloat(at),
         B : parseFloat(bt),
-        OP: "ADD"
+        OP: "ADD",
+
+        _stopCaching: Date.now()
     }
 
     Calc(task);
@@ -26,10 +28,11 @@ function Sub() {
 
 function Calc(task) {
     // Cache Abschalten, da sonst nur der 1. Aufruf funkt
-    $.ajaxSetup({
-        // Disable caching of AJAX responses
-        cache: false
-    });
+    //$.ajaxSetup({
+    //    // Disable caching of AJAX responses
+    //    //cache: false
+    //    cache: true
+    //});
 
     var taskJson = JSON.stringify(task);
 
@@ -41,7 +44,8 @@ function Calc(task) {
         type: "GET",
         //dataType: "json",
         url: url,
-        data: "task=" + taskJson
+        data: "task=" + taskJson,
+        cache: true
     }).done(function (Data, status, req) {
 
         // Es hat geklappt
