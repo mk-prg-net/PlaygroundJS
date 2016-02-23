@@ -120,6 +120,7 @@
     <Compile Include="Controllers\E02_BootstrapController.cs" />
     <Compile Include="Controllers\E03_JavaScriptLernenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MkPrgNetTestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2424,7 +2425,13 @@
     <Content Include="Scripts\lodash-amd\zip.js" />
     <Content Include="Scripts\lodash-amd\zipObject.js" />
     <Content Include="Scripts\lodash-amd\zipWith.js" />
+    <Content Include="Scripts\mk-prg-net\Async\CancellationTokenFactory.js" />
+    <Content Include="Scripts\mk-prg-net\NumberTheory\PrimNumbers.js" />
+    <Content Include="Scripts\mk-prg-net\NumberTheory\PrimNumbersWithPromise.js" />
+    <Content Include="Scripts\mk-prg-net\Tests\NumberTheoryPrimNumbers.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\q.js" />
+    <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\respond.js" />
@@ -2491,6 +2498,8 @@
     <Content Include="Scripts\lodash-amd\README.md" />
     <Content Include="Views\E03_JavaScriptLernen\NodeJSandNPM.cshtml" />
     <Content Include="Views\E03_JavaScriptLernen\lodashTests.cshtml" />
+    <Content Include="Views\MkPrgNetTests\Index.cshtml" />
+    <Content Include="Views\MkPrgNetTests\PrimNumbersTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

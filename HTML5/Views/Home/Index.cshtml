@@ -2,6 +2,19 @@
     ViewBag.Title = "Home Page";
 }
 
+@* Hilfprogramme, um das Markup zu vereinfachen *@
+@helper ShowJavaScriptrLernenView(string Title, string ViewName) { 
+    @Html.ActionLink(Title, "ShowView", new { controller = "E03_JavaScriptLernen", viewName = ViewName })
+}
+
+@helper ShowMkPrgNetTestsView(string Title, string ViewName)
+{
+    @Html.ActionLink(Title, "ShowView", new { controller = "MkPrgNetTests", viewName = ViewName })
+}
+
+
+
+
 <div class="jumbotron">
     <h1>HTML5/JavaScript</h1>
     <p class="lead">HTML5/JavaScript, ein freies, weltweit kostenlos verfügbares Web Framework zum Aufbau von Webanwendungen.</p>
@@ -36,26 +49,32 @@
         <p>Sprachgrundlagen, Zugriff auf das DOM, MVC</p>
         <ol>
             <li>@Html.ActionLink("Versionsverwaltung mit GIT", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "GitVersionCntrl" })</li>
-            <li>@Html.ActionLink("Node.js und NPM", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "NodeJSandNPM" })</li>
-            <li>@Html.ActionLink("Basics", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "Basics_Intro" })</li>
-            <li>@Html.ActionLink("Unit- Tests", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "TestsIntro" })</li>
-            <li>@Html.ActionLink("Asynchrones Module Loading mit RequireJS", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "RequireJS" })</li>
-            <li>@Html.ActionLink("lodash Tests", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "lodashTests" })</li>
-            <li>@Html.ActionLink("Test Klassenbibliothk Astro", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "AstroQUnit" })</li>
-            <li>@Html.ActionLink("Dom", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "DomIntro" })</li>
-            <li>@Html.ActionLink("Formulare und Validierung", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "FormsIO" })</li>
-            <li>@Html.ActionLink("Ajax", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "AjaxIntro" })</li>
-            <li>@Html.ActionLink("Canvas Painter", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "CanvasPainter" })</li>
-            <li>@Html.ActionLink("FileAPI", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "FileAPI" })</li>
-            <li>@Html.ActionLink("Web Worker", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "WebWorker" })</li>            
-            <li>@Html.ActionLink("MVC mit AngularJS", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "MVCAngularJS" })</li>
-            <li>@Html.ActionLink("Übung Klassenbibliothk Astro", "ShowView", new { controller = "E03_JavaScriptLernen", viewName = "Astro" })</li>          
+            <li>@ShowJavaScriptrLernenView("Node.js und NPM", "NodeJSandNPM")</li>
+            <li>@ShowJavaScriptrLernenView("Basics","Basics_Intro")</li>
+            <li>@ShowJavaScriptrLernenView("Unit- Tests", "TestsIntro")</li>
+            <li>@ShowJavaScriptrLernenView("Asynchrones Module Loading mit RequireJS", "RequireJS")</li>
+            <li>@ShowJavaScriptrLernenView("lodash Tests", "lodashTests")</li>
+            <li>@ShowJavaScriptrLernenView("Test Klassenbibliothk Astro", "AstroQUnit")</li>
+            <li>@ShowJavaScriptrLernenView("Dom", "DomIntro")</li>
+            <li>@ShowJavaScriptrLernenView("Formulare und Validierung", "FormsIO")</li>
+            <li>@ShowJavaScriptrLernenView("Ajax", "AjaxIntro")</li>
+            <li>@ShowJavaScriptrLernenView("Canvas Painter", "CanvasPainter")</li>
+            <li>@ShowJavaScriptrLernenView("FileAPI", "FileAPI")</li>
+            <li>@ShowJavaScriptrLernenView("Web Worker", "WebWorker")</li>            
+            <li>@ShowJavaScriptrLernenView("MVC mit AngularJS", "MVCAngularJS")</li>
+            <li>@ShowJavaScriptrLernenView("Übung Klassenbibliothk Astro", "Astro")</li>          
 
         </ol>
     </article>
     <article class="col-md-4">
-        <h2>JQuery</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Tests für die mk-prg-net Bibliothek</h2>
+        <h3>Number Theory</h3>
+        <p>
+            Algorithmen und Verfahren aus dem Bereich der math. Zahlentheorie
+        </p>
+        <ol>
+            <li>@ShowMkPrgNetTestsView("Primzahlenscanner", "PrimNumbersTest")</li>
+        </ol>
+
     </article>
 </div>
