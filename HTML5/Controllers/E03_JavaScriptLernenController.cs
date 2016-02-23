@@ -38,9 +38,9 @@ namespace HTML5.Controllers
         {
             var rnd = new System.Random(99);
             var history = new ROP[]{
-                              new ROP(){ A = 12, B= 13, Res= 25, OP = "+"},
-                                new ROP(){ A = 12, B= 13, Res= -1, OP = "-"},
-                                  new ROP(){ A = 2, B= 1, Res= rnd.Next(1, 100) , OP = "*"},
+                              new ROP(){ A = rnd.NextDouble() + 1, B= 13, Res= 25, OP = "+"},
+                                new ROP(){ A = rnd.NextDouble() + 2, B= 13, Res= -1, OP = "-"},
+                                  new ROP(){ A = rnd.NextDouble() + 2, B= 1, Res= rnd.Next(1, 100) , OP = "*"},
                           };
 
             var res = Newtonsoft.Json.JsonConvert.SerializeObject(history);

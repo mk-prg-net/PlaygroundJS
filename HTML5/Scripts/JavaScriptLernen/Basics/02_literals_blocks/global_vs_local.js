@@ -101,7 +101,7 @@ function GlobalVsLocal() {
 
     console.log("GlobalVsLocal");
 
-    StrictMode();
+    //StrictMode();
 
     // Anwendung testen
     Application(InitTest);
@@ -118,6 +118,9 @@ function GlobalVsLocal() {
     bin_auch_global += 100;
 
     GlobalVsLocal_sub();
+
+    console.log(MeineWichtige2);
+
     console.assert("number" == typeof globale_Variable);
 
     {
@@ -184,6 +187,8 @@ function GlobalVsLocal() {
 function GlobalVsLocal_sub() {
 
     globale_Variable += 100;
+
+    MeineWichtige2 = "Halloooooo";
 
     // Gnadenlos wird die globale Variable überschrieben
     MeineWichtige = true;
