@@ -1,98 +1,133 @@
-﻿function OO_Literal() {
+﻿//<unit_header>
+//----------------------------------------------------------------
+// Copyright 2016 Martin Korneffel
+//
+// Martin Korneffel: IT Beratung/Softwareentwicklung
+// Stuttgart, den 23.2.2016
+//
+//  Projekt.......: HTML5
+//  Name..........: OO_Literal.js
+//  Aufgabe/Fkt...: Arten der Objekterzeugung, Rolle der Prototypen
+//                  
+//
+//
+//
+//
+//<unit_environment>
+//------------------------------------------------------------------
+//  Zielmaschine..: PC 
+//  Betriebssystem: Windows 7 mit .NET 4.5
+//  Werkzeuge.....: Visual Studio 2013
+//  Autor.........: Martin Korneffel (mko)
+//  Version 1.0...: 
+//
+// </unit_environment>
+//
+//<unit_history>
+//------------------------------------------------------------------
+//
+//  Version.......: 1.1
+//  Autor.........: Martin Korneffel (mko)
+//  Datum.........: 
+//  Änderungen....: 
+//
+//</unit_history>
+//</unit_header>        
 
+
+QUnit.test('Objekte und Objektliterale', function (assert) {
     "use strict";
+
+    function TestCreatedObjectAndPrototype(obj, prototype, countEnumProperties, strContructorMethod) {
+        assert.notStrictEqual(obj, null, strContructorMethod + " sollte ein Objekt erzeugen");
+        if (prototype != null) {
+            var prototypeDescriptor = "Object.prototype";
+            if (prototype != Object.prototype) {
+                prototypeDescriptor = prototype.toString();
+            }
+            assert.strictEqual(Object.getPrototypeOf(obj), prototype, strContructorMethod + " sollte ein Objekt erzeugen, dessen __proto__ Eigenschaft auf " + prototypeDescriptor + " verweist");
+        } else {
+            assert.strictEqual(Object.getPrototypeOf(obj), null, strContructorMethod + " sollte ein Objekt ohne Prototypeobjekt erzeugen");
+        }
+        assert.equal(Object.getOwnPropertyNames(obj).length, countEnumProperties, strContructorMethod + " sollte ein Objekt mit " + countEnumProperties + " aufzählbare Eigenschaften erzeugen");
+    }
+
 
     console.log("OO_Literal");
 
-    // Objektliterale: Eigenschaften und Methoden als Schlüssel- Wertzuordnungen darstellen
-    var Point = {
+    // Object ist ein Funktionsobjekt !     
+    // Die Funktion Object() erzeugt ein neues Objekt, und gibt dieses zurück. 
+    var o0 = Object.call(null);
+    TestCreatedObjectAndPrototype(o0, Object.prototype, 0, "Object.call(null)");
 
-        // Eigenschaften: 
-        X: 0,
-        Y: 0,
+    //o00 = Object();
+    //TestCreatedObjectAndPrototype(o00, Object.prototype, 0, "Object()");    
 
-        // Methode R, berechnet euklidischen Abstand
-        // 
-        R: function () {
-            return Math.sqrt(this.X * this.X + this.Y * this.Y);
-        }
-    };
+    // Object ist eine spezielle From von Funktionsobjekt: eine Konstruktorfunktion
+    // Die Semantik des new Aufrufes entspricht der bei der Konstruktion von o0
+    var o1 = new Object();
+    TestCreatedObjectAndPrototype(o1, Object.prototype, 0,  "new Object()");
 
-    // Anlegen einer nur lesbaren Eigenschaft mittels Methoden aus ECMA5 
+    // Alternativ zum Aufruf von new Object() ist die Erzeugung mittels leerem Objektliteral:
+    var o2 = {};
+    TestCreatedObjectAndPrototype(o2, Object.prototype, 0, "{}");
 
-    Object.defineProperty(Point, 'constPI', {
-        writable: false,
-        value: Math.PI
-    });
+    // Erweitern eines neuen Objektes um Member
+    o2.X = 1;
+    o2.Y = 1;
+    TestCreatedObjectAndPrototype(o2, Object.prototype, 2, "{X: 1, Y: 1}")
 
+    o2.R = function () { return this.X * this.X + this.Y * this.Y };
+    TestCreatedObjectAndPrototype(o2, Object.prototype, 3, "{X: 1, Y: 1, R: function()...}")
 
-    console.assert("constPI" in Point, "Die Eigenschaft constPI fehlt!");
-    Point.constPI = 99;
+    // Funktionsobjekte wie Object() verwalten über ihre Eigenschaft Object.prototype ein Objekt, auf das all
+    // mittels Object erzeugten Objkete über ihre __proto__ Eigenschaft verweisen.
+    // Object.prototype === new Object().__proto__
+    assert.strictEqual(Object.prototype, Object.getPrototypeOf(new Object()), "In JavaScript gilt: Object.prototype === new Object().__proto__");
 
-    // Objektorientierter Zugriff über Eigenschaften und Methoden
-    Point.X = 1;
-    Point.Y = 1;
+    // Objekt ohne Prototyp
+    var o3 = Object.create(null);
+    TestCreatedObjectAndPrototype(o3, null, 0, "Object.create(null)");
 
-    var w2 = Point.R();
+    // Objekt mit einem vorkonfigurierten Objekt als Prototyp
+    var o4 = Object.create(o2);
 
-    // Alternative Zugriff über Schlüssel- Wert Zuordnung
-    Point["X"] *= 3.14;
-    Point["Y"] *= 3.14;
-    var w3 = Point["R"](); // Funktionsaufruf !
+    TestCreatedObjectAndPrototype(o4, o2, 0, "Object.create(o2)");
 
-    // Hinzufügen neuer Member zu einer Dictionary kann auch in Objektsyntax erfolgen:
-    var Point2 = {};
+    assert.strictEqual(o4.X, 1, "o4 sollte über seinen Prototypen o2 bereits über eine Eigenschaft X mit dem Wert 1 verfügen");
+    o2.X = 0;
+    assert.strictEqual(o4.X, 0, "Eine Änderung an der Prototypeigenschaft o2.X ist auch über o4.X sichtbar.");
 
-    // Neuen Eintrag der Dictionary hinzufügen
-    Point2["X"] = 10.0;
+    o4.X = 100;
+    assert.ok(o4.X === 100 && o2.X === 0 && Object.getPrototypeOf(o4).X === 0, "Das Zuweisen an eine Eigenschaft X, die ursprünglich aus dem Prototyp o2 stammt, bewirkt ein Anlegen dieser in o4. o2.X bleibt unverändert und stellt einen Initialwert von X dar.");
 
-    // Alternative Syntax: neue Eigenschaft einem Objekt hinzufügen
-    Point2.Y = 20.0
+    // In JavaScript existiert ein Dictionary/Objekt Dualismus !
+    var o5 = Object.create(o2);
 
-    // Prüfen, ob eine Eigenschaft bereits angelegt wurde mittels in- Operator
-    var hasProperty = "Y" in Point2;
-    console.assert(hasProperty, "Eigenschaft Y existiert noch nicht");
+    o5["X"] = 2;
+    o5["Y"] = 3;
     
-    if (!("Z" in Point2)) {
-        Point2.Z = 0.0;
-    }
+    assert.ok(o5.X === o5["X"] && o5.Y === o5["Y"], "Wg. Dictionary/Object Dualismus gilt : o5.X === o5[\"X\"] && o5.Y === o5[\"Y\"]");
 
-    // Auflisten aller Eigenschaften eines Objektes mittels for ... in Schleife
+    // Wg. des Dualismus können alle Eigenschaften eines Objektes mittels for ... in Schleife aufgelistet werden
     console.log("Alle Eigenschaften von Point2");
-    for (let prop in Point2) {
+
+    var all_properties_of_o5 = [];
+
+    for (let prop in o5) {
         console.log(prop);
+        all_properties_of_o5.push(prop);
     }
 
-    // Alle Namen von Objekteigenschaften mittels ECMA5 Funktionen abrufen
-    // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
-    let allPropsOfPoint2 = Object.keys(Point2);
+    assert.deepEqual(all_properties_of_o5, ["X", "Y", "R"], "Auflistung aller Member von o5 mittels for ... in Schleife wg. Dict/Obj Dualismus möglich. Sollte X, Y und R liefern.");
 
-    Point2[0] = "Hallo";
-    Point2[1] = "Welt";
+    // Die Namen aller Member können alternativ in einem Array durch Object.keys abgerufen werden. 
+    // Achtung: Object.keys listet nicht die Eigenschaften des Prototypen auf im Gegensatz zur for ... in Schleife.
+    // ECMA5: https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+    assert.deepEqual(Object.keys(o5), ["X", "Y"], "ECMA5 Object.keys(o5) sollte die Liste [\"X\", \"Y\"] liefern. Member des Prototypen werden nicht berücksichtigt !");  
 
-    var res = Point2.length;
-
-    res = Point2[0];
-
-    var Point3 = [];
-    Point3[0] = 99;
-    Point3[1] = 199;
-    Point3["X"] = 299;
-
-    res = Point3.length;
-
-    Point2.R = function () {
-        return Math.sqrt(this.X * this.X + this.Y * this.Y);
-    }
-
-    Point2.R2 = function () {
-        // Abstandsfunktion aus R wiederverwenden
-        //return Point.R(); falsch, da hier R von Point das Ergebnis ist
-        return Point.R.call(this);
-    }
-
-    // Der Zugriff auf die Member kann in einer beliebigen Syntax erfolgen -> Dictionary/Objekt Dualismus !
-    var Abstand = Math.sqrt(Point2.X * Point2.X + Point2["Y"] * Point2["Y"]);
-
+    // Prüfen, ob einzelne Member vorhanden sind mittels in- Operator
+    assert.ok("R" in o5, "Der in- Operator sollte die Existenz der Eigenschaft R bestätigen: \"R\" in o5");
+    
     console.log("OO_Literal Ende");
-}
+})

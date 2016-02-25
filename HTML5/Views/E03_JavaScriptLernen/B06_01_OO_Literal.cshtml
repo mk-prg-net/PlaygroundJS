@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "B06_01_OO_Literal";
+}
+
+<h2>Objekte und Objektliterale</h2>
+
+<div class="row">
+    <article class="col-md-12">
+        <h2>Neue Objekte erzeugen</h2>
+        <a href="http://www.w3schools.com/js/js_object_definition.asp" target="_blank">Übersicht zu Objekte auf w3schools.com</a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank">Statische Methoden des Object- Funktionsobjektes</a>
+        <p>
+            Objekte werden in JavaScript mittels des <i>Object</i> - Funktionsobjektes erzeugt. Die Syntax der Objekt- Instanziierung ist vielfältig:
+            <ol>
+                <li><code>var obj = Object.call(null)</code> - Allgemeine Objektkonstruktorfunktion als Funktion aufrufen</li>
+                <li><code>var obj = new Object()</code> - Allgemeine Objektkonstruktorfunktion aufrufen über <i>new- Konstruktoridiom</i></li>
+                <li><code>var obj = {}</code> - Anlegen mittels <i>Objektliteral</i></li>
+                <li><code>var obj = Object.create(Object.prototype)</code> Anlegen mittels allgemeiner Klassenfabrik</li>
+            </ol>
+            Das Egebnis ist in allen vier Fällen das gleiche, folgende Grafik veranschaulicht es:
+            <img src="~/Content/pics/JavaScript/new-Object-Konstruktion.svg" class="img-responsive" />
+        </p>
+        <p>
+            Jedes neue Objekt verweist über seine geschützte Eigenschaft __proto__ auf ein sog. <i>Prototypenobjekt</i>. Dies ist in allen hier gezeigten Fällen
+            das Objekt, auf welches die Eigenschaft <code>Object.prototype</code> des objekterzeugenden Funktionsobjektes verweist. Im Prototype- Objekt können
+            Eigenschaften und Methoden hinterlegt werden, die alle Objekte gemeinschaftlich nutzen. Werden mit einem Funktionsobjekt viele Objekte erzeugt,
+            dann ergibt sich durch die implementierung von Methoden im Prototypen eine Speicherplatzersparnis.
+        </p>
+    </article>
+    <article class="col-md-12">
+        <h3>Dictionarys als Objektliterale und die Rolle von <i>this</i></h3>
+        <p>
+            Die untypisierte Sprache JavaScript kennt naturgemäß keine Klassendeklarationen. Dafür verfügt sie über eine
+            sehr flexibele Syntax für Dictionarys, welche die Grundlage von Objekten in JavaScript sind. So werden
+            in Dictionarys die Schlüsseln zu Eigenschaften und Methoden, indem ihnen primitive Werte, Arrays und Einsprungadressen
+            von Funktionen zugewiesen werden.
+        </p>
+        <img src="~/Content/pics/JavaScript/Objektliterale-Funktion.svg" class="img-responsive" />
+        <p>
+            <i>this</i> ist eine versteckter 1. Paramater in der, dem Schlüssel <i>R</i> zugewiesenen Funktion.
+            In ihm wird beim Aufruf vom Laufzeitsystem automatisch die umgebende Dictionary eingesetzt.
+        </p>
+    </article>
+    <article class="col-md-12">
+        <h3>JSON</h3>
+        <p>
+            JavaScript- Objekte sind mittels JSON.parse und JSON.stringify- Methode einfach zu serialisieren in das <a href="http://www.json.org/json-de.html" target="_blank">JSON</a> Format.
+        </p>
+        <button id="b06_JSON" class="btn btn-primary">Starte Übung</button>
+    </article>
+    <article class="col-md-12">
+        <h3>Objekt mit definiertem Prototypen erzeugen</h3>
+        <p>
+            Seit ECMA 5.1 gibt es die Funktion <code>Object.create(<var>Prototype</var>)</code>, mittels der Objekte erstellt werden können, die einen explizit definierten
+            Prototypen besitzen. Dies ist die Basis für die sog. <i>prototypische Vererbung</i>.
+        </p>
+        <img src="~/Content/pics/JavaScript/ECMA5-Object.create.svg" class="img-responsive" />
+    </article>
+
+    <div class="col-md-12">
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+    </div>
+
+</div>
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/Scripts/qunit.js")
+    @Scripts.Render("~/Scripts/qunit.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/OO_Literal.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/OO_Json.js")
+}
+
+@* Style wird für Gestaltung der QUnit- Testausgabe benötigt *@
+@section Styles {
+    <link rel="stylesheet" href="~/Content/qunit.css" />
+}
+
+

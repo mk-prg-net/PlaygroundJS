@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "B06_03_OO_Module_und_Protoypische_Vererbung";
+}
+
+<h2>Module und protoypische Vererbung</h2>
+
+<div class="row">
+
+    <article class="col-md-12">
+        <h3>Namespaces</h3>
+        <p>
+            Aus <b>C++</b>, <b>Java</b> und <b>C#</b> ist das Konzept der Namesräume bekannt. JavaScript bietet ein solches Konzept nicht an.
+            Mittels Objekte, in denen Varaiblen und Methoden als Member analog den <i>statischen Methoden</i> angelegt werden, kann eine Verwaltung wie mit
+            Namespaces emuliert werden.
+        </p>
+    </article>
+
+    <article class="col-md-12">
+        <h3>Module</h3>
+        <p>
+            Ein Modul ist stellt Funktionen und Objekte unter einem Namespace bereit. Die Implementierungsdetails bleiben
+            dabei verborgen und verunreinigen nicht den globalen Scope (z.B. window- Objekt).
+        </p>
+        <p>
+            Die grundlegenden Bausteine für Module sind Namespaces und das IFFE- Muster.
+        </p>
+    </article>
+
+    <article class="col-md-12">
+        <h3>Prototypische Vererbung</h3>
+        <p>
+            Die prototypische Vererbung ist eine modernerer Stil beim Implementieren von Vererbung in JavaScript. Sie verzichtet auf Konstruktorfunktionen.
+            Eine Verunreinigung des Kontextes durch einen vergessnene new- Operator wird somit prinzipiell vermieden.
+            Zudem ist die prototypische Vererbung weniger komplex im Vergleich zur pseudoklassischen Konstruktorvererbung.
+        </p>
+
+
+    </article>
+
+    <div class="col-md-12">
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+    </div>
+
+
+</div>
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/Scripts/qunit.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Namespace/GetNamespace.js")    
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/OO_Namespaces.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/OO_Astro_Prototypvererbung.js")
+}
+
+@* Style wird für Gestaltung der QUnit- Testausgabe benötigt *@
+@section Styles {
+    <link rel="stylesheet" href="~/Content/qunit.css" />
+}

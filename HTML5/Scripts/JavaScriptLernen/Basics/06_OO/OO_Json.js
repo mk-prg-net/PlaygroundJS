@@ -1,7 +1,7 @@
 ﻿// Serialisieren und Deserialisieren von Objekten (Wichtig für Datenübertragung mittels Ajax
 // http://www.w3schools.com/js/js_json.asp
 
-function Point2d(X, Y){
+function Point2d(X, Y) {
 
     // Eigenschaften: 
     this.X = X;
@@ -15,7 +15,7 @@ Point2d.prototype.R = function () {
 }
 
 
-function OO_Json() {
+QUnit.test("JSON- Serialisierung", function (assert) {
 
     console.log("OO_JSon");
 
@@ -32,12 +32,12 @@ function OO_Json() {
         }
     };
 
-    function PointC(x, y){
+    function PointC(x, y) {
         this.X = x;
         this.Y = y;
 
         // Methode R, berechnet euklidischen Abstand
-        this.R =  function () {
+        this.R = function () {
             return Math.sqrt(this.X * this.X + this.Y * this.Y);
         }
 
@@ -64,6 +64,9 @@ function OO_Json() {
     // deserialisieren
     var PointDeserialisiert = JSON.parse(PointSerialisiert);
 
+
+    assert.equal(Object.keys(PointDeserialisiert).length, 2, "Es sollten zwei Eigenschaften deserialisiert werden");
+
     var PointAsPoint = CreatePointFromObject(PointDeserialisiert);
 
 
@@ -86,4 +89,4 @@ function OO_Json() {
 
     console.log("OO_JSon Ende");
 
-}
+});

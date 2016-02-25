@@ -124,27 +124,18 @@ function CreateKonto(ktoNr) {
 function OO_Konstruktor() {
     console.log("OO_Konstruktor");
 
-    // Alternativ zum erzeugen einer leeren Dictionary {} ist ein Objekt mittels new und dem Object()- Konstruktor definieren:
-    var Point3d = new Object();
-
-    Point3d.X = 1;
-    Point3d.Y = 2;
-    Point3d.Z = 3;
-
-    Point3d.R = function () {
-        return Math.sqrt(Math.pow(this.X, 2) + Math.pow(this.Y, 2) + Math.pow(this.Z, 2));
-    }
-
-    var Abstand = Point3d.R();
-
-
+    // Anlegen von Konto- Objekten mittels spezieller Konstruktorfunktionen
     var DonaldsKonto = new Konto('4711', 'Donald');
+
+    // Konto2- Kontruuktorfunktion
     var CarlosKonto = new Konto2('0815', 'Carlo');
     var Tic = Konto2("1234", "Tic");
 
     // Fataler Fehler: Konstruktor ohne new aufgerufen
     // this ist globales Objekt-> wird um Eigenschaften erweitert (quasi static)
     var ClaasCleversKto = Konto('8877', 'Claas');
+    console.assert(!("Inhaber" in window), "window versehentlich um eine Eigenschaft erweitert");
+
 
     // Moderner, prototypischer Ansatz: Verzichtet auf new- Operator
     // (und den damit verbundenen Fehlern)
@@ -158,7 +149,7 @@ function OO_Konstruktor() {
     var MinisKonto = CreateKonto("9876");
     console.assert(MinisKonto.__proto__.ktoNr === 99);
 
-
+    // zurück zu den Konstruktoren
     var stand = DonaldsKonto.Einzahlen(1000);
     console.assert(DonaldsKonto.Guthaben === 1000.0, "Einzahlen Fehlgeschlagen");
 
@@ -180,15 +171,6 @@ function OO_Konstruktor() {
     var ktoNrCarlo = CarlosKonto.KtoNr();
     // Scheitert zur Laufzeit sofort
     //CarlosKonto.KtoNr = "1234";
-
-    // Gefahr des vergessens von new
-    var DaisysKonto = Konto2('7777', 'Daisy');
-    var DanielsKonto = new Konto2();
-    // Fehler: this ist jetzt window !
-    DaisysKonto.Einzahlen(1000);
-
-    console.assert("Inhaber" in window, "window versehentlich um eine Eigenschaft erweitert");
-
 
     console.log("OO_Konstruktor Ende");
 }

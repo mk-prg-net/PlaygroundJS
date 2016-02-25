@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "B06_02_OO_Konstruktor_Idiom";
+}
+
+<div class="row">
+
+    <article class="col-md-12">
+        <h3>Konstruktor Idiom</h3>
+        <p>Ein Idiom ist ein, bereits in der Programmiersprache integriertes Design- Pattern.</p>
+        <p>
+            Durch den <i>new</i> Operator in JavaScript wird die Implementierung
+            von Objekten durch Dictionarys hinter dem Idiom des Objektkonstruktors verborgen.
+        </p>
+        <img src="~/Content/pics/JavaScript/new-operator.svg" class="img-responsive" />
+        <p>
+            Technisch betrachtet automatisiert der new Operator zusammen mit dem Konstruktor den Prozess des Anlegens einer
+            leeren Dictionary und dem anschließenden Erweitern um Eigenschften und Methoden. Problemlos können nun beliebig
+            viele gleichartig strukturierte Objekte mittels <i>new Konstruktor</i> erzeugt werden.
+        </p>
+        <button id="b06_Konstruktor" class="btn btn-primary">Starte Übung</button>
+    </article>
+    <article class="col-md-12">
+        <h3>Prototypen</h3>
+        <p>
+            Werden Methoden direkt als Eigenschaften von Instanzen gebildet, dann speichert jede Instanz eine individuelle
+            Implementierung der Methode. In Spezialfällen ist dies sinnvoll, allgemein jedoch eine Speicherplatzverschwendung.
+        </p>
+        <p>
+            Jede Funktion und damit auch Konstruktorfunktion ist in JavaScript ein Objekt mit der speziellen Eigenschaft
+            <i>prototype</i>. Diese verweist auf ein leeres Dictionary {} (=Objekt). Wird nun mittels <i>new</i> über den Konstruktor
+            ein neues Objekt erzeugt, dann verweist auch dessen __proto__- Eigenschaft auf dieses prototype- Objekt des Konstruktors.
+        </p>
+        <img src="~/Content/pics/JavaScript/Prototype.svg" class="img-responsive" />
+        <p>
+            Beim Aufruf einer Methode oder Abruf einer Eigenschaft über eine Objektinstanz sucht
+            <ol>
+                <li>die JavaScript Laufzeitumgebung in der Instanz selbst</li>
+                <li>und wenn sie in 1) nicht fündig wird, dann in dem über __proto__ verwiesenen Prototypenobjekt.</li>
+            </ol>
+        </p>
+        <p>
+            Das <i>prototype</i> Objekt einer Konstruktorfunktion ist damit der ideale Ort für Funktionen und Eigenschaften,
+            die sich alle Instanzen teilen
+        </p>
+        <button id="b06_Prototypen" class="btn btn-primary">Starte Übung</button>
+    </article>
+    <article class="col-md-12">
+        <h3>Statische Member</h3>
+        <p>
+            Aus <b>C++</b>, <b>Java</b> und <b>C#</b> ist das Konzept der statischen Member bekannt. Der Zugriff auf diese bedarf dort keiner
+            Objektinstanz. Stattdessen sind sie über den Name der Klasse erreichbar.
+        </p>
+        <p>
+            JavaScript kennt kein Klassenkonzept. Jedoch stellt eine Konstruktormethode ein Objket dar (in JavaScript sind alle Funktionen Objekte),
+            dass wie jedes Objekt um Member erweitert werden kann. Member der Konstruktorfunktion können zur Emulation statischer Member genutzt werden.
+        </p>
+        <button id="b06_StaticMembers" class="btn btn-primary">Starte Übung</button>
+    </article>
+    <article class="col-xs-12 col-md-12 col-lg-12">
+        <h3>Pseudoklassische Vererbung</h3>
+        
+        <a href="http://www.bennadel.com/blog/2184-object-create-improves-constructor-based-inheritance-in-javascript-it-doesn-t-replace-it.htm" target="_blank">hier</a>.
+        <figure>
+            <img src="~/Content/pics/JavaScript/JavaScriptVererbung.svg" class="img-responsive" style="width: 100%" />
+        </figure>
+        @Html.ActionLink("Starte Übung", "ShowView", new { viewName="AstroQUnit" }, new { @class = "btn btn-primary" })
+    </article>
+</div>
+
+@* Bennanter Abschnitt, der im Fuss der Layoutseite eingeblendet wird, und die Skripte enthält *@
+@section Scripts {
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/DocumentReadyKonstruktor.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/OO_Konstruktor.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/OO_Prototyp.js")
+    @Scripts.Render("~/Scripts/JavaScriptLernen/Basics/06_OO/OO_StaticMembers.js")
+    
+}
+
+

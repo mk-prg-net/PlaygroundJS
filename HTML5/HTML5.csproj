@@ -455,8 +455,10 @@
     <Content Include="Content\pics\Io-small.jpg" />
     <Content Include="Content\pics\JavaScript\ajax-JavaScript-DOM.svg" />
     <Content Include="Content\pics\JavaScript\ajax-Konzept.svg" />
+    <Content Include="Content\pics\JavaScript\AstroLib.svg" />
     <Content Include="Content\pics\JavaScript\chrome-open-devtools.png" />
     <Content Include="Content\pics\JavaScript\console.svg" />
+    <Content Include="Content\pics\JavaScript\ECMA5-Object.create.svg" />
     <Content Include="Content\pics\JavaScript\EVA-polar-in-kartesisch.png" />
     <Content Include="Content\pics\JavaScript\FileAPI.svg" />
     <Content Include="Content\pics\JavaScript\git-overview.svg" />
@@ -468,6 +470,7 @@
     <Content Include="Content\pics\JavaScript\jQueryOverview.svg" />
     <Content Include="Content\pics\JavaScript\NamenBloecke.png" />
     <Content Include="Content\pics\JavaScript\NamenBloecke.svg" />
+    <Content Include="Content\pics\JavaScript\new-Object-Konstruktion.svg" />
     <Content Include="Content\pics\JavaScript\new-operator.svg" />
     <Content Include="Content\pics\JavaScript\Node.JS.svg" />
     <Content Include="Content\pics\JavaScript\Objektliterale-Funktion.png" />
@@ -1399,6 +1402,7 @@
     <Content Include="Scripts\JavaScriptLernen\Basics\05_Functions\funcobject.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\05_Functions\variadic.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\DocumentReady.js" />
+    <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\DocumentReadyKonstruktor.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Astro_Prototypvererbung.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Json.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Konstruktor.js" />
@@ -2500,6 +2504,9 @@
     <Content Include="Views\E03_JavaScriptLernen\lodashTests.cshtml" />
     <Content Include="Views\MkPrgNetTests\Index.cshtml" />
     <Content Include="Views\MkPrgNetTests\PrimNumbersTest.cshtml" />
+    <Content Include="Views\E03_JavaScriptLernen\B06_01_OO_Literal.cshtml" />
+    <Content Include="Views\E03_JavaScriptLernen\B06_02_OO_Konstruktor_Idiom.cshtml" />
+    <Content Include="Views\E03_JavaScriptLernen\B06_03_OO_Module_und_Protoypische_Vererbung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

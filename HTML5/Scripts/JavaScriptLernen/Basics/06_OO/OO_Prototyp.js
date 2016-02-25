@@ -1,4 +1,40 @@
-﻿// In dieser Impelmentierung werden in der Instanz nur Daten gespeichert. Die Methoden werden zentral im sog. Prototyp
+﻿//<unit_header>
+//----------------------------------------------------------------
+// Copyright 2016 Martin Korneffel
+// Martin Korneffel: IT Beratung/Softwareentwicklung
+// Stuttgart, den 10.2015
+//
+//  Projekt.......: HTML5
+//  Name..........: OO_Prototyp.js
+//  Aufgabe/Fkt...: Demonstration des Einsatzes von Prototypen
+//                  
+//
+//
+//
+//
+//<unit_environment>
+//------------------------------------------------------------------
+//  Zielmaschine..: PC 
+//  Betriebssystem: Windows 7 mit .NET 4.5
+//  Werkzeuge.....: Visual Studio 2013
+//  Autor.........: Martin Korneffel (mko)
+//  Version 1.0...: 
+//
+// </unit_environment>
+//
+//<unit_history>
+//------------------------------------------------------------------
+//
+//  Version.......: 1.1
+//  Autor.........: Martin Korneffel (mko)
+//  Datum.........: 
+//  Änderungen....: 
+//
+//</unit_history>
+//</unit_header>        
+
+
+// In dieser Impelmentierung werden in der Instanz nur Daten gespeichert. Die Methoden werden zentral im sog. Prototyp
 // von Konto_mit_ProtoMethoden gespeichert.
 function Konto_mit_ProtoMethoden(ktoNr, inhaber, passwort) {
     this.Inhaber = inhaber;
@@ -6,6 +42,7 @@ function Konto_mit_ProtoMethoden(ktoNr, inhaber, passwort) {
     this.Guthaben = 0.0;
     this.WechselkursEurDollar = 1.10;
 
+    // this in einem Closure sichern. So wird umrechnen immer auf das ursprüngliche Objekt zugreifen
     var self = this;
     var Umrechnen = function () {
         return self.Guthaben * self.WechselkursEurDollar;
@@ -14,6 +51,7 @@ function Konto_mit_ProtoMethoden(ktoNr, inhaber, passwort) {
     var Umrechnen2 = function () {
         return this.Guthaben * this.WechselkursEurDollar;
     }
+
 
     var Umrechnen3 = function (Guthaben, Wechselkurs) {
         return Guthaben * Wechselkurs;
@@ -24,6 +62,7 @@ function Konto_mit_ProtoMethoden(ktoNr, inhaber, passwort) {
     }
 
     this.GuthabenInDollar2 = function () {
+        // Call muss sein, da this sonst das window- Objekt ist !
         return Umrechnen2.call(this);
     }
 

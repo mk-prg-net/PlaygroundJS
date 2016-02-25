@@ -38,17 +38,13 @@ jQuery.noConflict();
 
 jQuery(document).ready(function () {
 
-    jQuery("#b06_Objektliterale").click(OO_Literal);
-    jQuery("#b06_Konstruktor").click(OO_Konstruktor);
-    jQuery("#b06_Prototypen").click(OO_Prototypen);
     jQuery("#b06_JSON").click(OO_Json);
     jQuery("#b06_namespaces").click(EmulateNamespaces);
-    jQuery("#b06_StaticMembers").click(EmulateStaticMember);
 
     // Die Testfunktion für unsere Übung als Click- Eventhandeler
     // des Buttuns StartOOue definieren
     jQuery("#StartOOue").click(TestOO_Points);
-    
+
     jQuery("#StartOOPrototypeInheritance").click(AstroPrototypVererbungTest);
 
 

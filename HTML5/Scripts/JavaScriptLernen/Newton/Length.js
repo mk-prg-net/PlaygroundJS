@@ -45,7 +45,7 @@
         }
 
         //  Mittels Konstruktor der Basisklasse wird Objekt mit
-        //  eigenschaften und Instanzmethoden der Bamsisklasse 
+        //  Eigenschaften und Instanzmethoden der Basisklasse 
         //  konfiguriert
         ns.Measurement.call(this, OofM, LengthBaseUnitSymbol, Value);
     }

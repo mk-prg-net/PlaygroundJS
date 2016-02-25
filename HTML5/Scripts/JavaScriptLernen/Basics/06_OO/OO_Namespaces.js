@@ -31,22 +31,21 @@ function GetMyNamespace() {
 })(window.ns1 = window.ns1 || {})
 
 
-
-function EmulateNamespaces() {
+QUnit.test("Namensräume emulieren", function (assert) {
 
     var ns = GetMyNamespace();
 
-    //var ns2 = my2 || {};
-
-    var x = ns1.Add(2, 3);
-
-
     // Namespace um eine Methode erweitern
     ns.Add = function (a, b) {
-        return a +b;
+        return 10*(a + b);
     }
 
-    UP1();
+    assert.strictEqual(ns, my.subspace, "GetMyspace sollte den Namensraum my.subspace liefern");
+    assert.equal(ns.Add(1, 2), 30, "Im Namensraum ns sollte die Add(1, 3) == 30 sein");
+    assert.equal(my.subspace.Add(1, 2), 30, "Im Namensraum my.subspace sollte die Add(1, 3) == 30 sein");
+    assert.equal(ns1.Add(1, 2), 3, "Im Namensraum ns1 sollte die Add(1, 3) == 3 sein");
+
+
 
     // Anwenden einer Verallgemeinerten Zugriffsfunktion auf Namespaces
     var ns2 = GetNamespace("yours", "subspace");
@@ -60,31 +59,22 @@ function EmulateNamespaces() {
         return a * a * a + b * b * b;
     }
 
-    UP2();
-}
+    UP(assert);
+});
 
 
-function UP1() {
-
-    // Zugriff auf den Namespace
-    var ns = GetMyNamespace();
-
-    var res = ns.Add(2, 3);
-    var res = my.subspace.Add(4, 5);
-
-}
 
 
-function UP2() {
+function UP(assert) {
 
     // Zugriff auf Namespace mit verallgemeinerter Methode
     var ns = GetNamespace("yours", "subspace");
     var ns2 = GetNamespace("yours", "subspace", "subsubspace");
 
-    var res = ns.Add(2, 3);
-    var res1 = ns2.Add(2, 3);
+    assert.strictEqual(ns, yours.subspace, "GetNamespace(\"yours\", \"subspace\") sollte den Namensraum yours.subspace liefern");
+    assert.equal(ns.Add(2, 3), 13, "yours.subspace.Add(2, 3) sollte 13 liefern");
+    assert.equal(ns2.Add(2, 3), 35, "yours.subspace.subsubspace.Add(2, 3) sollte 35 liefern");
+        
 
-    var res3 = yours.subspace.Add(10, 20);
-    var res4 = yours.subspace.subsubspace.Add(10, 20);
 }
 
