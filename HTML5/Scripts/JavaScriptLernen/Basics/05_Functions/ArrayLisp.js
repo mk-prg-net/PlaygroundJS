@@ -48,6 +48,7 @@ function ArrayLisp() {
         console.log(val);
     });
 
+    // map: L -> L' wobei gilt: |L| = |L'|, für alle el aus L': el = f(elu) mit elu aus L
     console.log("Funktionale Abbildung eines Array mittels map auf ein Bild");
     var PlaneteGross = Planeten.map(function (val) {
         return val.toUpperCase();

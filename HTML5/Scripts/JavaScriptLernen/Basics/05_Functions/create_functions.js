@@ -34,6 +34,10 @@
 //</unit_history>
 //</unit_header>        
 
+Acirc2 = function AreaCircle2(D) {
+    return Math.PI * D * D / 4.0;
+}
+
 function create_functions_test() {
 
     // Funktionen können innerhalb von Funktionen deklariert werden. Ihre Namen sind 
@@ -98,6 +102,8 @@ function create_functions_test() {
 
     var Einheitskreisumfang = Ucirc(2);
     var Einheitskreisflaeche = Acirc(2);
+    //var Einheitskreisflaeche = AreaCircle(2);
+    //var Einheitskreisflaeche2 = AreaCircle2(2);
     var Rechteckflaeche = Arect(2, 5);
 
     var Weglaenge = Centimeter(125) + Meter(0.5) + Millimeter(1750);

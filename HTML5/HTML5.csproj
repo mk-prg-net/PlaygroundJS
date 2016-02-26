@@ -1422,10 +1422,12 @@
     <Content Include="Scripts\JavaScriptLernen\Algo\PrimeScan.js" />
     <Content Include="Scripts\JavaScriptLernen\CanvasPainter\CanvasDefs.js" />
     <Content Include="Scripts\JavaScriptLernen\CanvasPainter\CanvasIntro.js" />
+    <Content Include="Scripts\JavaScriptLernen\CanvasPainter\CanvasMouseToolRect.js" />
     <Content Include="Scripts\JavaScriptLernen\CanvasPainter\CanvasMouseTools.js" />
     <Content Include="Scripts\JavaScriptLernen\CanvasPainter\CanvasScript.js" />
     <Content Include="Scripts\JavaScriptLernen\CanvasPainter\DocumentReady.js" />
     <Content Include="Scripts\JavaScriptLernen\CanvasPainter\GetNamespaceMkoGraph.js" />
+    <Content Include="Scripts\JavaScriptLernen\CanvasPainter\Point.js" />
     <Content Include="Scripts\JavaScriptLernen\DOM\DomClassic.js" />
     <Content Include="Scripts\JavaScriptLernen\DOM\DomSelectorsDemo.js" />
     <Content Include="Scripts\JavaScriptLernen\DOM\Lisp.UI.js" />

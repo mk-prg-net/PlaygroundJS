@@ -159,4 +159,73 @@ $(document).ready(function () {
 
     });
 
+    // Rechteck- Zeichentool
+    $("Rect").click(function () {
+
+
+
+
+    });
+
+
+    // Aus einer Datei die Zeichung wiederherstellen. Die Datei enthält JSon- Objekt
+    $("#file").change(function handleFileSelect(evt) {
+
+
+        var files = evt.target.files; // FileList object
+
+        // Loop through the FileList and render image files as thumbnails.
+        //for (var i = 0, f; f = files[i]; i++) {
+        for (var i = 0, f; i < files.length; i++) {
+
+            f = files[i];
+            // Only process text files.
+            if (!f.type.match('text.*')) {
+                continue;
+            }
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+
+                    var canvas = $("#CanvasPainter").get(0);
+
+                    var fname = theFile.name;
+                    var strPic = e.target.result;
+                    Scripts = JSON.parse(strPic);
+
+                    if (Scripts != "") {
+
+                        var anz = 0;
+                        for (var i = 0, anz = Scripts.length; i < anz; i++) {
+                            // IFFY hier notwendig, um eine echte lokale Variable typeId bereitzustellen
+                            (function () {
+
+                                // Die lokale Variable muss hier angelegt werden, damit ein korrekter
+                                // Closure in toString gegeben ist
+                                var typeId = Scripts[i].type;
+
+                                Scripts[i].toString = function () {
+                                    return mko.graph.enumCScriptTypeToString(typeId);
+                                }
+                            })()
+                        }
+                        mko.graph.CanvasRobot(canvas.getContext('2d'), Scripts);
+
+                        // Die Liste der Canvas- Befehle ausgeben
+                        $("#Scripts").empty().append(Scripts.map(function (script) {
+                            return "<tr><td>" + script.toString() + "</td></tr>";
+                        }));
+                    }
+                }
+            })(f);
+
+            // Read in the image file as a data URL (Base 64 encoded)
+            reader.readAsText(f);
+        }
+    });
+
+
 });

@@ -60,6 +60,9 @@ QUnit.test('Objekte und Objektliterale', function (assert) {
     var o0 = Object.call(null);
     TestCreatedObjectAndPrototype(o0, Object.prototype, 0, "Object.call(null)");
 
+    var o00 = Object.call({});
+    TestCreatedObjectAndPrototype(o00, Object.prototype, 0, "Object.call({})");
+
     //o00 = Object();
     //TestCreatedObjectAndPrototype(o00, Object.prototype, 0, "Object()");    
 
@@ -129,5 +132,17 @@ QUnit.test('Objekte und Objektliterale', function (assert) {
     // Prüfen, ob einzelne Member vorhanden sind mittels in- Operator
     assert.ok("R" in o5, "Der in- Operator sollte die Existenz der Eigenschaft R bestätigen: \"R\" in o5");
     
+    // Veränderungen am Prototypen von Object wirken sich auf alle Instanzen aus, die
+    // über {}, new Object(), Object.call(null) erzeugt wurden
+    Object.prototype.getName = function(){
+        return "Hallo";
+    }
+
+    assert.equal(o0.getName(), "Hallo", "o0.getName() sollte Hallo liefern");
+    assert.equal(o1.getName(), "Hallo", "o1.getName() sollte Hallo liefern");
+    assert.equal(o2.getName(), "Hallo", "o2.getName() sollte Hallo liefern");
+
+    assert.ok(!("getName" in o3), "o3 wurde mit Object.create(null) angelegt, hat damit keinen Prototypen und auch keine getName- Methode");
+
     console.log("OO_Literal Ende");
 })

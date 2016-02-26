@@ -53,6 +53,8 @@ function ClosureTest() {
         }
     })
 
+    //var alleDurch3teilbare = [];
+
     console.log(JSON.stringify(zahlen));
 
     // Eine Fabrikmethode für Funktionsobjekte zur Umrechnung von Längeneinheiten in die Basiseinheit Meter
@@ -96,6 +98,11 @@ function ClosureTest() {
     var closureObj2 = ClosureBox(Testobjekt);
 
     console.assert(closureObj1() === closureObj2(), "closureObj1 === closureObj2 gilt nicht !")
+
+    Testobjekt.X = 99;
+
+    console.assert(closureObj1().X === 99, "Closure und Testobjekt sollten gleich sein");
+    console.assert(closureObj2().X === 99, "Closure und Testobjekt sollten gleich sein");
 
 
     // ... jezt können wir passende Umrechnungsmethoden erzeugen

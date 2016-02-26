@@ -50,12 +50,24 @@ globalScope = this;
 function StrictMode() {
     // ECMA Script 5 stellt einen Schalter bereit, über den 
     // fatale Konstrukte von JS abgeschaltet werden
-    "use strict"
+    "use strict";
 
     var guteDeklaration = 99;
 
     // Deklaration globaler variablen ist in ECMA5 innerhalb eines Scriptes nicht mehr erlaubt
-    //schlechteDeklaration = 100;
+    //schlechteDeklaration2 = 100;
+
+}
+
+function NonStrictMode() {
+    // ECMA Script 5 stellt einen Schalter bereit, über den 
+    // fatale Konstrukte von JS abgeschaltet werden
+    //"use strict";
+
+    var guteDeklaration = 99;
+
+    // Deklaration globaler variablen ist in ECMA5 innerhalb eines Scriptes nicht mehr erlaubt
+    schlechteDeklaration = 100;
 
 }
 
@@ -73,13 +85,15 @@ function Init() {
 
 }
 
+// Mock für den Test
 function InitTest() {
 
     InstanceCounter = 0;
 
     GolobalAdd = function (a, b) {
-        console.log("a " + a);
-        return a + b;
+        console.log("a " + a + " b " + b + " summe = " + a + b);
+        return a + b;       
+
     }
 
 }
@@ -101,13 +115,16 @@ function GlobalVsLocal() {
 
     console.log("GlobalVsLocal");
 
-    //StrictMode();
+    NonStrictMode();
+    StrictMode();
 
     // Anwendung testen
     Application(InitTest);
 
     // ... nun damit arbeiten
     Application(Init);
+
+    console.assert(InstanceCounter === 4, "Instancecounter sollte den Wert 4 haben");
 
     console.log(bin_aus_innerem_block);
 

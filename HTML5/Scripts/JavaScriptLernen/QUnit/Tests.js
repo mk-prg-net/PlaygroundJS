@@ -34,11 +34,13 @@
 //</unit_history>
 //</unit_header>        
 
+// QUnit wird von der qunit.js- Bibliothek exportiert. Ist der Erweiterungspunkt.
 QUnit.test("Convert Romzahl", function (assert) {
 
     var Arab = mko.algo.RomToArab('MDCLXVI');
     //assert.equal(Arab, 1666, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
 
+    assert.equal(mko.algo.RomToArab("MDLX"), 1560, "MDLX sollte 1560 sein");
 
     assert.equal(mko.algo.RomToArab('M'), 1000, "M sollte 1000 sein");
     assert.equal(mko.algo.RomToArab('D'), 500, "D sollte 500 sein");

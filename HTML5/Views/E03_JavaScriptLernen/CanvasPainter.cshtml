@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "CanvasPainter";
 }
 
@@ -8,55 +7,223 @@
 
     <div class="row">
 
-        <div class="btn-group-vertical col-xs-3 col-md-2 col-lg-2" role="group">
+        <div class="col-xs-9 col-md-9 col-lg-9">
+            <div class="btn-group btn-group-lg" role="group">
 
-            <button id="Save" class="btn btn-default" type="button">
-                Bild speichern
-            </button>
+                <button id="Save" class="btn btn-default" type="button">
+                    Bild speichern
+                </button>
 
-            <button id="Restore" class="btn btn-default" type="button">
-                Wiederherstellen
-            </button>
+                <button id="Restore" class="btn btn-default" type="button">
+                    Wiederherstellen
+                </button>
 
+                <button id="LineTo" class="btn btn-default" type="button">
+                    <img src="~/Content/pics/Geometric/SymLine.svg" height="20" />
+                </button>
 
-            <button id="LineTo" class="btn btn-default" type="button">
-                <img src="~/Content/pics/Geometric/SymLine.svg" />
-            </button>
+                <button id="Circle" class="btn btn-default" type="button">
+                    <img src="~/Content/pics/Geometric/SymCircle.svg" height="20" />
+                </button>
 
-            <button id="Circle" class="btn btn-default" type="button">
-                <img src="~/Content/pics/Geometric/SymCircle.svg" />
-            </button>
+                <button id="Rect" class="btn btn-default" type="button">
+                    <img src="~/Content/pics/Geometric/SymRectangle.svg" height="20" />
+                </button>
 
-            <button id="Rect" class="btn btn-default" type="button">
-                <img src="~/Content/pics/Geometric/SymRectangle.svg" />
-            </button>
+                <button id="ClearCanvas" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
 
-            <button id="ClearCanvas" class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-remove"></span>
-            </button>
+            </div>
+        </div>
+
+        <div class="col-xs-3 col-md-3 col-lg-3">
+            <input type="file" id="file" name="file" />
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12 col-md-9 col-lg-9">
+            <canvas id="CanvasPainter" class="" width="800" height="600"></canvas>
+
+            <article>
+                <h1>Scriptsprache von Canvas Painter</h1>
+
+                <p>
+                    Der Canvas Painter versteht eine einfache Script- Sprache, mit der Zeichnungen erzeugt werden können.
+                    Die Scripte werden als Dateien hochgeladen und unmittelbar ausgeführt.
+                </p>
+
+                <h3>Grundaufbau eines Scriptes</h3>
+                <p>
+                    Ein Script ist ein <i>JSON</i> - Array, das aus Objekten besteht, die JavaScript- Canvas- Befehle darstellen:
+                </p>
+                <pre>
+[ {Befehl 1}, ..., {Befehl n} ]
+</pre>
+                <p>
+                    Jeder Befehl ist ein JSON- Objekt, das mindestens die Eigenschaft <b>type</b> besitzt. <b>type</b> definiert dabei
+                    den Befehlstyp:
+                </p>
+                <pre>
+{ "type": &lt;Typnummer&gt;, ... }
+</pre>
+                <p>Folgende Befehlstypen existieren</p>
+                <table>
+                    <tr>
+                        <th>Befehl</th>
+                        <th>Typnummer</th>
+                        <th>Beschreibung</th>
+                        <th>Beispiel</th>
+                    </tr>
+                    <tr>
+                        <td>beginPath</td>
+                        <td>1</td>
+                        <td>
+                            Startet mit dem Zeichen eines Linienzuges/Umrandung. Pfade können mittels closePath automatisch zu geschlossenen Figuren
+                            vervollständigt werden. Konstruiert wird der Linienzug mit Pfadkommandos wie <b>lineTo</b> und <b>moveTo</b>. Tatsächlich
+                            gezeichnet wird er erst durch das Kommando stroke
+                        </td>
+                        <td>
+                            <pre>
+{"type":1}
+</pre>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>closePath</td>
+                        <td>2</td>
+                        <td>Schließt einen Pfad. Die aktuelle Position ist dann die Position, an welcher der Pfad begann.</td>
+                        <td>
+                            <pre>
+{"type":2}
+</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>strokeStyle</td>
+                        <td>3</td>
+                        <td>
+                            Linienstil: definiert die Farbe. Hier können HTML- Farbwerte eingetragen werden
+                        </td>
+                        <td>
+                            <pre>
+{"type":3,"Style":"#FFA000"}
+</pre>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>fillStyle</td>
+                        <td>4</td>
+                        <td>
+                            Füllstil: definiert die Farbe, mit der geschlossene Flächen gefüllt werden. Hier können HTML- Farbwerte eingetragen werden
+                        </td>
+                        <td>
+                            <pre>
+{"type":4,"Style":"#FFA000"}
+</pre>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>moveTo</td>
+                        <td>5</td>
+                        <td>
+                            Hebt den Plotterstift von der Zeichenfläche und bewegt ihn an eine neue Position. Es wird nicht gezeichnet.
+                        </td>
+                        <td>
+                            <pre>
+{"type":5,"X":100.0,"Y":200.0},
+</pre>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>lineTo</td>
+                        <td>6</td>
+                        <td>
+                            Bewegt den Plotterstift auf der Zeichenfläche an eine neue Position. Es wird eine Linie gezeichnet.
+                        </td>
+                        <td>
+                            <pre>
+{"type":6,"X":200.0,"Y":300.0},
+</pre>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>fillRect</td>
+                        <td>7</td>
+                        <td>
+                            Zeichnet ein Rechteck und füllt es.
+                        </td>
+                        <td>
+                            <pre>
+{"type":7,"pX":200.0,"pY":300.0, "Width":100.0, "Heigth":100.0}
+</pre>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>arc</td>
+                        <td>8</td>
+                        <td>
+                            Zeichnet einen Kreisbogen und füllt ihn.
+                        </td>
+                        <td>
+                            <pre>
+ {"type":8,"pX":75.0, "pY":242.0,"R":70.0,"PhiStart":0,"PhiStop":3.14,"Clockwise":true}
+</pre>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>stroke</td>
+                        <td>9</td>
+                        <td>
+                            Alle im Pfad definierten Linien werden nun tatsächlich gezeichet
+                        </td>
+                        <td>
+                            <pre>
+ {"type":9}
+</pre>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>fill</td>
+                        <td>10</td>
+                        <td>
+                            Alle im Pfad definierten Flächen werden nun tatsächlich gefüllt
+                        </td>
+                        <td>
+                            <pre>
+ {"type":10}
+</pre>
+
+                        </td>
+                    </tr>
+
+                </table>
+
+            </article>
 
         </div>
 
-        <div class="col-xs-7 col-md-7 col-lg-7" >
-            <canvas id="CanvasPainter" class="" width="600" height="400" >
-            </canvas>
-        </div>
-        
 
-        <div class="panel panel-primary col-xs-3 col-md-3 col-lg-3">
+        <div class="panel panel-primary col-xs-12 col-md-3 col-lg-3">
             <div class="panel-heading">
                 Scripte
             </div>
             <div class="panel-body">
 
             </div>
-            <table id="Scripts" class="table table-striped">
-
-            </table>
-
+            <table id="Scripts" class="table table-striped"></table>
 
         </div>
-
     </div>
 
 </form>
