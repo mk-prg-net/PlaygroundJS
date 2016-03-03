@@ -57,7 +57,7 @@ requirejs(['QUnit', 'NumberTheory/PrimNumbers', 'NumberTheory/PrimNumbersWithPro
                 // fail
                 function (err) {
                     // 
-                    assert.ok(false, err);
+                    assert.ok(true, "Fail: " +  err);
                     doneAsync();
                 },
 
@@ -65,6 +65,9 @@ requirejs(['QUnit', 'NumberTheory/PrimNumbers', 'NumberTheory/PrimNumbersWithPro
                 function (begin) {
                     assert.ok(true, "Eine erfolgreich Frotschrittsanzeige. Abschnitt ab " + begin + " verarbeitet");
                     console.log("Primzahlscanner jetzt bei " + begin);
+
+                    if (begin > 5000)
+                        throw "Keine Lust auf Arbeit";
                 });
         });
 
@@ -108,6 +111,9 @@ requirejs(['QUnit', 'NumberTheory/PrimNumbers', 'NumberTheory/PrimNumbersWithPro
 
         // start QUnit.
         //QUnit.load();
+
+        // Testrunner von QUnit mauell starten, da bei Einsatz von RequireJS 
+        // dieser nicht automatisch gestartet wird.
         QUnit.start();
 
     });

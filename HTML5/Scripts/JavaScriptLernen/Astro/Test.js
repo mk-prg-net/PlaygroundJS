@@ -6,7 +6,8 @@ requirejs.config({
     baseUrl: '/Scripts/JavaScriptLernen/Astro',
 
     paths: {
-        "QUnit": "../../qunit"
+        "QUnit": "../../qunit",
+        jquery: "../../jquery-1.10.2"
     },
 
     shim: {
@@ -22,10 +23,12 @@ requirejs.config({
 
 
 // 2. Starten der Anwendung
-requirejs(['QUnit', 'Galaxien/Galaxie', 'Sterne/Stern'],
-    function (QUnit, Galaxie, Stern) {
+requirejs(['jquery', 'QUnit', 'Galaxien/Galaxie', 'Sterne/Stern'],
+    function (jquery, QUnit, Galaxie, Stern) {
 
         QUnit.test("Allgemeiner Test", function (assert) {
+
+            var ver = jquery.now();
 
             var MeineSterne = [
                 new Stern("Sirius", 1000),

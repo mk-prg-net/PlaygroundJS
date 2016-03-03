@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "CanvasPainterScriptTest";
+}
+
+<h2>CanvasPainter Script Test</h2>
+
+<div>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+        @* Testmalfläche *@
+        @*<canvas id="pane" width="1000" height="1000" />*@
+    </div>
+</div>
+
+@* Testmalfläche *@
+<canvas id="pane" width="1000" height="500" />
+
+
+<script src="~/Scripts/require.js"
+        data-main="/Scripts/mk-prg-net/CanvasPainter/Test/CanvasScriptTest.js"></script>
+
+
+@* Style wird für Gestaltung der QUnit- Testausgabe benötigt *@
+@section Styles {
+    <link rel="stylesheet" href="~/Content/qunit.css" />
+}
+
+
+

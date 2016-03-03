@@ -61,6 +61,12 @@ define(["Base/CB"], function (CB) {
         }
 
         Gesamtmasse = 0;
+        for (var ix in this.Sterne) {
+            var stern = this.Sterne[ix];
+            Gesamtmasse += stern.GetMasse();
+        }
+
+        Gesamtmasse = 0;
         this.Sterne.forEach(function (stern) {
             Gesamtmasse += stern.GetMasse();
         });

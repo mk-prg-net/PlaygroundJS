@@ -35,9 +35,8 @@
 
 
 //
- 
-// Einschluss der Implementierung der Basisklassenfabrik in einem Modul
-var Astro_CB = Astro_CB || (function () {
+
+var AllgCBPrototyp = AllgCBPrototyp || (function () {
 
     // Prototyp für alle CB- Objekte. Bewahrt Metoden für CB Objekte zentral auf.
     var CbPrototyp = {
@@ -45,7 +44,7 @@ var Astro_CB = Astro_CB || (function () {
             return this.Name + " mit der Masse " + this.Masse.toString();
         },
 
-        getName: function() {
+        getName: function () {
             return this.Name;
         },
 
@@ -55,10 +54,19 @@ var Astro_CB = Astro_CB || (function () {
 
     };
 
+    return CbPrototyp;
+
+})();
+
+ 
+// Einschluss der Implementierung der Basisklassenfabrik in einem Modul
+var Astro_CB = Astro_CB || (function (CbPrototype) {
+    
+
     // Objekt wird zurückgegeben, welches eine Klassenfabrik anbietet
     return {
         Create: function (Name, Masse) {
-            var CB = Object.create(CbPrototyp);
+            var CB = Object.create(CbPrototype);
 
             // Eigenschaften für Name und Masse definieren, damit getName und getMasse auch für ein CB funktionieren
             CB.Name = Name;
@@ -68,7 +76,7 @@ var Astro_CB = Astro_CB || (function () {
         }
     }
 
-})();
+})(AllgCBPrototyp);
 
 
 var Astro_Stern = Astro_Stern || (function (CB) {

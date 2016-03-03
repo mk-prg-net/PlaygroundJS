@@ -1411,6 +1411,7 @@
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Points.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Prototyp.js" />
     <Content Include="Scripts\JavaScriptLernen\Ajax\CurrencyExchange.js" />
+    <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_Prototypenvererbung_allg.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\06_OO\OO_StaticMembers.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\07_Asynchron\DocumentReady.js" />
     <Content Include="Scripts\JavaScriptLernen\Basics\08_Globalize\DocumentReady.js" />
@@ -1795,6 +1796,7 @@
     <Content Include="Scripts\JavaScriptLernen\lodash\Tests.js" />
     <Content Include="Scripts\JavaScriptLernen\Namespace\GetNamespace.js" />
     <Content Include="Scripts\JavaScriptLernen\Newton\Newton.Tests.js" />
+    <Content Include="Scripts\JavaScriptLernen\nodejs\WebServer.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\app.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\mko\CreateCancellationToken.js" />
     <Content Include="Scripts\JavaScriptLernen\RequireJS\mko\PrimScan.js" />
@@ -2432,6 +2434,34 @@
     <Content Include="Scripts\lodash-amd\zipObject.js" />
     <Content Include="Scripts\lodash-amd\zipWith.js" />
     <Content Include="Scripts\mk-prg-net\Async\CancellationTokenFactory.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Basics\Defs.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Angle.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Point.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\arc.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\beginPath.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\bezierCurveTo.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\clearRect.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\quadraticCurveTo.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\restore.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\rotate.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\save.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\scale.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\Script.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\closePath.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\fill.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\fillRect.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\fillStyle.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\lineTo.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\moveTo.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\Pictograms.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\ScriptProto.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\stroke.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\strokeRect.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\strokeStyle.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\translate.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Test\BasicsTest.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Test\CanvasScriptTest.js" />
+    <Content Include="Scripts\mk-prg-net\jsExtensions\DuckTyping.js" />
     <Content Include="Scripts\mk-prg-net\NumberTheory\PrimNumbers.js" />
     <Content Include="Scripts\mk-prg-net\NumberTheory\PrimNumbersWithPromise.js" />
     <Content Include="Scripts\mk-prg-net\Tests\NumberTheoryPrimNumbers.js" />
@@ -2509,10 +2539,13 @@
     <Content Include="Views\E03_JavaScriptLernen\B06_01_OO_Literal.cshtml" />
     <Content Include="Views\E03_JavaScriptLernen\B06_02_OO_Konstruktor_Idiom.cshtml" />
     <Content Include="Views\E03_JavaScriptLernen\B06_03_OO_Module_und_Protoypische_Vererbung.cshtml" />
+    <Content Include="Views\MkPrgNetTests\CanvasPainterBasicsTest.cshtml" />
+    <Content Include="Views\MkPrgNetTests\CanvasPainterScriptTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\JavaScriptLernen\Astro\Tests\" />
+    <Folder Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

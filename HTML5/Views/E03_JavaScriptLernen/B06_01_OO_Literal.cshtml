@@ -42,9 +42,50 @@
         </p>
     </article>
     <article class="col-md-12">
+        <h3>Präzise Deklaration von Eigenschaften mittels Object.create(...) und Object.defineProperty(...)</h3>
+        <p>
+            Ab <b>ECMA5</b> können bei der Definition von Eigenschaften mittels <code>Object.create()</code> zusätzliche Attribute festgelegt werden wie:
+            <dl>
+                <dt><code>value: <var>true/false</var></code></dt>
+                <dd>Initialwert einer Eigenschaft. Kann auch  eine Funktion sein -> Methode wird definiert</dd>
+                <dt><code>writable: <var>true/false</var></code></dt>
+                <dd>Eigenschaft ist nur lesbar (konstant), j oder nein</dd>
+                <dt><code> configurable: <var>true/false</var> </code></dt>
+                <dd>Sind die Attribute einer Eigenschaft veränderbar, ja oder nein</dd>
+                <dt><code>enumarable: <var>true/false</var></code></dt>
+                <dd>
+                    Eigenschaft wird in einer <code>for...in</code> Schleife aufgelistet, oder von
+                    <code>JSON.stringify</code> mitberücksichtigt.
+                </dd>
+                <dt><code>get: function(){...}</code></dt>
+                <dd>Funktion, die aufgerufen wird, um für den lesenden Zugriff einen Wert zu berechnen</dd>
+                <dt><code>set: function(value){...}</code></dt>
+                <dd>
+                    Funktion, die beim schreibenden Zugriff aufgerufen wird, und den zu schreibenden
+                    Wert entgegtennimmt.
+                </dd>
+            </dl>
+
+            Siehe @Html.ActionLink("mk-prg-net/CanvasPainter/Geometry/Point.js", "showView", new { controller = "MkPrgNetTests", viewName = "CanvasPainterBasicsTest" })
+        </p>
+
+
+
+    </article>
+    <article class="col-md-12">
         <h3>JSON</h3>
         <p>
             JavaScript- Objekte sind mittels JSON.parse und JSON.stringify- Methode einfach zu serialisieren in das <a href="http://www.json.org/json-de.html" target="_blank">JSON</a> Format.
+        </p>
+        <p>
+            Die Serialisierung eines Objektes mittels <code>JSON.stringify</code> kann beeinflusst werden, indem dem
+            Objekt eine <code>toJSON()</code> Methode spendiert wird. Diese sollte ein JavaScript- Objekt zurückgeben,
+            welches die gewünschte Struktur hat. <code>JSON.stringify</code> ruft beim Serialisieren diese Methode
+            auf, falls vorhanden. (Siehe lineTo-Scriptbefehl in CanvasPainter)
+        </p>
+        <p>
+            Achtung: Hat ein Objekt einen Prototypen, dann werden dessen Eigenschaften beim serialisieren nicht 
+            berücksichtigt. Abhilfe kann hier wieder die <code>toJSON</code> Methode schaffen.
         </p>
         <button id="b06_JSON" class="btn btn-primary">Starte Übung</button>
     </article>

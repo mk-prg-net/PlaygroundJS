@@ -164,15 +164,15 @@ function Arrays() {
         summe += val;
     }
 
-    // Ab ECMA6 ogibt es die sichere Variante von for in: for of
-    for (var val of Planeten) {
-        console.log(val.toString());
-    }
+    //// Ab ECMA6 ogibt es die sichere Variante von for in: for of
+    //for (var val of Planeten) {
+    //    console.log(val.toString());
+    //}
 
-    summe = 0;
-    for(var val of reineZahlen){
-        summe += val;
-    }
+    //summe = 0;
+    //for(var val of reineZahlen){
+    //    summe += val;
+    //}
 
 
 
