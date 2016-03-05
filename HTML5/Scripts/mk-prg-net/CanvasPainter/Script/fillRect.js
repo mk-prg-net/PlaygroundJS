@@ -53,17 +53,6 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
             }
         },
 
-        trafo: {
-            value: function (tf) {
-                // tf: Point -> Point', Transformationsfunktion, die Punkte auf Punkte abbildet
-                var p1 = Point.createCartesian(this.pX, this.pY);
-                var p2 = Point.createCartesian(this.pX + this.Width, this.pY + this.Height);
-                var p1t = tf(p1);
-                var p2t = tf(p2);
-                return create(p1t.X, p1t.Y, Math.abs(p2t.X - p1t.X), Math.abs(p2t.Y - p1t.Y));
-            }
-        },
-
         toJSON: {
             value: function () {
                 return {
@@ -105,9 +94,15 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
         });
     }
 
+    function createFromObject(obj) {
+        return create(obj.pX, obj.pY, obj.Width, obj.Height);
+    }
+
 
     return {
         Name: cmdName,
-        create: create,
+        'with': create,
+        from: createFromObject
+
     }
 });

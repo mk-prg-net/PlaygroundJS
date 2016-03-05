@@ -462,6 +462,7 @@
     <Content Include="Content\pics\JavaScript\EVA-polar-in-kartesisch.png" />
     <Content Include="Content\pics\JavaScript\FileAPI.svg" />
     <Content Include="Content\pics\JavaScript\git-overview.svg" />
+    <Content Include="Content\pics\JavaScript\html-jq-boxmodel.svg" />
     <Content Include="Content\pics\JavaScript\ie-open-devtools.png" />
     <Content Include="Content\pics\JavaScript\JavaScriptArray.svg" />
     <Content Include="Content\pics\JavaScript\JavaScriptDatentypen.svg" />
@@ -2437,10 +2438,14 @@
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Basics\Defs.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Angle.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Point.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\SelectPoint.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\arc.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\beginPath.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\bezierCurveTo.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\clearRect.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\fillText.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\font.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\metaMark.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\quadraticCurveTo.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\restore.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\rotate.js" />
@@ -2545,7 +2550,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\JavaScriptLernen\Astro\Tests\" />
-    <Folder Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

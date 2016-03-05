@@ -53,13 +53,6 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
             }
         },
 
-        trafo: {
-            value: function (tf) {
-                // tf: Point -> Point', Transformationsfunktion, die Punkte auf Punkte abbildet
-                return create();
-            }
-        },
-
         toJSON: {
             value: function () {
                 return {
@@ -85,9 +78,14 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
             });
     }
 
+    function createFromObject(obj) {
+        return create(obj.Style);
+    }
+
     return {
         Name: cmdName,
-        create: create,
+        'with': create,
+        from: createFromObject
     }
 
 });

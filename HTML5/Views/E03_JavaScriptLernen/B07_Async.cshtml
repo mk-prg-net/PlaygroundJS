@@ -3,7 +3,7 @@
 }
 
 <div class="row">
-    <article class="col-xs-12 col-md-12 col-lg-12">
+    <article class="col-md-12">
         <h1>Muster der asynchronen Funktionen</h1>
         <p>
             Das Muster der <i>asynchronen Funktionen</i> in JavaScript veranschaulicht folgende Grafik:
@@ -21,6 +21,38 @@
             bearbeitet. So wird ein "einfrieren" des Browseroberfläche vermieden.
         </p>
     </article>
+
+    <article class="col-md-12">
+        <h1>Implementieren mittels Promises</h1>
+
+        <p>
+            <a href="https://github.com/kriskowal/q" target="_blank">Q.js</a> ist eine Bibliothek, die das Implementieren von asynchronen Methoden mittels 
+            <i>Promises</i> vereinfacht. 
+        </p>
+        <p>
+            Werden viele  asynchrone Methoden hintereinandergeschaltet, dann rücken die Folgefunktionen immer weiter nach rechts, es ensteht ein sehr unschönes
+            Layout, genannt <b>Pyramid of doom</b>. Promises bieten eine Syntax, die das vermeidet.
+        </p>
+        <p>
+            Aufruf einer asynchronen Methode mitteles Promise:
+            <code>asynMethodReturnsPromise(...).then(callbackIfDone(OneParam)[, callbackIfFails(OneParam)[, callbackIfProgessInfo(OneParam)]])</code>.
+            Gibt der <code>callbackIfDone</code> wiederum einen Promise zurück, dann kann dessen then einfach hinter den ersten then notiert werden:
+            <code>asynMethodReturnsPromise(...).then(callbackIfDone(OneParam)[, callbackIfFails(OneParam)[, callbackIfProgessInfo(OneParam)]]).then(CallbackIfSecondAsyncDone(OneParam))</code>.
+            Diese Aufrufschema wird auch <b>promise chainning</b> genannt.
+        </p>
+        <p>
+            Für Wird eine einzelne async- Methode aufgerufen, dann können <code>callbackIfFails</code>  und <code>callbackIfProgressInfo</code> ebenfalls in die 
+            Promise-  Chain eingefügt werden, anstatt sie als 2-ten und 3-ten Parameter mitzugeben:
+            <code>asynMethodReturnsPromise(...).then(callbackIfDoneReturnsPromise).progress(callbackIfProgessInfo).catch(callbackIfFails);</code>
+        </p>        
+        <p>
+            Das promise- chainning kann mit einer <code>done()</code> Methode beendet werden. Diese feuert eine Ausnahme, falls in der promise- chain eine 
+            unbehandelte Ausnahme auftrat.
+            <code>asynMethodReturnsPromise(...).then(callbackIfDoneReturnsPromise).progress(callbackIfProgessInfo).catch(callbackIfFails).done();</code>
+        </p>
+
+    </article>
+
 
     <article class="col-xs-12 col-md-12 col-lg-12">
         <from id="PrimScanConsole">

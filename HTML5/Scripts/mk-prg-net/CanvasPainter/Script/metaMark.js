@@ -2,15 +2,15 @@
 //----------------------------------------------------------------
 //
 // Martin Korneffel: IT Beratung/Softwareentwicklung
-// Stuttgart, den 1.3.2016
+// Stuttgart, den 4.3.2016
 //
 //  Projekt.......: CanvasPainter
-//  Name..........: stroke.js
-//  Aufgabe/Fkt...: Script- Objektfabrik für stroke Canvas Befehl
-//                  
-//
-//
-//
+//  Name..........: metamark.js
+//  Aufgabe/Fkt...: Script- Objektfabrik für metamark Befehl.
+//                  Dieser dient nur zur Markierung von Abschnitten in einem
+//                  Script, an der sich Listenverarbeitungsfunktionen über 
+//                  Scriptlisten orientieren können. Der Befehl hat keinerlei    
+//                  graphische Ausgabe zur Folge.
 //
 //<unit_environment>
 //------------------------------------------------------------------
@@ -33,11 +33,11 @@
 //</unit_history>
 //</unit_header>        
 
-define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
+define(['./ScriptProto'], function (ScriptProto) {
 
     "use strict";
 
-    var cmdName = 'stroke';
+    var cmdName = 'metaMark';
 
     var Proto = Object.create(ScriptProto, {
         Name: {
@@ -48,15 +48,16 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
 
         plot: {
             value: function (ctx) {
-                // ctx:  Canvas- Context
-                ctx.stroke();
+                // Befehl bewirkt keine graphische Ausgabe 
             }
         },
 
         toJSON: {
             value: function () {
                 return {
-                    stroke: true
+                    metaMark: {
+                        Name: this.Name
+                    }
                 };
             }
         }
@@ -64,14 +65,27 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
     });
 
 
-    function create() {
-        return Object.create(Proto);
+    function create(name) {
+
+        return Object.create(Proto,
+            {
+                Name: {
+                    value: name,
+                    writable: false,
+                    enumerable: true,
+                },
+
+            });
+    }
+
+    function createFromObject(obj) {
+        return create(obj.Name);
     }
 
     return {
         Name: cmdName,
         'with': create,
-        from: create
+        from: createFromObject
     }
 
 });

@@ -2,11 +2,11 @@
 //----------------------------------------------------------------
 //
 // Martin Korneffel: IT Beratung/Softwareentwicklung
-// Stuttgart, den 2.3.2016
+// Stuttgart, den 3.3.2016
 //
 //  Projekt.......: CanvasPainter
-//  Name..........: bezierCurveTo.js
-//  Aufgabe/Fkt...: Script- Objekt für quadraticCurveTo- Canvas- Befehl
+//  Name..........: fillText.js
+//  Aufgabe/Fkt...: Script- Objekt für fillText- Canvas- Befehl
 //                  
 //
 //
@@ -37,68 +37,51 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
 
     "use strict";
 
-    var cmdName = 'bezierCurveTo';
+    var cmdName = 'fillText';
 
-    var Proto = Object.create(ScriptProto, {
-        Name: {
+    var fillRectProto = Object.create(ScriptProto, {
+        type: {
             value: cmdName,
             writable: false,
             enumerable: true,
+
         },
         plot: {
             value: function (ctx) {
                 // ctx:  Canvas- Context
-                ctx.bezierCurveTo(this.cp1X, this.cp1Y, this.cp2X, this.cp2Y, this.X, this.Y);
+                ctx.fillText(this.Text, this.X, this.Y);
             }
         },
 
         toJSON: {
             value: function () {
                 return {
-                    bezierCurveTo: {
+                    fillText: {
                         X: this.X,
                         Y: this.Y,
-                        cp1X: this.cp1X,
-                        cp1Y: this.cp1Y,
-                        cp2X: this.cp2X,
-                        cp2Y: this.cp2Y,
+                        Text: this.Text,
                     }
-                };
+                }
             }
         }
+
     });
 
 
-    function create(X, Y, cp1X, cp1Y, cp2X, cp2Y) {
-
-        return Object.create(Proto, {
+    function create(x, y, text) {
+        return Object.create(fillRectProto, {
             X: {
-                value: X,
+                value: x,
                 writable: false,
                 enumerable: true,
             },
             Y: {
-                value: Y,
+                value: y,
                 writable: false,
                 enumerable: true,
             },
-            cp1X: {
-                value: cp1X,
-                writable: false,
-                enumerable: true,
-            },
-            cp1Y: {
-                value: cp1Y,
-                writable: false,
-                enumerable: true,
-            },
-            cp2X: {
-                value: cp2X,
-                writable: false,
-                enumerable: true,
-            },
-            cp2Y: {
-                value: cp2Y,
+            Text: {
+                value: text,
                 writable: false,
                 enumerable: true,
             },
@@ -106,12 +89,14 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
     }
 
     function createFromObject(obj) {
-        return create(obj.X, obj.Y, obj.cp1X, obj.cp1Y, obj.cp2X, obj.cp2Y);
+        return create(obj.X, obj.Y, obj.Text);
     }
+
 
     return {
         Name: cmdName,
         'with': create,
         from: createFromObject
+
     }
 });

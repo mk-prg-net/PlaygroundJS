@@ -51,6 +51,9 @@ define(['Geometry/Point',
         './restore',
         './bezierCurveTo',
         './quadraticCurveTo',
+        './font',
+        './fillText',
+        './metaMark',
         './arc'],
     function (Point,
         beginPath,
@@ -71,6 +74,9 @@ define(['Geometry/Point',
         restore,
         bezierCurveTo,
         quadraticCurveTo,
+        font,
+        fillText,
+        metaMark,
         arc) {
 
         "use strict";
@@ -96,6 +102,9 @@ define(['Geometry/Point',
         ScriptFactories[restore.Name] = restore;
         ScriptFactories[bezierCurveTo.Name] = bezierCurveTo;
         ScriptFactories[quadraticCurveTo.Name] = quadraticCurveTo;
+        ScriptFactories[font.Name] = font;
+        ScriptFactories[fillText.Name] = fillText;
+        ScriptFactories[metaMark.Name] = metaMark;
 
 
         return {
@@ -105,10 +114,10 @@ define(['Geometry/Point',
                 return ScriptFactories[cmdName];
             },
 
-            // Erzeugt ein Canvas- Kommando aus den Daten des übergebenen Objektes
-            CmdFromObject: function (cmdName) {
-                return ScriptFactories[cmdName].createFromObject;
-            },
+            //// Erzeugt ein Canvas- Kommando aus den Daten des übergebenen Objektes
+            //CmdFromObject: function (cmdName) {
+            //    return ScriptFactories[cmdName].createFromObject;
+            //},
 
             // Führt ein Script auf einen Canvas- Context aus.
             // ctx    : Contextobjekt eines Canvas
@@ -119,18 +128,6 @@ define(['Geometry/Point',
                     script.plot(ctx);
                 });
             },
-
-            // Führt die Koordinatentranformation tf auf allen Scripts aus.
-            trafo: function (Scripts, tf) {
-
-                var transformedScript = [];
-
-                Scripts.forEach(function (script) {
-                    transformedScript.push(script.trafo(tf));
-                });
-
-                return transformedScript;
-            }
 
         };
     });

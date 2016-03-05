@@ -189,14 +189,14 @@ define(function () {
     // Modulschnittstelle
     return {
         // Klassenfabrik, die Punkt in kartesischen Koordinaten erzeugt.
-        createCartesian: createPointCartesian,
+        cartesianWith: createPointCartesian,
 
-        createCartesianFromObject: createPointCartesianFromObject,
+        cartesianFrom: createPointCartesianFromObject,
 
         // Klassenfabrik, die Punkt in Polarkoordinaten erzeugt.
-        createPolar: createPointPolar,
+        polarWith: createPointPolar,
 
-        createPolarFromObject: createPointPolarFromObject,
+        polarFrom: createPointPolarFromObject,
 
 
         // true, wenn obj eine Instanz von Point ist
@@ -212,7 +212,7 @@ define(function () {
                 return false;
         },
 
-        // true, wenn obj eine Instanz eines Punktes in Polarkoordinaten ist
+        // true, wenn obj eine Instanz eines Punktes in kartesichen Koordinaten ist
         cartesianIsClassOf: function (obj) {
             var proto = Object.getPrototypeOf(obj);
             if (proto) {

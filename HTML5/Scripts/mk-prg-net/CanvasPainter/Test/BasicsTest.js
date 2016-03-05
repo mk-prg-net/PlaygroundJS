@@ -77,7 +77,7 @@ requirejs(['QUnit', 'Geometry/Angle', 'Geometry/Point'],
 
         QUnit.test("Point in polar- und kartesischen Koordinaten", function (assert) {
 
-            var p0 = Point.createCartesian(0, 0);
+            var p0 = Point.cartesianWith(0, 0);
 
             assert.ok(typeof p0 !== 'undefined', 'Es sollte ein Punkt p0 erzeugt worden sein');
             assert.ok(Point.cartesianIsClassOf(p0), 'Der Punkt sollte vom Typ PointCartesian sein');
@@ -93,13 +93,13 @@ requirejs(['QUnit', 'Geometry/Angle', 'Geometry/Point'],
             assert.equal(p1.Y, 5, 'p1.Y sollte 5 sein');
 
 
-            var p2 = Point.createCartesian(1, 1);
+            var p2 = Point.cartesianWith(1, 1);
 
             assert.equal(Math.round(p2.toPolar().R * 1000.0), 1414, '(1,1) sollte einen Abstand von 1,4142 zum Punkt (0,0) haben.');
             assert.equal(Math.round(p2.toPolar().Phi * 1000.0), 785, '(1,1) sollte Abstand von 1,4142 zum Punkt (0,0) haben.');
 
 
-            var p3 = Point.createPolar(Angle.toRad(45), Math.sqrt(2));
+            var p3 = Point.polarWith(Angle.toRad(45), Math.sqrt(2));
             assert.ok(typeof p3 !== 'undefined', 'Es sollte ein Punkt p3 erzeugt worden sein');
             assert.ok(Point.polarIsClassOf(p3), 'Der Punkt sollte vom Typ PointPolar sein');
             assert.ok(p3.hasOwnProperty('Phi') && p3.hasOwnProperty('R'), 'p3 sollte die Eigenschaften Phi und R haben');

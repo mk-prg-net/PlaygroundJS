@@ -54,18 +54,18 @@ requirejs.config({
 
 
 // 2. Starten der Anwendung
-requirejs(['QUnit', 'Geometry/Angle', 'Basics/Defs', 'Script/Script', 'Script/Pictograms'],
-    function (QUnit, Angle, Defs, Script, Pictograms) {
+requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Script/Script', 'Script/Pictograms', 'MouseTools/SelectPoint'],
+    function (Q, QUnit, Angle, Point, Defs, Script, Pictograms, SelectPoint) {
 
 
         function SetTrafo(FK, Phi, newTx, newTy) {
             return FK.map(function (script) {
 
                 if (script.Name === 'rotate') {
-                    return Script.Cmd('rotate')(Angle.toRad(Phi));
+                    return Script.Cmd('rotate').with(Angle.toRad(Phi));
                 }
                 else if (script.Name === 'translate') {
-                    return Script.Cmd('translate')(newTx, newTy);
+                    return Script.Cmd('translate').with(newTx, newTy);
                 } else {
                     return script;
                 }
@@ -82,81 +82,193 @@ requirejs(['QUnit', 'Geometry/Angle', 'Basics/Defs', 'Script/Script', 'Script/Pi
             var height = $('#pane').attr('height');
 
             var canvasInit = [
-                Script.Cmd('fillStyle')('#000000'),
-                Script.Cmd('fillRect')(0,0, width, height),
+                Script.Cmd('fillStyle').with('#000000'),
+                Script.Cmd('fillRect').with(0, 0, width, height),
             ];
 
             Script.plot(canvasInit, ctx);
 
-            var FK = Pictograms.createCrosshair();
-            assert.ok(FK.length > 0, 'Das Fadenkreuz sollte aus mehreren Elementen bestehen')
-
-            // Liste modifizieren
-            FK.unshift(Script.Cmd('rotate')(0))
-            FK.unshift(Script.Cmd('translate')(100, 100));
-            FK.unshift(Script.Cmd('save')());
-            FK.push(Script.Cmd('restore')());
+            var FK = Pictograms.createCrosshair(100, 100, 0, 'rgb(255, 0, 0)');
+            assert.ok(FK.length > 0, 'Das Fadenkreuz sollte aus mehreren Elementen bestehen');
 
             Script.plot(FK, ctx);
 
             var FK2 = SetTrafo(FK, 30, 200, 100);
             Script.plot(FK2, ctx);
-            
+
             var FK3 = SetTrafo(FK, 45, 200, 200);
             Script.plot(FK3, ctx);
-            
+
 
             var FK4 = SetTrafo(FK, 0, 100, 200);
             Script.plot(FK4, ctx);
 
-           
-            var nonLin = [
-                Script.Cmd('save')(),
 
-                Script.Cmd('strokeStyle')('#ffaa00'),
-                Script.Cmd('fillStyle')('#aaff00'),
-                Script.Cmd('translate')(250, 200),
+            var nonLin = [
+                Script.Cmd('save').with(),
+
+                Script.Cmd('strokeStyle').with('#ffaaee'),
+                Script.Cmd('fillStyle').with('#aaffee'),
+                Script.Cmd('translate').with(250, 200),
+                Script.Cmd('font').with('24px sans serif'),
+
+                Script.Cmd('metaMark').with("Textausgabe"),
+                Script.Cmd('fillText').with(10, 20, 'Das ist ein Test'),
 
                 // Figur aus quadratischen und kubischen Linien zeichnen
-                Script.Cmd('beginPath')(),
-                Script.Cmd('moveTo')(0,0),
-                Script.Cmd('quadraticCurveTo')(100, 100, 100, 0),
-                Script.Cmd('quadraticCurveTo')(150, 200, 150, 100, 100, 200),
-                Script.Cmd('closePath')(),
-                Script.Cmd('stroke')(),
+                Script.Cmd('metaMark').with("Linien"),
+                Script.Cmd('beginPath').with(),
+                Script.Cmd('moveTo').with(0, 0),
+                Script.Cmd('quadraticCurveTo').with(100, 100, 100, 0),
+                Script.Cmd('bezierCurveTo').with(150, 200, 150, 100, 100, 200),
+                Script.Cmd('quadraticCurveTo').from({
+                    X: 0,
+                    Y: 0,
+                    cpX: 0,
+                    cpY: 200,
+                }),
+                Script.Cmd('closePath').with(),
+                Script.Cmd('stroke').with(),
 
                 // Kreis zeichnen
-                Script.Cmd('beginPath')(),
-                Script.Cmd('arc')(200, 100, 75, Angle.toRad(270), Angle.toRad(90), false),
-                Script.Cmd('closePath')(),
-                Script.Cmd('stroke')(),
+                Script.Cmd('metaMark').with('Kreise'),
+                Script.Cmd('beginPath').with(),
+                Script.Cmd('arc').with(200, 100, 75, Angle.toRad(270), Angle.toRad(90), false),
+                Script.Cmd('closePath').with(),
+                Script.Cmd('stroke').with(),
 
 
                 // Rechtecke Zeichnen     
-                Script.Cmd('beginPath')(),
-                Script.Cmd('strokeRect')(300, 0, 150, 100),
-                Script.Cmd('fillRect')(310, 10, 130, 80),
-                Script.Cmd('clearRect')(320, 20, 110, 60),
-                Script.Cmd('closePath')(),
+                Script.Cmd('metaMark').with('Rechtecke'),
+                Script.Cmd('beginPath').with(),
+                Script.Cmd('strokeRect').with(300, 0, 150, 100),
+                Script.Cmd('fillRect').with(310, 10, 130, 80),
+                Script.Cmd('clearRect').with(320, 20, 110, 60),
+                Script.Cmd('closePath').with(),
 
-                Script.Cmd('restore')()
+                Script.Cmd('restore').with()
 
             ];
 
             Script.plot(nonLin, ctx);
 
             var jsonScript = JSON.stringify(nonLin);
-            var jsonPart = JSON.stringify(Script.Cmd('lineTo')(10, 20));
+            var jsonPart = JSON.stringify(Script.Cmd('lineTo').with(10, 20));
 
             var obj = JSON.parse(jsonPart);
             assert.ok('lineTo' in obj, 'Das eingelesene JSON- Objekt sollte eine lintTo Eigenschaft haben');
             if ('lineTo' in obj) {
-                var lineTo = Script.CmdFromObject('lineTo')(obj.lineTo);
+                var lineTo = Script.Cmd('lineTo').from(obj.lineTo);
                 assert.strictEqual(lineTo.X, 10.0, 'lineTo.X sollte 10 sein');
                 assert.strictEqual(lineTo.Y, 20.0, 'lineTo.Y sollte 20 sein');
             }
 
-           
+        });
+
+
+        QUnit.test('Select Point', function (assert) {
+
+            var doneAsync = assert.async(1);
+            var ctx = $('#pane').get(0).getContext('2d');
+            ctx.strokeStyle = '#ffffff';
+            //ctx.globalCompositeOperation = 'xor';
+
+            // aktuelle Darstellung sichern als Bitmap
+            var savedImage = new Image()
+            savedImage.src = $('#pane').get(0).toDataURL("image/png")
+
+            var CenterPoint = null;
+
+            function Circle(point, strokeStyle) {
+
+                var R = Point.cartesianFrom(point).translate(-CenterPoint.X, -CenterPoint.Y).d0;
+
+                var circ = [
+                    Script.Cmd('strokeStyle').with(strokeStyle),
+                    Script.Cmd('beginPath').with(),
+                    Script.Cmd('arc').with(CenterPoint.X, CenterPoint.Y, R, 0, 2 * Math.PI, false),
+                    Script.Cmd('closePath').with(),
+                    Script.Cmd('stroke').with(),
+                ];
+
+                return circ;
+            }
+
+            function rubberBandCircel(point, strokeStyle) {
+                
+                // Radiuslinie zeichnen
+                var rline = [
+                    Script.Cmd('strokeStyle').with(strokeStyle),
+                    Script.Cmd('beginPath').with(),
+                    Script.Cmd('moveTo').with(CenterPoint.X, CenterPoint.Y),
+                    Script.Cmd('lineTo').with(point.X, point.Y),
+                    Script.Cmd('closePath').with(),
+                    Script.Cmd('stroke').with(),                  
+                ];
+
+
+                return rline.concat(Circle(point, strokeStyle));
+
+            }
+
+
+            // Maus Tools testen
+            SelectPoint('#pane')
+                .progress(function (PointData) {
+
+                    // Hintergrund wiederherstellen
+                    ctx.drawImage(savedImage, 0, 0);
+
+                    // Fadenkreuz- Script erzeugen und zeichnen
+                    var cross = Pictograms.createCrosshair(PointData.point.X, PointData.point.Y, 0, '#ff0000', '#ff0000');
+                    Script.plot(cross, ctx);
+
+                })
+                .then(function (PointData) {
+
+                    // Hintergrund wiederherstellen
+                    ctx.drawImage(savedImage, 0, 0);
+
+                    CenterPoint = PointData.point;
+
+                    // Fadenkreuz- Script erzeugen und zeichnen
+                    var cross = Pictograms.createCrosshair(CenterPoint.X, CenterPoint.Y, 0, '#ffffff', '#ffffff');
+                    Script.plot(cross, ctx);
+
+                    // Neuen Grundzustand sichern
+                    savedImage.src = $('#pane').get(0).toDataURL("image/png")
+
+                    // Radius des Kreises festlegen
+                    SelectPoint(PointData.idCanvas)
+                        .progress(function (PointData) {
+
+                            // Hintergrund wiederherstellen
+                            ctx.drawImage(savedImage, 0, 0);
+
+                            Script.plot(rubberBandCircel(PointData.point, '#ff0000'), ctx);
+
+                        })
+                        .then(function (PointData) {
+
+                            // Hintergrund wiederherstellen
+                            ctx.drawImage(savedImage, 0, 0);
+
+                            Script.plot(Circle(PointData.point, '#ffffff'), ctx);
+
+                            // Neuen Grundzustand sichern
+                            savedImage.src = $('#pane').get(0).toDataURL("image/png")
+
+                        });
+
+                })
+                .catch(function (err) {
+                    assert.ok(false);
+                    doneAsync();
+                }).finally(function () {
+                    assert.ok(true);
+                    doneAsync();
+                })
+                .done();
         });
 
         // QUnit starten.

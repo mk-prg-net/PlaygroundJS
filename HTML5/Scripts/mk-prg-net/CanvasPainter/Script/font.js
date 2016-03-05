@@ -2,11 +2,11 @@
 //----------------------------------------------------------------
 //
 // Martin Korneffel: IT Beratung/Softwareentwicklung
-// Stuttgart, den 1.3.2016
+// Stuttgart, den 3.3.2016
 //
 //  Projekt.......: CanvasPainter
-//  Name..........: stroke.js
-//  Aufgabe/Fkt...: Script- Objektfabrik für stroke Canvas Befehl
+//  Name..........: font.js
+//  Aufgabe/Fkt...: Script- Objektfabrik für font Canvas Befehl
 //                  
 //
 //
@@ -33,11 +33,11 @@
 //</unit_history>
 //</unit_header>        
 
-define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
+define(['./ScriptProto'], function (ScriptProto) {
 
     "use strict";
 
-    var cmdName = 'stroke';
+    var cmdName = 'font';
 
     var Proto = Object.create(ScriptProto, {
         Name: {
@@ -49,14 +49,16 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
         plot: {
             value: function (ctx) {
                 // ctx:  Canvas- Context
-                ctx.stroke();
+                ctx.font = this.Font;
             }
         },
 
         toJSON: {
             value: function () {
                 return {
-                    stroke: true
+                    font: {
+                        Font: this.Font
+                    }
                 };
             }
         }
@@ -64,14 +66,27 @@ define(['Geometry/Point', './ScriptProto'], function (Point, ScriptProto) {
     });
 
 
-    function create() {
-        return Object.create(Proto);
+    function create(font) {
+
+        return Object.create(Proto,
+            {
+                Font: {
+                    value: font,
+                    writable: false,
+                    enumerable: true,
+                },
+
+            });
+    }
+
+    function createFromObject(obj) {
+        return create(obj.font);
     }
 
     return {
         Name: cmdName,
         'with': create,
-        from: create
+        from: createFromObject
     }
 
 });

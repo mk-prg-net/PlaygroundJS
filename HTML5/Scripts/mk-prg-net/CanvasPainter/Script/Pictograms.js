@@ -40,31 +40,30 @@ define(['Basics/Defs', './Script'], function (Defs, Script) {
     return {
 
         // Erzeugt ein Script für ein Fadenkreuz
-        createCrosshair: function () {
+        // mX, mY: Position
+        // Phi: Drehung um Fadenkreuzmitte         
+        createCrosshair: function (mX, mY, Phi, fillStyle, strokeStyle) {
             
-            var Crosshair = [];
+            var ang = Phi || 0.0;
+            var fst = fillStyle || Defs.FillStyle;
+            var sst = strokeStyle || Defs.StrokeStyle;
 
-            var cX = 0;
-            var cY = 0;
-
-            Crosshair.push(Script.Cmd('beginPath')());
-            Crosshair.push(Script.Cmd('strokeStyle')(Defs.FillStyle));
-
-            Crosshair.push(Script.Cmd('moveTo')(cX, cY));
-            Crosshair.push(Script.Cmd('lineTo')(cX + 10, cY));
-
-            Crosshair.push(Script.Cmd('moveTo')(cX, cY));
-            Crosshair.push(Script.Cmd('lineTo')(cX, cY + 10));
-
-            Crosshair.push(Script.Cmd('moveTo')(cX, cY));
-            Crosshair.push(Script.Cmd('lineTo')(cX - 10, cY));
-
-            Crosshair.push(Script.Cmd('moveTo')(cX, cY));
-            Crosshair.push(Script.Cmd('lineTo')(cX, cY - 10));
-
-            Crosshair.push(Script.Cmd('stroke')());
-            Crosshair.push(Script.Cmd('closePath')());
-
+            var Crosshair = [
+                Script.Cmd('save').with(),
+                Script.Cmd('fillStyle').with(fst),
+                Script.Cmd('strokeStyle').with(sst),
+                Script.Cmd('translate').with(mX, mY),
+                Script.Cmd('rotate').with(Phi),
+                Script.Cmd('beginPath').with(),                
+                Script.Cmd('moveTo').with(-10, 0),
+                Script.Cmd('lineTo').with(10, 0),
+                Script.Cmd('moveTo').with(0, -10),
+                Script.Cmd('lineTo').with(0, 10),
+                Script.Cmd('moveTo').with(0, 0),
+                Script.Cmd('stroke').with(),
+                Script.Cmd('closePath').with(),
+                Script.Cmd('restore').with()
+            ];
             return Crosshair;
         }
     };

@@ -53,14 +53,6 @@ define(['./ScriptProto'], function (ScriptProto) {
             }
         },
 
-        trafo: {
-            value: function (tf) {
-                // tf: Point -> Point', Transformationsfunktion, die Punkte auf Punkte abbildet
-
-                return create(this.Phi);
-            }
-        },
-
         toJSON: {
             value: function () {
                 return {
@@ -84,8 +76,13 @@ define(['./ScriptProto'], function (ScriptProto) {
         });
     }
 
+    function createFromObject(obj) {
+        return create(obj.Phi);
+    }
+
     return {
         Name: cmdName,
-        create: create,
+        'with': create,
+        from: createFromObject
     }
 });
