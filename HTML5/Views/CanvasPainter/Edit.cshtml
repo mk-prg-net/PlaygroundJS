@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+
+<form>
+    <h1>Canvas Painter</h1>
+
+    <div class="row">
+
+        <div class="col-xs-9 col-md-9 col-lg-9">
+            <div class="btn-group btn-group-lg" role="group">
+
+                <button id="Save" class="btn btn-default" type="button">
+                    Bild speichern
+                </button>
+
+                <button id="Restore" class="btn btn-default" type="button">
+                    Wiederherstellen
+                </button>
+
+                <button id="LineTo" class="btn btn-default" type="button">
+                    <img src="~/Content/pics/Geometric/SymLine.svg" height="20" />
+                </button>
+
+                <button id="Circle" class="btn btn-default" type="button">
+                    <img src="~/Content/pics/Geometric/SymCircle.svg" height="20" />
+                </button>
+
+                <button id="Rect" class="btn btn-default" type="button">
+                    <img src="~/Content/pics/Geometric/SymRectangle.svg" height="20" />
+                </button>
+
+                <button id="ClearCanvas" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="col-xs-3 col-md-3 col-lg-3">
+            <input type="file" id="file" name="file" />
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12 col-md-9 col-lg-9">
+            <canvas id="pane" class="" width="800" height="600"></canvas>
+        </div>
+    </div>
+
+    <div class="panel panel-primary col-xs-12 col-md-3 col-lg-3">
+        <div class="panel-heading">
+            Scripte
+        </div>
+        <div class="panel-body">
+
+        </div>
+        <table id="Scripts" class="table table-striped">
+
+        </table>
+    </div>
+
+</form>
+
+<script src="~/Scripts/require.js" data-main="/Scripts/mk-prg-net/CanvasPainter/Edit/DocumentReady.js"></script>
+
+

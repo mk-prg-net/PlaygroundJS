@@ -116,6 +116,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CanvasPainterController.cs" />
     <Compile Include="Controllers\E01_StructureAndStyleController.cs" />
     <Compile Include="Controllers\E02_BootstrapController.cs" />
     <Compile Include="Controllers\E03_JavaScriptLernenController.cs" />
@@ -2436,8 +2437,11 @@
     <Content Include="Scripts\lodash-amd\zipWith.js" />
     <Content Include="Scripts\mk-prg-net\Async\CancellationTokenFactory.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Basics\Defs.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Basics\StyleDescriptor.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Edit\DocumentReady.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Angle.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Point.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\Circle.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\SelectPoint.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\arc.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\beginPath.js" />
@@ -2458,7 +2462,7 @@
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\fillStyle.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\lineTo.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\moveTo.js" />
-    <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\Pictograms.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Pictograms\Crosshair.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\ScriptProto.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\stroke.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\strokeRect.js" />
@@ -2546,6 +2550,7 @@
     <Content Include="Views\E03_JavaScriptLernen\B06_03_OO_Module_und_Protoypische_Vererbung.cshtml" />
     <Content Include="Views\MkPrgNetTests\CanvasPainterBasicsTest.cshtml" />
     <Content Include="Views\MkPrgNetTests\CanvasPainterScriptTest.cshtml" />
+    <Content Include="Views\CanvasPainter\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

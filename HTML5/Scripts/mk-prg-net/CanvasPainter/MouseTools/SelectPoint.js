@@ -33,7 +33,7 @@
 //</unit_history>
 //</unit_header>        
 
-define(['Q', 'Geometry/Angle', 'Geometry/Point', 'Script/Script', 'Script/Pictograms'], function (Q, Angle, Point, Script, Pictos) {
+define(['Q', 'Geometry/Angle', 'Geometry/Point'], function (Q, Angle, Point) {
 
 
     function CreateResult(idCanvas, point, oldPoint) {

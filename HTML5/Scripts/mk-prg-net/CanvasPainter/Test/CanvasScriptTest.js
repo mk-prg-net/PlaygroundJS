@@ -54,8 +54,8 @@ requirejs.config({
 
 
 // 2. Starten der Anwendung
-requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Script/Script', 'Script/Pictograms', 'MouseTools/SelectPoint'],
-    function (Q, QUnit, Angle, Point, Defs, Script, Pictograms, SelectPoint) {
+requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/StyleDescriptor', 'Script/Script', 'Pictograms/Crosshair', 'MouseTools/SelectPoint'],
+    function (Q, QUnit, Angle, Point, StyleDescriptor, Script, Crosshair, SelectPoint) {
 
 
         function SetTrafo(FK, Phi, newTx, newTy) {
@@ -88,7 +88,14 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
 
             Script.plot(canvasInit, ctx);
 
-            var FK = Pictograms.createCrosshair(100, 100, 0, 'rgb(255, 0, 0)');
+            var CrosshairStyle = (function(){
+                var descr = StyleDescriptor.create();
+                descr.fillStyle = 'rgb(255, 0, 0)';
+                descr.strokeStyle = 'rgb(255, 0, 0)';
+                return descr;
+            })();
+
+            var FK = Crosshair(100, 100, 0, CrosshairStyle);
             assert.ok(FK.length > 0, 'Das Fadenkreuz sollte aus mehreren Elementen bestehen');
 
             Script.plot(FK, ctx);
@@ -163,6 +170,14 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
                 assert.strictEqual(lineTo.Y, 20.0, 'lineTo.Y sollte 20 sein');
             }
 
+            var funcList = [];
+            var jsonObjects = JSON.parse(jsonScript);
+            jsonObjects.map(function (script) {
+                let name = Object.getOwnPropertyNames(script)[0];
+                let param = JSON.stringify(script[name]);
+                funcList.push(name + '(' + param + ")");
+            })
+
         });
 
 
@@ -173,18 +188,35 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
             ctx.strokeStyle = '#ffffff';
             //ctx.globalCompositeOperation = 'xor';
 
+            var circStyle = circStyle ||
+                (function () {
+                    var descr = StyleDescriptor.create();
+                    descr.fillStyle = '#ffffff';
+                    descr.strokeStyle = '#ffffff';
+                    return descr;
+                })();
+            var constructionLinesStyle = constructionLinesStyle ||
+                (function () {
+                    var descr = StyleDescriptor.create();
+                    descr.fillStyle = '#ff0000';
+                    descr.strokeStyle = '#ff0000';
+                    return descr;
+                })();
+
+
             // aktuelle Darstellung sichern als Bitmap
             var savedImage = new Image()
             savedImage.src = $('#pane').get(0).toDataURL("image/png")
 
             var CenterPoint = null;
 
-            function Circle(point, strokeStyle) {
+            function Circle(point, Style) {
 
                 var R = Point.cartesianFrom(point).translate(-CenterPoint.X, -CenterPoint.Y).d0;
 
                 var circ = [
-                    Script.Cmd('strokeStyle').with(strokeStyle),
+                    Script.Cmd('strokeStyle').with(Style.strokeStyle),
+                    Script.Cmd('fillStyle').with(Style.fillStyle),
                     Script.Cmd('beginPath').with(),
                     Script.Cmd('arc').with(CenterPoint.X, CenterPoint.Y, R, 0, 2 * Math.PI, false),
                     Script.Cmd('closePath').with(),
@@ -194,23 +226,20 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
                 return circ;
             }
 
-            function rubberBandCircel(point, strokeStyle) {
-                
+            function rubberBandCircel(point, Style) {
+
                 // Radiuslinie zeichnen
                 var rline = [
-                    Script.Cmd('strokeStyle').with(strokeStyle),
+                    Script.Cmd('strokeStyle').with(Style.strokeStyle),
                     Script.Cmd('beginPath').with(),
                     Script.Cmd('moveTo').with(CenterPoint.X, CenterPoint.Y),
                     Script.Cmd('lineTo').with(point.X, point.Y),
                     Script.Cmd('closePath').with(),
-                    Script.Cmd('stroke').with(),                  
+                    Script.Cmd('stroke').with(),
                 ];
 
-
-                return rline.concat(Circle(point, strokeStyle));
-
+                return rline.concat(Circle(point, Style));
             }
-
 
             // Maus Tools testen
             SelectPoint('#pane')
@@ -220,7 +249,7 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
                     ctx.drawImage(savedImage, 0, 0);
 
                     // Fadenkreuz- Script erzeugen und zeichnen
-                    var cross = Pictograms.createCrosshair(PointData.point.X, PointData.point.Y, 0, '#ff0000', '#ff0000');
+                    var cross = Crosshair(PointData.point.X, PointData.point.Y, 0, constructionLinesStyle);
                     Script.plot(cross, ctx);
 
                 })
@@ -232,11 +261,11 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
                     CenterPoint = PointData.point;
 
                     // Fadenkreuz- Script erzeugen und zeichnen
-                    var cross = Pictograms.createCrosshair(CenterPoint.X, CenterPoint.Y, 0, '#ffffff', '#ffffff');
+                    var cross = Crosshair(CenterPoint.X, CenterPoint.Y, 0, circStyle);
                     Script.plot(cross, ctx);
 
                     // Neuen Grundzustand sichern
-                    savedImage.src = $('#pane').get(0).toDataURL("image/png")
+                    savedImage.src = $(PointData.idCanvas).get(0).toDataURL("image/png")
 
                     // Radius des Kreises festlegen
                     SelectPoint(PointData.idCanvas)
@@ -245,7 +274,7 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
                             // Hintergrund wiederherstellen
                             ctx.drawImage(savedImage, 0, 0);
 
-                            Script.plot(rubberBandCircel(PointData.point, '#ff0000'), ctx);
+                            Script.plot(rubberBandCircel(PointData.point, constructionLinesStyle), ctx);
 
                         })
                         .then(function (PointData) {
@@ -253,10 +282,10 @@ requirejs(['Q', 'QUnit', 'Geometry/Angle', 'Geometry/Point', 'Basics/Defs', 'Scr
                             // Hintergrund wiederherstellen
                             ctx.drawImage(savedImage, 0, 0);
 
-                            Script.plot(Circle(PointData.point, '#ffffff'), ctx);
+                            Script.plot(Circle(PointData.point, circStyle), ctx);
 
                             // Neuen Grundzustand sichern
-                            savedImage.src = $('#pane').get(0).toDataURL("image/png")
+                            savedImage.src = $(PointData.idCanvas).get(0).toDataURL("image/png")
 
                         });
 
