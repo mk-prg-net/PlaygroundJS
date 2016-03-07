@@ -54,8 +54,10 @@ requirejs.config({
 
 
 // 2. Starten der Anwendung
-requirejs(['Geometry/Angle', 'Geometry/Point', 'Script/Script', 'MouseTools/SelectPoint', 'MouseTools/Circle'],
-    function (Angle, Point, Script, SelectPoint, CircleMouseTool) {
+requirejs(['Geometry/Angle', 'Geometry/Point', 'Script/Script', 'Basics/StyleDescriptor', 'MouseTools/SelectPoint', 'MouseTools/Circle', 'MouseTools/Rect'],
+    function (Angle, Point, Script, StyleDescriptor, SelectPoint, CircleMouseTool, RectMouseTool) {
+
+        "use strict";
 
         // Gesamte Zeichnung
         var Drawing = [];
@@ -87,7 +89,8 @@ requirejs(['Geometry/Angle', 'Geometry/Point', 'Script/Script', 'MouseTools/Sele
                     let name = Object.getOwnPropertyNames(jsonScripts[i])[0];
                     Drawing.push(Script.Cmd(name).from(jsonScripts[i][name]));
 
-                }
+                }                
+
                 Script.plot(Drawing, ctx);
 
                 // Die Liste der Canvas- Befehle ausgeben
@@ -104,6 +107,14 @@ requirejs(['Geometry/Angle', 'Geometry/Point', 'Script/Script', 'MouseTools/Sele
 
             var width = $(idCanvas).attr('width');
             var height = $(idCanvas).attr('height');
+
+            var shapeStyle = (function () {
+                var sd = StyleDescriptor
+                sd.fillStyle = '#ff4444';
+                sd.strokeStyle = '#ff4444';
+                return sd;
+            })();
+
 
             var canvasInit = [
                 Script.Cmd('fillStyle').with('#000000'),
@@ -129,120 +140,74 @@ requirejs(['Geometry/Angle', 'Geometry/Point', 'Script/Script', 'MouseTools/Sele
             });
 
 
+            $("#red").click(function () {
+                shapeStyle = (function () {
+                    var sd = StyleDescriptor
+                    sd.fillStyle = '#ff4444';
+                    sd.strokeStyle = '#ff4444';
+                    return sd;
+                })();
+            });
+
+            $("#green").click(function () {
+                shapeStyle = (function () {
+                    var sd = StyleDescriptor
+                    sd.fillStyle = '#99cc00';
+                    sd.strokeStyle = '#99cc00';
+                    return sd;
+                })();
+            });
+
+
+            $("#blue").click(function () {
+                shapeStyle = (function () {
+                    var sd = StyleDescriptor
+                    sd.fillStyle = '#33b5e5';
+                    sd.strokeStyle = '#33b5e5';
+                    return sd;
+                })();
+            });
+
+
+
             $("#Circle").click(function () {
 
                 CircleMouseTool(idCanvas, 
                     function (circ) { // done
-                        // Bestehende Zeichnung erweitern
-                        circ.unshift(0, 0);
-                        [].splice.apply(Drawing, circ);
 
-                        $(idScripts).append(Drawing.map(function (script) {
+                        $(idScripts).append(circ.map(function (script) {
                             return '<tr><td><code>' + JSON.stringify(script, null, 3) + '</code></td></tr>';
                         }));
+
+                        // Bestehende Zeichnung erweitern
+                        circ.unshift(Drawing.length, 0);
+                        [].splice.apply(Drawing, circ);
+
                     },
                     function (err) { // fail
 
-                    }
-                    );
+                    },
+                    shapeStyle);
+            });
 
-                //// aktuelle Darstellung sichern als Bitmap
-                //var savedImage = new Image()
-                //savedImage.src = $(idCanvas).get(0).toDataURL("image/png")
+            $("#Rect").click(function () {
 
-                //var CenterPoint = null;
+                RectMouseTool(idCanvas,
+                    function (rect) { // done
 
-                //function Circle(point, Style) {
+                        $(idScripts).append(rect.map(function (script) {
+                            return '<tr><td><code>' + JSON.stringify(script, null, 3) + '</code></td></tr>';
+                        }));
 
-                //    var R = Point.cartesianFrom(point).translate(-CenterPoint.X, -CenterPoint.Y).d0;
+                        // Bestehende Zeichnung erweitern
+                        rect.unshift(Drawing.length, 0);
+                        [].splice.apply(Drawing, rect);
+                        
+                    },
+                    function (err) { // fail
 
-                //    var circ = [
-                //        Script.Cmd('strokeStyle').with(Style.strokeStyle),
-                //        Script.Cmd('fillStyle').with(Style.fillStyle),
-                //        Script.Cmd('beginPath').with(),
-                //        Script.Cmd('arc').with(CenterPoint.X, CenterPoint.Y, R, 0, 2 * Math.PI, false),
-                //        Script.Cmd('closePath').with(),
-                //        Script.Cmd('stroke').with(),
-                //    ];
-
-                //    return circ;
-                //}
-
-                //function rubberBandCircel(point, Style) {
-
-                //    // Radiuslinie zeichnen
-                //    var rline = [
-                //        Script.Cmd('strokeStyle').with(Style.strokeStyle),
-                //        Script.Cmd('beginPath').with(),
-                //        Script.Cmd('moveTo').with(CenterPoint.X, CenterPoint.Y),
-                //        Script.Cmd('lineTo').with(point.X, point.Y),
-                //        Script.Cmd('closePath').with(),
-                //        Script.Cmd('stroke').with(),
-                //    ];
-
-                //    return rline.concat(Circle(point, Style));
-                //}
-
-                //SelectPoint(idCanvas)                    
-                //    .then(
-                //            function (PointData) { // done: Mittelpunkt markieren
-
-                //                // Hintergrund wiederherstellen
-                //                ctx.drawImage(savedImage, 0, 0);
-
-                //                CenterPoint = PointData.point;
-
-                //                // Fadenkreuz- Script erzeugen und zeichnen
-                //                var cross = Crosshair(CenterPoint.X, CenterPoint.Y, 0, circStyle);
-                //                Script.plot(cross, ctx);
-
-                //                // Neuen Grundzustand sichern
-                //                savedImage.src = $(PointData.idCanvas).get(0).toDataURL("image/png")
-
-                //                // Radius des Kreises festlegen
-                //                return SelectPoint(PointData.idCanvas);                             
-                //            },
-                //            function (err) { // fail
-                //            }, 
-                //            function (PointData) { // progress
-
-                //                // Hintergrund wiederherstellen
-                //                ctx.drawImage(savedImage, 0, 0);
-
-                //                // Fadenkreuz- Script erzeugen und zeichnen
-                //                var cross = Crosshair(PointData.point.X, PointData.point.Y, 0, constructionLinesStyle);
-                //                Script.plot(cross, ctx);
-                //            })
-                //    .then(
-                //            function (PointData) { // done: Kreis zeichnen
-
-                //                // Hintergrund wiederherstellen
-                //                ctx.drawImage(savedImage, 0, 0);
-
-                //                Script.plot(Circle(PointData.point, circStyle), ctx);
-
-                //                // Neuen Grundzustand sichern
-                //                savedImage.src = $(PointData.idCanvas).get(0).toDataURL("image/png")
-
-                //                // Zeichnung erweitern
-                //                Drawing
-
-                //            },
-                //            function (err) { // fail
-                //            }, 
-                //            function (PointData) { // progress
-
-                //                // Hintergrund wiederherstellen
-                //                ctx.drawImage(savedImage, 0, 0);
-
-                //                // Gummiband mit maktuellem Radius und Kreis zeichnen
-                //                Script.plot(rubberBandCircel(PointData.point, constructionLinesStyle), ctx);
-
-                //            })
-                //    .finally(function () {                    
-                //    })
-                //    .done();
-
+                    },
+                    shapeStyle);
             });
 
 

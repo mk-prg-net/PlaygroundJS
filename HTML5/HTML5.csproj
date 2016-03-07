@@ -2442,7 +2442,10 @@
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Angle.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Geometry\Point.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\Circle.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\DefineWithTwoPoints.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\Rect.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\MouseTools\SelectPoint.js" />
+    <Content Include="Scripts\mk-prg-net\CanvasPainter\Pictograms\Crosshair.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\arc.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\beginPath.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\bezierCurveTo.js" />
@@ -2462,7 +2465,6 @@
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\fillStyle.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\lineTo.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\moveTo.js" />
-    <Content Include="Scripts\mk-prg-net\CanvasPainter\Pictograms\Crosshair.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\ScriptProto.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\stroke.js" />
     <Content Include="Scripts\mk-prg-net\CanvasPainter\Script\strokeRect.js" />

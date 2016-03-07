@@ -2,11 +2,11 @@
 //----------------------------------------------------------------
 //
 // Martin Korneffel: IT Beratung/Softwareentwicklung
-// Stuttgart, den 5.3.2016
+// Stuttgart, den 6.3.2016
 //
 //  Projekt.......: CanvasPainter
-//  Name..........: Circle.js
-//  Aufgabe/Fkt...: Mauswerkzeug zum zeichnen eines Kreises
+//  Name..........: Rect.js
+//  Aufgabe/Fkt...: Mauswerkzeug zum zeichnen eines Rechtecks
 //                  
 //
 //
@@ -39,28 +39,30 @@ define(['Geometry/Angle', 'Geometry/Point', 'Basics/StyleDescriptor', 'Script/Sc
 
         return function (idCanvas, done, fail, shapeStyle, constructionLinesStyle) {
 
-            function Circle(CenterPoint, point, Style, fill) {
+            function Rect(startPoint, point, Style, fill) {
 
-                var R = Point.cartesianFrom(point).translate(-CenterPoint.X, -CenterPoint.Y).d0;
+                var topLeft = Point.cartesianWith(Math.min(startPoint.X, point.X), Math.min(startPoint.Y, point.Y));
+                var width = Math.max(startPoint.X, point.X) - topLeft.X;
+                var heigth = Math.max(startPoint.Y, point.Y) - topLeft.Y;
 
-                var circ = [
-                    Script.Cmd('metaMark').with('circ'),
+                var rect = [
+                    Script.Cmd('metaMark').with('Rect'),
                     Script.Cmd('strokeStyle').with(Style.strokeStyle),
-                    Script.Cmd('fillStyle').with(Style.fillStyle),
-                    Script.Cmd('beginPath').with(),
-                    Script.Cmd('arc').with(CenterPoint.X, CenterPoint.Y, R, 0, 2 * Math.PI, false),
-                    Script.Cmd('closePath').with(),
+                    Script.Cmd('fillStyle').with(Style.fillStyle),                    
                 ];
 
                 if (fill) {
-                    circ.push(Script.Cmd('fill').with());
+                    rect.push(Script.Cmd('fillRect').with(topLeft.X, topLeft.Y, width, heigth));
                 }
-                circ.push(Script.Cmd('stroke').with());
+
+                rect.push(Script.Cmd('strokeRect').with(topLeft.X, topLeft.Y, width, heigth));               
 
 
-                return circ;
+                return rect;
             }
 
-            DefineWithTwoPoints(idCanvas, Circle, done, fail, shapeStyle, constructionLinesStyle);
+
+            DefineWithTwoPoints(idCanvas, Rect, done, fail, shapeStyle, constructionLinesStyle)
         }
+
     });

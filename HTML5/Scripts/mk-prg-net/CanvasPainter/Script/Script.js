@@ -124,9 +124,12 @@ define(['Geometry/Point',
             // Scripts: Array mit CanvasScript Objekte. Werden nacheinander ausgeführt 
             plot: function (Scripts, ctx) {
 
-                Scripts.forEach(function (script) {
-                    script.plot(ctx);
-                });
+                for (var i = 0, anz = Scripts.length; i < anz; i++) {
+                    Scripts[i].plot(ctx);
+                }
+                //Scripts.forEach(function (script) {
+                //    script.plot(ctx);
+                //});
             },
 
         };
