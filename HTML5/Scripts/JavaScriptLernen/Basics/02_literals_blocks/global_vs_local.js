@@ -110,6 +110,7 @@ function Application(Init) {
 
 }
 
+bin_aus_IFFE_glob = -22;
 
 function GlobalVsLocal() {
 
@@ -159,6 +160,8 @@ function GlobalVsLocal() {
 
         var bin_aus_IFFE = 499;
         bin_aus_IFFE += 1;
+
+        bin_aus_IFFE_glob = 222;
         
     })();
 

@@ -47,6 +47,17 @@ namespace HTML5.Controllers
 
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult Add(string job)
+        {
+            var jobAsObj = Newtonsoft.Json.JsonConvert.DeserializeObject(job);          
+                          
+            var res = Newtonsoft.Json.JsonConvert.SerializeObject(new {data = 199 });
+
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
          
         /// <summary>
         /// Partielle View, die die aktuelle Uhrzeit zurückliefert

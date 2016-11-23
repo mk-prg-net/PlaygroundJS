@@ -119,6 +119,35 @@ app.controller('MyCalcCtrl', ['$scope', '$http', 'MakeCultureInvariant', functio
         $scope.Protokoll = [];
     }
 
+    $scope.AddOnServer = function () {
+        // angular.element ermöglicht Zugriff auf jQuery, falls jQuery vor AngularJS geladen wurde.
+        // Wurde kein Angular geladen, dann liefert element Zugriff auf die heuseigene Version
+        // von jQuery: jsLite. Siehe https://docs.angularjs.org/api/ng/function/angular.element
+        var url = angular.element("#btnAddOnServer").attr("data-websrv-url");
+
+        $http
+            .get(url,
+                  {
+                      // Querystring- Parameter. noCache wird ständig mit einem neuen Zeitstempel
+                      // initialisiert, um so die Bedieung aus dem Cache zu vermeiden
+                      params: { job: JSON.stringify({ A: $scope.A, B: $scope.B }), noCache: Date.now() },
+
+                      // Caching abschalten
+                      cache: false
+                  })
+            .then(function (result) {
+                console.log(result.toString());
+
+                var res = JSON.parse(result.data);
+                $scope.Res = res.data;
+
+            })
+            .catch(function (result) {
+                console.log("Fehler: " + result.status + " " + result.statusText);
+            });
+
+    }
+
     $scope.GetHistory = function () {
 
         // angular.element ermöglicht Zugriff auf jQuery, falls jQuery vor AngularJS geladen wurde.

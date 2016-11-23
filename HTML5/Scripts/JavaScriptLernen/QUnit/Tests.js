@@ -40,7 +40,7 @@ QUnit.test("Convert Romzahl", function (assert) {
     var Arab = mko.algo.RomToArab('MDCLXVI');
     //assert.equal(Arab, 1666, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
 
-    assert.equal(mko.algo.RomToArab("MDLX"), 1560, "MDLX sollte 1560 sein");
+    assert.equal(mko.algo.RomToArab("MDLX"), 1561, "MDLX sollte 1560 sein");
 
     assert.equal(mko.algo.RomToArab('M'), 1000, "M sollte 1000 sein");
     assert.equal(mko.algo.RomToArab('D'), 500, "D sollte 500 sein");
@@ -48,7 +48,7 @@ QUnit.test("Convert Romzahl", function (assert) {
     assert.equal(mko.algo.RomToArab('L'), 50, "L sollte 50 sein");
     assert.equal(mko.algo.RomToArab('X'), 10, "X sollte 10 sein");
     
-    assert.equal(Arab, 1667, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
+    assert.equal(Arab, 1666, "Für die Romzahl MDCLXVI sollte ein Wert von 1666 berechnet weden.");
 
 
     //var Neu = mko.algo.zuef('D', 'M', 0);
