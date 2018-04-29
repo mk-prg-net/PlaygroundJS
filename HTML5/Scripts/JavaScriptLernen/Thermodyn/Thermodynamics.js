@@ -1,4 +1,4 @@
-﻿//<unit_header>
+//<unit_header>
 //----------------------------------------------------------------
 //
 // Martin Korneffel: IT Beratung/Softwareentwicklung
@@ -39,6 +39,7 @@
     var ns = GetNamespaceMkoThermodyn();
 
     ns.LambdaMaxAtTempInK = function () { };
+    // ein test in buffer editor
 
 
 
