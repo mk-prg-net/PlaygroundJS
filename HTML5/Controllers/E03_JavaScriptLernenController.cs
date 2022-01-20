@@ -33,7 +33,7 @@ namespace HTML5.Controllers
         }
 
         // Webdienst, der eine Historie liefert
-        [HttpGet]        
+        [HttpGet]
         public JsonResult GetHistory(string job)
         {
             var rnd = new System.Random(99);
@@ -51,14 +51,14 @@ namespace HTML5.Controllers
         [HttpGet]
         public JsonResult Add(string job)
         {
-            var jobAsObj = Newtonsoft.Json.JsonConvert.DeserializeObject(job);          
-                          
-            var res = Newtonsoft.Json.JsonConvert.SerializeObject(new {data = 199 });
+            var jobAsObj = Newtonsoft.Json.JsonConvert.DeserializeObject(job);
+
+            var res = Newtonsoft.Json.JsonConvert.SerializeObject(new { data = 199 });
 
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 
-         
+
         /// <summary>
         /// Partielle View, die die aktuelle Uhrzeit zurückliefert
         /// </summary>
@@ -66,6 +66,37 @@ namespace HTML5.Controllers
         public ActionResult AjaxPartialView()
         {
             return View(DateTime.Now);
+        }
+
+        public ActionResult AjaxAutoCompleteProposalBox(string pre)
+        {
+
+            var proposalsAll = new string[]
+                {
+                "Aal", "Aare", "Anton", "Anaconda", "Audi", "Alt",
+                "Baum", "Bart", "Beet", "Berta", "billig", "Booster",
+                "Caesar", "Celle", "Chaos", "Chor", "Club", "Co", "Corona", "Colt",
+                "Daneb", "Daneben", "Dann", "Dior",
+                "Wald", "Wand", "Wahrheit", "Welt", "Welle", "Wert", "Wunsch", "Wunder",
+                "Zar", "Zahn", "Zaun", "Zauber", "Zauberer", "Zelt", "Zebra", "Zigeuner",
+                };
+
+            pre = pre.Replace('_', ' ');
+
+            var words = pre.Split(' ');
+            var lastWord = words.LastOrDefault();
+
+            int i = 0;
+            Func<int> inc = () => ++i;
+
+            var props = proposalsAll.Where(r => r.ToUpper().StartsWith(lastWord.ToUpper()))
+                                    .OrderBy(r => r)
+                                    .Select(r => new KeyValuePair<int, string>(inc(), r))
+                                    .ToArray();
+
+            // PArtialView anstatt View verhindert das laden der Layout- Page
+            return PartialView(props);
+
         }
 
         /// <summary>
@@ -76,7 +107,7 @@ namespace HTML5.Controllers
         public JsonResult AjaxGetJsonTime(string job)
         {
             var now = DateTime.Now;
-            var jsonTime = Newtonsoft.Json.JsonConvert.SerializeObject(new { TimeInfo= now.ToLongTimeString(), TimeRobo=now.ToString("s")});
+            var jsonTime = Newtonsoft.Json.JsonConvert.SerializeObject(new { TimeInfo = now.ToLongTimeString(), TimeRobo = now.ToString("s") });
 
             return Json(jsonTime, JsonRequestBehavior.AllowGet);
         }
@@ -113,7 +144,7 @@ namespace HTML5.Controllers
         public ActionResult Index()
         {
             return View();
-        }        
+        }
 
 
         class QueryExchangeRateFromTo

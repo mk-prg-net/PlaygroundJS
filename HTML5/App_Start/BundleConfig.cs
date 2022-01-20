@@ -113,7 +113,9 @@ namespace HTML5
                  "~/Scripts/JavaScriptLernen/CanvasPainter/DocumentReady.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/JavaScriptLernen/AjaxIntro").IncludeDirectory("~/Scripts/JavaScriptLernen/Ajax", "*.js").Include("~/Scripts/JavaScriptLernen/Basics/Helper.js"));
+            bundles.Add(new ScriptBundle("~/bundles/JavaScriptLernen/AjaxIntro")
+                   .IncludeDirectory("~/Scripts/JavaScriptLernen/Ajax", "*.js")
+                   .Include("~/Scripts/JavaScriptLernen/Basics/Helper.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/AngularJS").Include(

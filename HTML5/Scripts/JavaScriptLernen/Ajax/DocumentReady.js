@@ -43,8 +43,8 @@ $(document).ready(function () {
     $("#ExecFromToCur").click(CurrencyExchange);
 
     $("#calcAdd").click(Add);
-    $("#calcSub").click(Sub);
+    $("#calcSub").click(Sub);  
 
-    
+    AutoCompleteInit();    
 });
 

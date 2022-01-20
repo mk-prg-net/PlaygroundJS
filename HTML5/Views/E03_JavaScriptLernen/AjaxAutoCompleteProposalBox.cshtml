@@ -1,0 +1,7 @@
+﻿@model IEnumerable<KeyValuePair<int, string>>
+
+@foreach(var proposal in Model)
+{
+    // <span id="p1" style="display: block" tabindex="2">al</span>
+    @Html.Raw($"<span id='p{proposal.Key}' style='display: block' tabindex='{proposal.Key + 1}'>{proposal.Value}</span> ")
+}
