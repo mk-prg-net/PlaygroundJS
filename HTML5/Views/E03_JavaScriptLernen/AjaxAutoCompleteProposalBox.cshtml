@@ -1,7 +1,9 @@
-﻿@model IEnumerable<KeyValuePair<int, string>>
-
+﻿@model IEnumerable<(string proposed, string sentence)>
+@{ int i = 1;}
 @foreach(var proposal in Model)
 {
+
+    var se = $"\"{proposal.sentence}\"";
     // <span id="p1" style="display: block" tabindex="2">al</span>
-    @Html.Raw($"<span id='p{proposal.Key}' style='display: block' tabindex='{proposal.Key + 1}'>{proposal.Value}</span> ")
+    @Html.Raw($"<span type='button' id='{proposal.proposed}' style='display: block' tabindex='{i++}' onclick='AjaxAutocompleteSet({se});' onkeyup='AjaxAutocompleteSet({se});'>{proposal.proposed}</span> ")
 }

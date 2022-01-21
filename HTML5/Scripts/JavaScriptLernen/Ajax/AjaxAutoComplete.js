@@ -53,11 +53,23 @@ function AjaxAutoCompleteGetProposals(prefix) {
     }
 }
 
+function AjaxAutocompleteSet(sentence) {
+
+    var evt = window.event;
+    var c = evt.keyCode || evt.which;
+
+    if (c !== 9 && c !== 16 && c !== 37 && c !== 38 && c !== 39 && c !== 40) {
+        $("#AutocompleteText").text(sentence);
+        $("#AutocompleteProposalBoxes").empty();
+        $("#AutocompleteText").focus();
+    }
+}
+
 function AutoCompleteInit() {
 
     // Laden des Textes
     $("#AutocompleteText").keyup(function () {
-        var prefix = $("#AutocompleteText").text().trim().replace(" ", "_");
+        var prefix = $("#AutocompleteText").text().trim().replaceAll(" ", "_");
         AjaxAutoCompleteGetProposals(prefix);
     });
 

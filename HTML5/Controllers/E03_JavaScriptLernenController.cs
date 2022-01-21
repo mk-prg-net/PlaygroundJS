@@ -74,10 +74,12 @@ namespace HTML5.Controllers
             var proposalsAll = new string[]
                 {
                 "Aal", "Aare", "Anton", "Anaconda", "Audi", "Alt",
-                "Baum", "Bart", "Beet", "Berta", "billig", "Booster",
-                "Caesar", "Celle", "Chaos", "Chor", "Club", "Co", "Corona", "Colt",
+                "Baum", "Bart", "Beet", "Berg", "Berge", "Berta", "billig", "Booster",
+                "Caesar", "Celle", "Chaos", "Chor", "Club", "Co", "Corona", "Colt", "Citroen",
                 "Daneb", "Daneben", "Dann", "Dior",
-                "Wald", "Wand", "Wahrheit", "Welt", "Welle", "Wert", "Wunsch", "Wunder",
+                "Ida", "Ina", "ist", "Igor", "Irre", "innen", "im", "in", 
+                "super", "schön", "Sau", "Saublöd", "Senke", "Senkblei",
+                "Wald", "Wand", "Wahrheit", "Wasser", "Welt", "Welle", "Wert", "Wunsch", "Wunder",
                 "Zar", "Zahn", "Zaun", "Zauber", "Zauberer", "Zelt", "Zebra", "Zigeuner",
                 };
 
@@ -85,13 +87,15 @@ namespace HTML5.Controllers
 
             var words = pre.Split(' ');
             var lastWord = words.LastOrDefault();
+            var preludium = words.Length > 1 ? string.Join(" ", words.Take(words.Length-1).ToArray()) : "";
+
 
             int i = 0;
             Func<int> inc = () => ++i;
 
             var props = proposalsAll.Where(r => r.ToUpper().StartsWith(lastWord.ToUpper()))
                                     .OrderBy(r => r)
-                                    .Select(r => new KeyValuePair<int, string>(inc(), r))
+                                    .Select(r => (r, $"{preludium} {r}"))
                                     .ToArray();
 
             // PArtialView anstatt View verhindert das laden der Layout- Page
